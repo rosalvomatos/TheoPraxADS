@@ -1,0 +1,52 @@
+<resources>
+
+    <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_login">Login</string>
+    <string name="app_name">Cimatec_Guide</string>
+    <string name="bemvindo">Bem-Vindo!</string>
+    <string name="cursos">Cursos</string>
+    <string name="graduacao">Graduação</string>
+    <string name="autorizacao">Ato de Autorização</string>
+    <string name="manualaluno">Manual do Aluno</string>
+    <string name="regimento">Regimento Disciplinar</string>
+    <string name="textocurso">texto curso</string>
+    <string name="disciplinas">Disciplinas</string>
+    <string name="dirigentes">Dirigentes</string>
+    <string name="disciplinas_final">Disciplinas do Docente</string>
+    <string name="nomedisciplina">nomedisciplina</string>
+    <string name="docentes">Docentes</string>
+    <string name="docentes_final">Docentes da Disciplina</string>
+    <string name="nomedocente">Nome docente</string>
+    <string name="titulo_dialog">Cimatec Guide informa</string>
+    <string name="msg_dialog">Houve erro na conexão</string>
+    <string name="msg_dialog1">Carregando lista de Cursos, por favor aguarde...</string>
+    <string name="msg_dialog2">Carregando lista de Disciplinas, por favor aguarde...</string>
+    <string name="msg_dialog3">Carregando lista de Docentes, por favor aguarde...</string>
+    <string name="ac_sair">Sair</string>
+    <string name="ac_atualizar">Atualizar</string>
+    <string name="ac_pesquisar">Pesquisar</string>
+    <string name="procurar">Digite o Titulo do Curso</string>
+
+
+    <string name="mantenedora">Mantenedora</string>
+    <string name="mantenedora_texto1">Serviço Nacional de Aprendizagem Industrial SENAI-BA</string>
+    <string name="diretor">Diretor de Tecnologia e Inovação do SENAI CIMATEC</string>
+    <string name="diretor_texto">Leone Peter Correia da Silva Andrade</string>
+    <string name="mantida">Mantida</string>
+    <string name="mantida_texto1">Faculdade SENAI CIMATEC</string>
+    <string name="mantida_texto2">Alex Álisson Bandeira Santos</string>
+    <string name="coord_adm">Coordenação Administrativa Financeira</string>
+    <string name="coord_adm_texto">Tatiana Gesteira de Almeida Ferraz</string>
+    <string name="coord_grad">Coordenação da Graduação e Extensão</string>
+    <string name="coord_grad_texto">Tarso Barreto Nogueira</string>
+    <string name="coord_pos">Coordenação de Pós-Graduação e Pesquisa</string>
+    <string name="coord_pos_texto">Alex Álisson Bandeira Santos</string>
+    <string name="coord_ped">Coordenação Pedagógica</string>
+    <string name="coord_ped_texto">Sayonara Nobre De Brito Lordelo</string>
+    <string name="atend_ped">Atendimento Psicopedagógico</string>
+    <string name="atend_ped_texto">Ana Carolina Santos de Lima</string>
+    <string name="secret">Secretaria Acadêmica – Coordenação</string>
+    <string name="secret_texto">Maria Verônica da Rocha Bamberg</string>
+    <string name="secret_ac">Secretária Acadêmica</string>
+    <string name="secret_ac_texto">Michela de Andrade Fernandes</string>
+</resources>

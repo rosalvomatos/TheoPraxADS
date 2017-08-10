@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.project.exemplo" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:largeHeap="true"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity android:name=".atividades.Splash" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".atividades.GraduacaoActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".atividades.CursosActivity"
+            android:label="@string/cursos"
+            android:parentActivityName=".atividades.GraduacaoActivity"
+            android:launchMode="singleTop">
+        </activity>
+        <activity
+            android:name=".atividades.DocentesActivity"
+            android:label="@string/docentes"
+            android:parentActivityName=".atividades.CursosActivity" >
+        </activity>
+        <activity
+            android:name=".atividades.DirigentesActivity"
+            android:label="Dirigentes"
+            android:parentActivityName=".atividades.GraduacaoActivity" >
+        </activity>
+        <activity
+            android:name=".atividades.DisciplinasActivity"
+            android:label="Disciplinas"
+            android:parentActivityName=".atividades.CursosActivity" >
+        </activity>
+        <activity
+            android:name=".atividades.SobreActivity"
+            android:label="Sobre"
+            android:parentActivityName=".atividades.GraduacaoActivity" >
+        </activity>
+    </application>
+
+</manifest>
