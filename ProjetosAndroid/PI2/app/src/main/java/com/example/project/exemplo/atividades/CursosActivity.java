@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.example.project.exemplo.R;
 import com.example.project.exemplo.adaptadores.CursosRVAdapter;
 import com.example.project.exemplo.mapeamento.CursoPI;
@@ -35,7 +36,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CursosActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener  {
+public class CursosActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener {
 
     Toolbar toolbar;
 
@@ -54,15 +55,15 @@ public class CursosActivity extends AppCompatActivity implements SearchView.OnQu
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_listacursos);
+//        setContentView(R.layout.layout_listacursos);
 
-        adaptador = new CursosRVAdapter(cursos,R.layout.layout_curso,this,cursoListener);
+//        adaptador = new CursosRVAdapter(cursos, R.layout.layout_curso, this, cursoListener);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Cursos");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mFragmentManager = getSupportFragmentManager();
-        recyclerView = (RecyclerView) findViewById(R.id.RCV_listacursos);
+//        recyclerView = (RecyclerView) findViewById(R.id.RCV_listacursos);
 
 
         if (savedInstanceState != null) {
@@ -70,7 +71,7 @@ public class CursosActivity extends AppCompatActivity implements SearchView.OnQu
             ultimaPesquisa = (List<CursoPI>) savedInstanceState.getSerializable(listaCursoOriginal);
 
             if (cursos != null) {
-                adaptador = new CursosRVAdapter(cursos, R.layout.layout_curso, this, cursoListener);
+//                adaptador = new CursosRVAdapter(cursos, R.layout.layout_curso, this, cursoListener);
                 recyclerView.setAdapter(adaptador);
                 recyclerView.setHasFixedSize(true);
 
@@ -146,7 +147,7 @@ public class CursosActivity extends AppCompatActivity implements SearchView.OnQu
                 cursosEncontrados.remove(cursoTemp);
             }
         }
-        adaptador = new CursosRVAdapter(cursosEncontrados, R.layout.layout_curso, this,cursoListener);
+//        adaptador = new CursosRVAdapter(cursosEncontrados, R.layout.layout_curso, this, cursoListener);
         recyclerView.setAdapter(adaptador);
 
     }
@@ -155,7 +156,7 @@ public class CursosActivity extends AppCompatActivity implements SearchView.OnQu
         cursos = new ArrayList<CursoPI>();
         if (ultimaPesquisa != null) cursos.addAll(ultimaPesquisa);
         if (cursos != null) {
-            adaptador = new CursosRVAdapter(cursos, R.layout.layout_curso, this,cursoListener);
+//            adaptador = new CursosRVAdapter(cursos, R.layout.layout_curso, this, cursoListener);
             recyclerView.setAdapter(adaptador);
             recyclerView.setHasFixedSize(true);
 
@@ -200,8 +201,7 @@ public class CursosActivity extends AppCompatActivity implements SearchView.OnQu
         }
     }
 
-    class ObterCursosTask extends AsyncTask<Void, Void, List<CursoPI>>
-    {
+    class ObterCursosTask extends AsyncTask<Void, Void, List<CursoPI>> {
 
         @Override
         protected void onPreExecute() {
@@ -250,7 +250,7 @@ public class CursosActivity extends AppCompatActivity implements SearchView.OnQu
                 dialog.abrir(mFragmentManager);
             } else {
                 cursos.addAll(lista);
-                adaptador = new CursosRVAdapter(cursos, R.layout.layout_curso, getApplicationContext(),cursoListener);
+//                adaptador = new CursosRVAdapter(cursos, R.layout.layout_curso, getApplicationContext(), cursoListener);
                 recyclerView.setAdapter(adaptador);
                 recyclerView.setHasFixedSize(true);
 
@@ -267,26 +267,26 @@ public class CursosActivity extends AppCompatActivity implements SearchView.OnQu
 
                 @Override
                 public void verDisciplina(CursoPI curso) {
-                    Intent intent = new Intent(CursosActivity.this,DisciplinasActivity.class);
-                    intent.putExtra("curso",curso.getCursoCodigo());
+                    Intent intent = new Intent(CursosActivity.this, DisciplinasActivity.class);
+                    intent.putExtra("curso", curso.getCursoCodigo());
                     startActivity(intent);
                 }
 
                 @Override
                 public void verAto(CursoPI curso) {
-                    startActivity(CGuideWS.abrirArquivo("ATO_"+curso.getCursoCodigo()+".pdf"));
+                    startActivity(CGuideWS.abrirArquivo("ATO_" + curso.getCursoCodigo() + ".pdf"));
                 }
 
                 @Override
                 public void verPPC(CursoPI curso) {
-                    startActivity(CGuideWS.abrirArquivo("PPC_"+curso.getCursoCodigo()+".pdf"));
+                    startActivity(CGuideWS.abrirArquivo("PPC_" + curso.getCursoCodigo() + ".pdf"));
 
                 }
 
                 @Override
                 public void verDocente(CursoPI curso) {
-                    Intent intent = new Intent(CursosActivity.this,DocentesActivity.class);
-                    intent.putExtra("curso",curso.getCursoCodigo());
+                    Intent intent = new Intent(CursosActivity.this, DocentesActivity.class);
+                    intent.putExtra("curso", curso.getCursoCodigo());
                     startActivity(intent);
                 }
 
@@ -297,7 +297,7 @@ public class CursosActivity extends AppCompatActivity implements SearchView.OnQu
 
                 @Override
                 public void verMatriz(CursoPI curso) {
-                    startActivity(CGuideWS.abrirArquivo("MATRIZ_"+curso.getCursoCodigo()+".pdf"));
+                    startActivity(CGuideWS.abrirArquivo("MATRIZ_" + curso.getCursoCodigo() + ".pdf"));
                 }
             };
 

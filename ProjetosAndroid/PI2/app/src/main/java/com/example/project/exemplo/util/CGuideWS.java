@@ -6,6 +6,7 @@ import android.net.Uri;
 
 import com.example.project.exemplo.mapeamento.CursoPI;
 import com.example.project.exemplo.mapeamento.CursoSenai;
+import com.example.project.exemplo.Mapper.Json.CourseJson;
 import com.example.project.exemplo.mapeamento.TbDisciplina;
 import com.example.project.exemplo.mapeamento.TbDocente;
 import com.google.gson.Gson;
@@ -27,6 +28,7 @@ public class CGuideWS {
     private static String base_ws = "http://200.9.65.20:8080/WS_hibernate_pd/webresources/";
     private static String base_ws_pdf = "http://200.9.65.20:8080/WS_hibernate_pdSenai/webresources/";
     private static String base_ws_senai = "http://senaiweb2.fieb.org.br/mec/api/";
+    private static String base_ws_test = "http://ws-tp.apphb.com/api/";
     private Context context;
     static List<CursoSenai> cursosSenai;
 
@@ -53,7 +55,6 @@ public class CGuideWS {
             return null;
         }
     }
-
 
     private static String streamToString(InputStream is) throws Exception{
         byte[] bytes = new byte[9999999];
@@ -119,6 +120,7 @@ public class CGuideWS {
         return cursosPI;
 
     }
+
     public static List<TbDisciplina> obterDisciplinasCursos(String codCurso){
         List<CursoSenai> cursosSN = cursosSenai;
         List<TbDisciplina> disciplinas = new ArrayList<TbDisciplina>();
@@ -200,4 +202,36 @@ public class CGuideWS {
         return encontrou;
     }
 
+
+
+    //TEST URL COURSE LAPA'S WEB API
+    public static List<CourseJson> getCourse(int typeCourse) {
+        try {
+            String partUrl = "Curso/";
+            switch (typeCourse){
+                case 1:
+                    partUrl += "GetGrad/";
+                    break;
+                case 2:
+                    partUrl += "GetPosGrad/";
+                    break;
+            }
+            String fullPath = base_ws_test + partUrl ;
+            HttpURLConnection conn = abrirConexao(fullPath, "GET", false);
+            List<CourseJson> lista = new ArrayList<>();
+            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                InputStream is = conn.getInputStream();
+                String s = streamToString(is);
+                is.close();
+                Gson gson = new Gson();
+                Type collectionType = new TypeToken<ArrayList<CourseJson>>() {
+                }.getType();
+                lista = gson.fromJson(s, collectionType);
+            }
+            conn.disconnect();
+            return lista;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

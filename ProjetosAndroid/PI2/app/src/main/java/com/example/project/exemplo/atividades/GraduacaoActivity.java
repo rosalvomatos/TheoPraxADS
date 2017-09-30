@@ -112,8 +112,6 @@ public class GraduacaoActivity extends AppCompatActivity {
     }
 
 
-
-
     private void sair(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Cimatec_Guide");

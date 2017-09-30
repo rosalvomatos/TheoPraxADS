@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.project.exemplo.R;
 import com.example.project.exemplo.mapeamento.CursoPI;
+
 import java.util.List;
 
 /**
@@ -55,7 +56,7 @@ public class CursosRVAdapter extends RecyclerView.Adapter<CursosRVAdapter.CursoV
         cursoViewHolder.duracao.setText(cursos.get(i).getCursoDuracao());
 
         final CursoPI curso = cursos.get(i);
-         cursoViewHolder.ato.setOnClickListener(new View.OnClickListener() {
+        cursoViewHolder.ato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (cursoListener != null) {
@@ -122,55 +123,60 @@ public class CursosRVAdapter extends RecyclerView.Adapter<CursosRVAdapter.CursoV
         });
     }
 
-        @Override
-        public void onAttachedToRecyclerView (RecyclerView recyclerView){
-            super.onAttachedToRecyclerView(recyclerView);
-        }
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }
 
-        public static class CursoViewHolder extends RecyclerView.ViewHolder {
-            //CardView cv;
+    public static class CursoViewHolder extends RecyclerView.ViewHolder {
+        //CardView cv;
 
-            TextView nomecurso;
-            TextView codigo;
-            TextView turno;
-            TextView modalidade;
-            TextView avaliacaomec;
-            TextView duracao;
-            TextView coordenador;
-            Button ato;
-            Button ppc;
-            Button acervo;
-            Button docentes;
-            Button matrizcurricular;
-            Button disciplinas;
+        TextView nomecurso;
+        TextView codigo;
+        TextView turno;
+        TextView modalidade;
+        TextView avaliacaomec;
+        TextView duracao;
+        TextView coordenador;
+        Button ato;
+        Button ppc;
+        Button acervo;
+        Button docentes;
+        Button matrizcurricular;
+        Button disciplinas;
 
-            public CursoViewHolder(View itemView) {
-                super(itemView);
+        public CursoViewHolder(View itemView) {
+            super(itemView);
 
-                codigo = (TextView) itemView.findViewById(R.id.textViewcodigo);
-                nomecurso = (TextView) itemView.findViewById(R.id.textViewnomecurso);
-                turno = (TextView) itemView.findViewById(R.id.textViewturno);
-                modalidade = (TextView) itemView.findViewById(R.id.textViewmodalidade);
-                avaliacaomec = (TextView) itemView.findViewById(R.id.textViewavaliacaomec);
-                duracao = (TextView) itemView.findViewById(R.id.textViewduracao);
-                coordenador = (TextView) itemView.findViewById(R.id.textViewcoordenador);
-                ato = (Button) itemView.findViewById(R.id.btnAbrirAto);
-                ppc = (Button) itemView.findViewById(R.id.btnAbrirPPC);
-                acervo = (Button) itemView.findViewById(R.id.btnAbrirAcervo);
-                matrizcurricular = (Button) itemView.findViewById(R.id.btnAbrirMatriz);
-                disciplinas = (Button) itemView.findViewById(R.id.btnAbrirDisciplinas);
-                docentes = (Button) itemView.findViewById(R.id.btnAbrirDocentes);
+//            codigo = (TextView) itemView.findViewById(R.id.textViewcodigo);
+//            nomecurso = (TextView) itemView.findViewById(R.id.textViewnomecurso);
+//            turno = (TextView) itemView.findViewById(R.id.textViewturno);
+//            modalidade = (TextView) itemView.findViewById(R.id.textViewmodalidade);
+//            avaliacaomec = (TextView) itemView.findViewById(R.id.textViewavaliacaomec);
+//            duracao = (TextView) itemView.findViewById(R.id.textViewduracao);
+//            coordenador = (TextView) itemView.findViewById(R.id.textViewcoordenador);
+//            ato = (Button) itemView.findViewById(R.id.btnAbrirAto);
+//            ppc = (Button) itemView.findViewById(R.id.btnAbrirPPC);
+//            acervo = (Button) itemView.findViewById(R.id.btnAbrirAcervo);
+//            matrizcurricular = (Button) itemView.findViewById(R.id.btnAbrirMatriz);
+            disciplinas = (Button) itemView.findViewById(R.id.btnAbrirDisciplinas);
+            docentes = (Button) itemView.findViewById(R.id.btnAbrirDocentes);
 
-            }
-        }
-
-        public interface CursoListener {
-            public void verDisciplina(CursoPI curso);
-            public void verAto(CursoPI curso);
-            public void verPPC(CursoPI curso);
-            public void verDocente(CursoPI curso);
-            public void verAcervo(CursoPI curso);
-            public void verMatriz(CursoPI curso);
         }
     }
+
+    public interface CursoListener {
+        public void verDisciplina(CursoPI curso);
+
+        public void verAto(CursoPI curso);
+
+        public void verPPC(CursoPI curso);
+
+        public void verDocente(CursoPI curso);
+
+        public void verAcervo(CursoPI curso);
+
+        public void verMatriz(CursoPI curso);
+    }
+}
 

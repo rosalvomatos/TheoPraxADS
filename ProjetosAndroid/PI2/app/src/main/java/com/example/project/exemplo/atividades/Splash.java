@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
+import com.example.project.exemplo.Activity.HomeActivity;
 import com.example.project.exemplo.R;
 import com.example.project.exemplo.util.CGuideWS;
 
@@ -35,7 +36,7 @@ public class Splash extends Activity implements Runnable {
 
 
     public void run(){
-        startActivity(new Intent(this, GraduacaoActivity.class));
+        startActivity(new Intent(this, HomeActivity.class));
         finish();
 
     }
