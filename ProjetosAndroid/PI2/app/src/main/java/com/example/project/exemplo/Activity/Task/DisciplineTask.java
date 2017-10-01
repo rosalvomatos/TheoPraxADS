@@ -51,7 +51,7 @@ public class DisciplineTask extends AsyncTask<Void, Void, List<DisciplineJson>> 
             disciplineJsonList = CGuideWS.getDiscipline(typeSearch, refferId);
         } catch (Exception e) {
             ProgressDialogUtil.showProgressDialogUtil(false, context);
-            GenericDialogFragment dialog = GenericDialogFragment.novoDialog(context,
+            GenericDialogFragment dialog = GenericDialogFragment.newDialog(context,
                     0,
                     R.string.title_dialog,
                     R.string.msg_dialog,
@@ -59,7 +59,7 @@ public class DisciplineTask extends AsyncTask<Void, Void, List<DisciplineJson>> 
                             android.R.string.ok // String do Android
 
                     });
-            dialog.abrir(mFragmentManager);
+            dialog.openDialog(mFragmentManager);
         }
         return disciplineJsonList;
     }
@@ -69,14 +69,14 @@ public class DisciplineTask extends AsyncTask<Void, Void, List<DisciplineJson>> 
         super.onPostExecute(disciplineJsonListLocal);
         ProgressDialogUtil.showProgressDialogUtil(false, context);
         if (disciplineJsonListLocal == null) {
-            GenericDialogFragment dialog = GenericDialogFragment.novoDialog(context,
+            GenericDialogFragment dialog = GenericDialogFragment.newDialog(context,
                     0,
                     R.string.title_dialog,
                     R.string.msg_dialog_discipline,
                     new int[]{
                             android.R.string.ok // String do Android
                     });
-            dialog.abrir(mFragmentManager);
+            dialog.openDialog(mFragmentManager);
         } else {
             disciplineJsonList.addAll(disciplineJsonListLocal);
             disciplineAdapter = new DisciplineAdapter(disciplineJsonList, R.layout.layout_discipline, context, iDisciplineListener);

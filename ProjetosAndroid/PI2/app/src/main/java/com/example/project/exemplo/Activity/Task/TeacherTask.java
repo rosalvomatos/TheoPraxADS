@@ -51,7 +51,7 @@ public class TeacherTask  extends AsyncTask<Void, Void, List<TeacherJson>> {
             teacherJsonList = CGuideWS.getTeacher(typeSearch, refferId);
         } catch (Exception e) {
             ProgressDialogUtil.showProgressDialogUtil(false, context);
-            GenericDialogFragment dialog = GenericDialogFragment.novoDialog(context,
+            GenericDialogFragment dialog = GenericDialogFragment.newDialog(context,
                     0,
                     R.string.title_dialog,
                     R.string.msg_dialog,
@@ -59,7 +59,7 @@ public class TeacherTask  extends AsyncTask<Void, Void, List<TeacherJson>> {
                             android.R.string.ok // String do Android
 
                     });
-            dialog.abrir(mFragmentManager);
+            dialog.openDialog(mFragmentManager);
         }
         return teacherJsonList;
     }
@@ -69,14 +69,14 @@ public class TeacherTask  extends AsyncTask<Void, Void, List<TeacherJson>> {
         super.onPostExecute(teacherJsonListLocal);
         ProgressDialogUtil.showProgressDialogUtil(false, context);
         if (teacherJsonListLocal == null) {
-            GenericDialogFragment dialog = GenericDialogFragment.novoDialog(context,
+            GenericDialogFragment dialog = GenericDialogFragment.newDialog(context,
                     0,
                     R.string.title_dialog,
                     R.string.msg_dialog_teacher,
                     new int[]{
                             android.R.string.ok // String do Android
                     });
-            dialog.abrir(mFragmentManager);
+            dialog.openDialog(mFragmentManager);
         } else {
             teacherJsonList.addAll(teacherJsonListLocal);
             teacherAdapter = new TeacherAdapter(teacherJsonList, R.layout.layout_teacher, context, iTeacherListener);

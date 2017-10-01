@@ -37,10 +37,12 @@
     <string name="msg_dialog_course">Carregando lista de Cursos, por favor aguarde...</string>
     <string name="msg_dialog_discipline">Carregando lista de Disciplinas, por favor aguarde...</string>
     <string name="msg_dialog_teacher">Carregando lista de Docentes, por favor aguarde...</string>
-    <string name="ac_sair">Sair</string>
-    <string name="ac_atualizar">Atualizar</string>
-    <string name="ac_pesquisar">Pesquisar</string>
-    <string name="procurar">Digite o Titulo do Curso</string>
+    <string name="quit">Sair</string>
+    <string name="update">Atualizar</string>
+    <string name="search">Pesquisar</string>
+    <string name="search_course">Digite o nome do Curso</string>
+    <string name="search_discipline">Digite o nome da Disciplina</string>
+    <string name="search_teacher">Digite o nome do Docente</string>
 
 
     <string name="mantenedora">Mantenedora</string>

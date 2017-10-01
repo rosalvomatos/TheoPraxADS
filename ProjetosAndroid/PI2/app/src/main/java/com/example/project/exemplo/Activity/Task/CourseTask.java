@@ -49,7 +49,7 @@ public class CourseTask extends AsyncTask<Void, Void, List<CourseJson>> {
             courseJsonList = CGuideWS.getCourse(typeCourse);
         } catch (Exception e) {
             ProgressDialogUtil.showProgressDialogUtil(false, context);
-            GenericDialogFragment dialog = GenericDialogFragment.novoDialog(context,
+            GenericDialogFragment dialog = GenericDialogFragment.newDialog(context,
                     0,
                     R.string.title_dialog,
                     R.string.msg_dialog,
@@ -57,7 +57,7 @@ public class CourseTask extends AsyncTask<Void, Void, List<CourseJson>> {
                             android.R.string.ok // String do Android
 
                     });
-            dialog.abrir(mFragmentManager);
+            dialog.openDialog(mFragmentManager);
         }
         return courseJsonList;
     }
@@ -67,14 +67,14 @@ public class CourseTask extends AsyncTask<Void, Void, List<CourseJson>> {
         super.onPostExecute(courseJsonListLocal);
         ProgressDialogUtil.showProgressDialogUtil(false, context);
         if (courseJsonListLocal == null) {
-            GenericDialogFragment dialog = GenericDialogFragment.novoDialog(context,
+            GenericDialogFragment dialog = GenericDialogFragment.newDialog(context,
                     0,
                     R.string.title_dialog,
                     R.string.msg_dialog_course,
                     new int[]{
                             android.R.string.ok // String do Android
                     });
-            dialog.abrir(mFragmentManager);
+            dialog.openDialog(mFragmentManager);
         } else {
             courseJsonList.addAll(courseJsonListLocal);
             courseAdapter = new CourseAdapter(courseJsonList, R.layout.layout_course, context, iCourseListener);

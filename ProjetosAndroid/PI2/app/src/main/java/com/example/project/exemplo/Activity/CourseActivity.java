@@ -87,7 +87,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
         MenuItem searchItem = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
-        searchView.setQueryHint(getString(R.string.procurar));
+        searchView.setQueryHint(getString(R.string.search_course));
         MenuItemCompat.setOnActionExpandListener(searchItem, this);
         return true;
     }
@@ -174,14 +174,14 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
                 courseTask.execute();
             }
         } catch (Exception e) {
-            GenericDialogFragment dialog = GenericDialogFragment.novoDialog(CourseActivity.this,
+            GenericDialogFragment dialog = GenericDialogFragment.newDialog(CourseActivity.this,
                     0,
                     R.string.title_dialog,
                     R.string.msg_dialog,
                     new int[]{
                             android.R.string.ok // String do Android
                     });
-            dialog.abrir(fragmentManager);
+            dialog.openDialog(fragmentManager);
         }
     }
 
