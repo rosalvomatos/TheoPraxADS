@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.project.exemplo.R;
-import com.example.project.exemplo.util.TypeCourseEnum;
+import com.example.project.exemplo.util.Enum.TypeCourseEnum;
 
 public class HomeActivity extends AppCompatActivity {
 

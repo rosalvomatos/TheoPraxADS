@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.example.project.exemplo.Mapper.Json.DisciplineJson;
 import com.example.project.exemplo.mapeamento.CursoPI;
 import com.example.project.exemplo.mapeamento.CursoSenai;
 import com.example.project.exemplo.Mapper.Json.CourseJson;
@@ -56,19 +57,19 @@ public class CGuideWS {
         }
     }
 
-    private static String streamToString(InputStream is) throws Exception{
+    private static String streamToString(InputStream is) throws Exception {
         byte[] bytes = new byte[9999999];
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int lidos;
-        while((lidos = is.read(bytes))>0){
-            baos.write(bytes,0,lidos);
+        while ((lidos = is.read(bytes)) > 0) {
+            baos.write(bytes, 0, lidos);
         }
         return new String(baos.toByteArray());
     }
 
     private static List<CursoPI> obterCursosWS() {
         try {
-            String urlsessao = base_ws + "cursows" ;
+            String urlsessao = base_ws + "cursows";
             HttpURLConnection conn = abrirConexao(urlsessao, "GET", false);
             List<CursoPI> lista = new ArrayList<CursoPI>();
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -89,7 +90,7 @@ public class CGuideWS {
 
     private static List<CursoSenai> obterCursosSenai() {
         try {
-            String urlsessao = base_ws_senai + "cursos" ;
+            String urlsessao = base_ws_senai + "cursos";
             HttpURLConnection conn = abrirConexao(urlsessao, "GET", false);
             List<CursoSenai> lista = new ArrayList<CursoSenai>();
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -108,26 +109,26 @@ public class CGuideWS {
         }
     }
 
-    public static Intent abrirArquivo(String url){
-        String caminnhoArq= base_ws_pdf+url;
-        Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(caminnhoArq));
+    public static Intent abrirArquivo(String url) {
+        String caminnhoArq = base_ws_pdf + url;
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(caminnhoArq));
         return intent;
     }
 
-    public static List<CursoPI> obterCursos(){
+    public static List<CursoPI> obterCursos() {
         List<CursoPI> cursosPI = obterCursosWS();
         cursosSenai = obterCursosSenai();
         return cursosPI;
 
     }
 
-    public static List<TbDisciplina> obterDisciplinasCursos(String codCurso){
+    public static List<TbDisciplina> obterDisciplinasCursos(String codCurso) {
         List<CursoSenai> cursosSN = cursosSenai;
         List<TbDisciplina> disciplinas = new ArrayList<TbDisciplina>();
-        for (CursoSenai c:cursosSN) {
-            if (c.getCODCURSO().equalsIgnoreCase(codCurso)){
-                if (!verificarExistenciaDeDisciplinaDoCurso(disciplinas,c.getCODDISC())){
-                    disciplinas.add(new TbDisciplina(c.getCODDISC(), c.getDISCIPLINA(),c.getCH()));
+        for (CursoSenai c : cursosSN) {
+            if (c.getCODCURSO().equalsIgnoreCase(codCurso)) {
+                if (!verificarExistenciaDeDisciplinaDoCurso(disciplinas, c.getCODDISC())) {
+                    disciplinas.add(new TbDisciplina(c.getCODDISC(), c.getDISCIPLINA(), c.getCH()));
                 }
             }
         }
@@ -136,13 +137,13 @@ public class CGuideWS {
     }
 
 
-    public static List<TbDisciplina> obterDisciplinasDocente(String codDocente){
+    public static List<TbDisciplina> obterDisciplinasDocente(String codDocente) {
         List<CursoSenai> cursosSN = cursosSenai;
         List<TbDisciplina> disciplinas = new ArrayList<TbDisciplina>();
-        for (CursoSenai c:cursosSN) {
-            if (c.getCODPROF().equalsIgnoreCase(codDocente)){
-                if (!verificarExistenciaDeDisciplinaDoCurso(disciplinas,c.getCODDISC())){
-                    disciplinas.add(new TbDisciplina(c.getCODDISC(), c.getDISCIPLINA(),c.getCH()));
+        for (CursoSenai c : cursosSN) {
+            if (c.getCODPROF().equalsIgnoreCase(codDocente)) {
+                if (!verificarExistenciaDeDisciplinaDoCurso(disciplinas, c.getCODDISC())) {
+                    disciplinas.add(new TbDisciplina(c.getCODDISC(), c.getDISCIPLINA(), c.getCH()));
                 }
             }
         }
@@ -164,13 +165,13 @@ public class CGuideWS {
 
     }
 
-    public static List<TbDocente> obterDocentesCursos(String codCurso){
+    public static List<TbDocente> obterDocentesCursos(String codCurso) {
         List<CursoSenai> cursosSN = cursosSenai;
         List<TbDocente> docentes = new ArrayList<TbDocente>();
-        for (CursoSenai c:cursosSN) {
-            if (c.getCODCURSO().equalsIgnoreCase(codCurso)){
-                if (!verificarExistenciaDeDocenteDoCurso(docentes,c.getCODPROF())){
-                    docentes.add(new TbDocente(c.getCODPROF(), c.getPROFESSOR(),c.getREGIME_TRAB()));
+        for (CursoSenai c : cursosSN) {
+            if (c.getCODCURSO().equalsIgnoreCase(codCurso)) {
+                if (!verificarExistenciaDeDocenteDoCurso(docentes, c.getCODPROF())) {
+                    docentes.add(new TbDocente(c.getCODPROF(), c.getPROFESSOR(), c.getREGIME_TRAB()));
                 }
             }
         }
@@ -178,11 +179,11 @@ public class CGuideWS {
 
     }
 
-    private static boolean verificarExistenciaDeDocenteDoCurso(List<TbDocente> lista, String codDoc){
+    private static boolean verificarExistenciaDeDocenteDoCurso(List<TbDocente> lista, String codDoc) {
         boolean encontrou = false;
 
-        for(TbDocente c:lista){
-            if (c.getDocente_codigo().equalsIgnoreCase(codDoc)){
+        for (TbDocente c : lista) {
+            if (c.getDocente_codigo().equalsIgnoreCase(codDoc)) {
                 encontrou = true;
                 break;
             }
@@ -190,25 +191,24 @@ public class CGuideWS {
         return encontrou;
     }
 
-    private static boolean verificarExistenciaDeDisciplinaDoCurso(List<TbDisciplina> lista, String codDisc){
+    private static boolean verificarExistenciaDeDisciplinaDoCurso(List<TbDisciplina> lista, String codDisc) {
         boolean encontrou = false;
 
-        for(TbDisciplina c:lista){
-            if (c.getDisciplina_codigo().equalsIgnoreCase(codDisc)){
+        for (TbDisciplina c : lista) {
+            if (c.getDisciplina_codigo().equalsIgnoreCase(codDisc)) {
                 encontrou = true;
                 break;
             }
         }
         return encontrou;
     }
-
 
 
     //TEST URL COURSE LAPA'S WEB API
     public static List<CourseJson> getCourse(int typeCourse) {
         try {
             String partUrl = "Curso/";
-            switch (typeCourse){
+            switch (typeCourse) {
                 case 1:
                     partUrl += "GetGrad/";
                     break;
@@ -216,7 +216,7 @@ public class CGuideWS {
                     partUrl += "GetPosGrad/";
                     break;
             }
-            String fullPath = base_ws_test + partUrl ;
+            String fullPath = base_ws_test + partUrl;
             HttpURLConnection conn = abrirConexao(fullPath, "GET", false);
             List<CourseJson> lista = new ArrayList<>();
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -225,6 +225,38 @@ public class CGuideWS {
                 is.close();
                 Gson gson = new Gson();
                 Type collectionType = new TypeToken<ArrayList<CourseJson>>() {
+                }.getType();
+                lista = gson.fromJson(s, collectionType);
+            }
+            conn.disconnect();
+            return lista;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    //TEST URL DISCIPLINE BY COURSE LAPA'S WEB API
+    public static List<DisciplineJson> getDiscipline(int typeSearch, int refferId) {
+        try {
+            String partUrl = "Disciplina/";
+            switch (typeSearch) {
+                case 1:
+                    partUrl += "GetByCurso";
+                    break;
+                case 2:
+                    partUrl += "GetByProfessor";
+                    break;
+            }
+            partUrl +="?id=" + Integer.toString(refferId);
+            String fullPath = base_ws_test + partUrl;
+            HttpURLConnection conn = abrirConexao(fullPath, "GET", false);
+            List<DisciplineJson> lista = new ArrayList<>();
+            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                InputStream is = conn.getInputStream();
+                String s = streamToString(is);
+                is.close();
+                Gson gson = new Gson();
+                Type collectionType = new TypeToken<ArrayList<DisciplineJson>>() {
                 }.getType();
                 lista = gson.fromJson(s, collectionType);
             }

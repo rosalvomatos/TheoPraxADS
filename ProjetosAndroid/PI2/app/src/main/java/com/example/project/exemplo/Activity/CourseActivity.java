@@ -1,6 +1,5 @@
 package com.example.project.exemplo.Activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ import com.example.project.exemplo.Adapter.CourseAdapter;
 import com.example.project.exemplo.Adapter.Interface.ICourseListener;
 import com.example.project.exemplo.Mapper.Json.CourseJson;
 import com.example.project.exemplo.R;
+import com.example.project.exemplo.util.Enum.DisciplineTypeSearch;
 import com.example.project.exemplo.util.GenericDialogFragment;
 import com.example.project.exemplo.util.ProgressDialogUtil;
 
@@ -32,7 +32,6 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
     Toolbar toolbar;
     RecyclerView recyclerView;
     CourseAdapter courseAdapter;
-    ProgressDialog progressDialog;
     private CourseTask courseTask;
     private FragmentManager fragmentManager;
     static final String courseList = "courseList";
@@ -83,7 +82,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_course, menu);
+        getMenuInflater().inflate(R.menu.menu_search, menu);
         MenuItem searchItem = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
@@ -142,7 +141,11 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
 
         @Override
         public void showDiscipline(CourseJson courseJson) {
-
+            Intent intent = new Intent(CourseActivity.this, DisciplineActivity.class);
+            int typeSearch = DisciplineTypeSearch.valueOf("ByCourse").ordinal() + 1;
+            intent.putExtra("refferId", courseJson.getId());
+            intent.putExtra("typeSearch", typeSearch);
+            startActivity(intent);
         }
 
         @Override

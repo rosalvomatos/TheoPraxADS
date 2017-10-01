@@ -9,15 +9,14 @@ import android.view.ViewGroup;
 import com.example.project.exemplo.Adapter.Interface.ICourseListener;
 import com.example.project.exemplo.Adapter.ViewHolder.CourseViewHolder;
 import com.example.project.exemplo.Mapper.Json.CourseJson;
-import com.example.project.exemplo.adaptadores.CursosRVAdapter;
 
 import java.util.List;
 
-public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>{
+public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
     List<CourseJson> courseJsonList;
     private int rowLayout;
     private Context context;
-    public ICourseListener courseListener;
+    private ICourseListener courseListener;
 
     public CourseAdapter(List<CourseJson> courseJsonList, int rowLayout, Context context, ICourseListener courseListener) {
         this.courseJsonList = courseJsonList;
@@ -40,7 +39,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>{
         String modality = courseJsonList.get(position).getModalidade();
         int mecEvaluation = courseJsonList.get(position).getNotaMEC();
         String duration = courseJsonList.get(position).getCH();
-        String coordinator  = courseJsonList.get(position).getCoordenador();
+        String coordinator = courseJsonList.get(position).getCoordenador();
         String monthlyPayment = courseJsonList.get(position).getMensalidade();
 
         holder.Name.setText(name == null ? "???" : name);
@@ -52,12 +51,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>{
         holder.Duration.setText(duration == null ? "???" : duration);
         holder.MonthlyPayment.setText(monthlyPayment == null ? "???" : monthlyPayment);
 
-        final  CourseJson courseActual = courseJsonList.get(position);
+        final CourseJson courseActual = courseJsonList.get(position);
 
         holder.AuthorizationAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(courseListener != null){
+                if (courseListener != null) {
                     courseListener.showAuthorizationAct(courseActual);
                 }
             }
@@ -66,7 +65,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>{
         holder.CoursePedagogicalPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(courseListener != null){
+                if (courseListener != null) {
                     courseListener.showCoursePedagogicalPlan(courseActual);
                 }
             }
@@ -75,7 +74,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>{
         holder.BibliographicCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(courseListener != null){
+                if (courseListener != null) {
                     courseListener.showBibliographicCollection(courseActual);
                 }
             }
@@ -84,7 +83,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>{
         holder.Curriculum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(courseListener != null){
+                if (courseListener != null) {
                     courseListener.showCurriculum(courseActual);
                 }
             }
@@ -93,7 +92,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>{
         holder.Teacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(courseListener != null){
+                if (courseListener != null) {
                     courseListener.showTeacher(courseActual);
                 }
             }
@@ -102,7 +101,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>{
         holder.Discipline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(courseListener != null){
+                if (courseListener != null) {
                     courseListener.showDiscipline(courseActual);
                 }
             }

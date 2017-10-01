@@ -6,9 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.project.exemplo.Adapter.CourseAdapter;
-import com.example.project.exemplo.Adapter.Interface.ICourseListener;
-import com.example.project.exemplo.Mapper.Json.CourseJson;
+import com.example.project.exemplo.Adapter.DisciplineAdapter;
+import com.example.project.exemplo.Adapter.Interface.IDisciplineListener;
+import com.example.project.exemplo.Mapper.Json.DisciplineJson;
 import com.example.project.exemplo.R;
 import com.example.project.exemplo.util.CGuideWS;
 import com.example.project.exemplo.util.GenericDialogFragment;
@@ -16,23 +16,25 @@ import com.example.project.exemplo.util.ProgressDialogUtil;
 
 import java.util.List;
 
-public class CourseTask extends AsyncTask<Void, Void, List<CourseJson>> {
+public class DisciplineTask extends AsyncTask<Void, Void, List<DisciplineJson>> {
 
     Context context;
-    int typeCourse;
+    int typeSearch;
+    int refferId;
     FragmentManager mFragmentManager;
-    CourseAdapter courseAdapter;
-    List<CourseJson> courseJsonList;
-    ICourseListener iCourseListener;
+    DisciplineAdapter disciplineAdapter;
+    List<DisciplineJson> disciplineJsonList;
+    IDisciplineListener iDisciplineListener;
     RecyclerView recyclerView;
 
-    public CourseTask(Context context, int typeCourse, FragmentManager mFragmentManager, CourseAdapter courseAdapter, List<CourseJson> courseJsonList, ICourseListener iCourseListener, RecyclerView recyclerView) {
+    public DisciplineTask(Context context, int typeSearch, int refferId, FragmentManager mFragmentManager, DisciplineAdapter disciplineAdapter, List<DisciplineJson> disciplineJsonList, IDisciplineListener iDisciplineListener, RecyclerView recyclerView) {
         this.context = context;
-        this.typeCourse = typeCourse;
+        this.typeSearch = typeSearch;
+        this.refferId = refferId;
         this.mFragmentManager = mFragmentManager;
-        this.courseAdapter = courseAdapter;
-        this.courseJsonList = courseJsonList;
-        this.iCourseListener = iCourseListener;
+        this.disciplineAdapter = disciplineAdapter;
+        this.disciplineJsonList = disciplineJsonList;
+        this.iDisciplineListener = iDisciplineListener;
         this.recyclerView = recyclerView;
     }
 
@@ -42,12 +44,11 @@ public class CourseTask extends AsyncTask<Void, Void, List<CourseJson>> {
         ProgressDialogUtil.showProgressDialogUtil(true, context);
     }
 
-
     @Override
-    protected List<CourseJson> doInBackground(Void... params) {
-        List<CourseJson> courseJsonList = null;
+    protected List<DisciplineJson> doInBackground(Void... params) {
+        List<DisciplineJson> disciplineJsonList = null;
         try {
-            courseJsonList = CGuideWS.getCourse(typeCourse);
+            disciplineJsonList = CGuideWS.getDiscipline(typeSearch, refferId);
         } catch (Exception e) {
             ProgressDialogUtil.showProgressDialogUtil(false, context);
             GenericDialogFragment dialog = GenericDialogFragment.novoDialog(context,
@@ -60,14 +61,14 @@ public class CourseTask extends AsyncTask<Void, Void, List<CourseJson>> {
                     });
             dialog.abrir(mFragmentManager);
         }
-        return courseJsonList;
+        return disciplineJsonList;
     }
 
     @Override
-    protected void onPostExecute(List<CourseJson> courseJsonListLocal) {
-        super.onPostExecute(courseJsonListLocal);
+    protected void onPostExecute(List<DisciplineJson> disciplineJsonListLocal) {
+        super.onPostExecute(disciplineJsonListLocal);
         ProgressDialogUtil.showProgressDialogUtil(false, context);
-        if (courseJsonListLocal == null) {
+        if (disciplineJsonListLocal == null) {
             GenericDialogFragment dialog = GenericDialogFragment.novoDialog(context,
                     0,
                     R.string.titulo_dialog,
@@ -77,9 +78,9 @@ public class CourseTask extends AsyncTask<Void, Void, List<CourseJson>> {
                     });
             dialog.abrir(mFragmentManager);
         } else {
-            courseJsonList.addAll(courseJsonListLocal);
-            courseAdapter = new CourseAdapter(courseJsonList, R.layout.layout_course, context, iCourseListener);
-            recyclerView.setAdapter(courseAdapter);
+            disciplineJsonList.addAll(disciplineJsonListLocal);
+            disciplineAdapter = new DisciplineAdapter(disciplineJsonList, R.layout.layout_discipline, context, iDisciplineListener);
+            recyclerView.setAdapter(disciplineAdapter);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
         }

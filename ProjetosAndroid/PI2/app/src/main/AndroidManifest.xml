@@ -64,6 +64,11 @@
             android:parentActivityName=".Activity.HomeActivity"
             android:launchMode="singleTop">
         </activity>
+        <activity
+            android:name=".Activity.DisciplineActivity"
+            android:label="Disciplinas"
+            android:parentActivityName=".Activity.CourseActivity" >
+        </activity>
     </application>
 
 </manifest>
