@@ -31,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Cimatec Guide");
+        toolbar.setTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(toolbar);
 
         btnShowGraduationCourse = (Button) findViewById(R.id.btnShowGraduationCourse);
@@ -86,7 +86,7 @@ public class HomeActivity extends AppCompatActivity {
         btnShowLeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this,LeaderActivity.class);
+                Intent i = new Intent(HomeActivity.this, LeaderActivity.class);
                 startActivity(i);
             }
         });
@@ -94,7 +94,7 @@ public class HomeActivity extends AppCompatActivity {
         btnShowAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this,AboutActivity.class);
+                Intent i = new Intent(HomeActivity.this, AboutActivity.class);
                 startActivity(i);
             }
         });
@@ -116,14 +116,14 @@ public class HomeActivity extends AppCompatActivity {
 
     private void quit() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Cimatec_Guide");
-        builder.setMessage("Deseja realmente sair?");
-        builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+        builder.setTitle(getResources().getString(R.string.app_name));
+        builder.setMessage(getResources().getString(R.string.quit_confirmation));
+        builder.setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
                 finish();
             }
         });
-        builder.setNegativeButton("NAO", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getResources().getString(R.string.not), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
             }
         });

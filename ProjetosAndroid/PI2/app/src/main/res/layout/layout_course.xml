@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -13,7 +12,6 @@
     app:cardCornerRadius="5dp"
     app:contentPadding="5sp">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +22,7 @@
             android:id="@+id/textViewName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/textocurso"
+            android:text=""
             android:textColor="@color/md_grey_900"
             android:textSize="20dp" />
 
@@ -37,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Mensalidade:"
+                android:text="@string/monthly_payment"
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp"
                 android:textStyle="bold" />
@@ -48,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Cógido"
+                android:text=""
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp" />
 
@@ -63,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Código:"
+                android:text="@string/code"
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp"
                 android:textStyle="bold" />
@@ -74,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Cógido"
+                android:text=""
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp" />
 
@@ -88,7 +86,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Turno:"
+                android:text="@string/shift"
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp"
                 android:textStyle="bold" />
@@ -98,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Noturno"
+                android:text=""
                 android:textColor="@color/md_grey_900"
 
                 android:textSize="12dp" />
@@ -114,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Modalidade:"
+                android:text="@string/modality"
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp"
                 android:textStyle="bold" />
@@ -125,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="1dp"
-                android:text="Semestral"
+                android:text=""
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp" />
         </LinearLayout>
@@ -139,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Avaliação MEC:"
+                android:text="@string/mec_evaluation"
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp"
                 android:textStyle="bold" />
@@ -150,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="1dp"
-                android:text="5"
+                android:text=""
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp" />
         </LinearLayout>
@@ -165,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Duração:"
+                android:text="@string/duration"
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp"
                 android:textStyle="bold" />
@@ -176,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="1dp"
-                android:text="3 anos"
+                android:text=""
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp" />
         </LinearLayout>
@@ -190,7 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Coordenador:"
+                android:text="@string/coordinator"
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp"
                 android:textStyle="bold" />
@@ -201,7 +199,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="1dp"
-                android:text="Caroline Paim"
+                android:text=""
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp" />
         </LinearLayout>
@@ -219,7 +217,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/md_indigo_700"
-                android:text="Ato de Autorização"
+                android:text="@string/authorization_act"
                 android:textColor="@color/md_white_1000"
                 android:textSize="8dp" />
 
@@ -231,7 +229,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:background="@color/md_indigo_700"
-                android:text="Projeto pedagógico de curso"
+                android:text="@string/course_pedagogical_project"
                 android:textColor="@color/md_white_1000"
                 android:textSize="8dp" />
 
@@ -241,7 +239,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/md_indigo_700"
-                android:text="Acervo"
+                android:text="@string/bibliographic_collection"
                 android:textColor="@color/md_white_1000"
                 android:textSize="8dp" />
         </LinearLayout>
@@ -256,7 +254,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/md_indigo_700"
-                android:text="Docentes"
+                android:text="@string/teachers"
                 android:textColor="@color/md_white_1000"
                 android:textSize="8dp" />
 
@@ -268,7 +266,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:background="@color/md_indigo_700"
-                android:text="Matriz curricular"
+                android:text="@string/curriculum"
                 android:textColor="@color/md_white_1000"
                 android:textSize="8dp" />
 
@@ -278,12 +276,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/md_indigo_700"
-                android:text="disciplinas"
+                android:text="@string/disciplines"
                 android:textColor="@color/md_white_1000"
                 android:textSize="8dp" />
         </LinearLayout>
-    </LinearLayout>
 
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>
 

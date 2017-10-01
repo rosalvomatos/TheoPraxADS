@@ -10,7 +10,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -18,7 +17,7 @@
         android:padding="20dp">
 
         <TextView
-            android:text="@string/nomedocente"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textViewNameTeacher"
@@ -33,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Código:"
+                android:text="@string/code"
                 android:textSize="12dp"
                 android:textColor="@color/md_grey_900"
                 android:layout_marginTop="10dp"/>
@@ -42,14 +41,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewCodeTeacher"
-                android:text="Cógido"
+                android:text=""
                 android:textSize="12dp"
                 android:textColor="@color/md_grey_900"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"/>
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Regime:"
+                android:text="@string/hiring"
                 android:textSize="12dp"
                 android:textColor="@color/md_grey_900"
                 android:id="@+id/textView2" />
@@ -85,7 +83,7 @@
 
             <Button
                 android:id="@+id/btnShowDiscipline"
-                android:text="ver disciplinas"
+                android:text="@string/disciplines"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="8dp"
@@ -93,9 +91,9 @@
                 android:layout_marginRight="190dp"
                 android:textColor="@color/md_white_1000"
                 android:background="@color/md_indigo_700"/>
+
         </LinearLayout>
 
     </LinearLayout>
-
 
 </android.support.v7.widget.CardView>

@@ -15,7 +15,7 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_sobre);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Sobre");
+        toolbar.setTitle(getResources().getString(R.string.about));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

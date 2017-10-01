@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.example.project.exemplo.R;
+
 public class ProgressDialogUtil {
 
     static ProgressDialog progressDialog;
@@ -26,7 +28,7 @@ public class ProgressDialogUtil {
             else
                 progressDialog.dismiss();
         } catch (Exception e) {
-            Toast.makeText(context, "Erro no Sistema", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getResources().getString(R.string.system_error), Toast.LENGTH_LONG).show();
         }
     }
 

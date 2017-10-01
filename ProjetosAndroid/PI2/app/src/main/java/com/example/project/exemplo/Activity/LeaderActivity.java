@@ -13,9 +13,9 @@ public class LeaderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_dirigente);
+        setContentView(R.layout.layout_leader);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Dirigentes");
+        toolbar.setTitle(getResources().getString(R.string.leaders));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

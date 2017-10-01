@@ -53,7 +53,7 @@ public class TeacherTask  extends AsyncTask<Void, Void, List<TeacherJson>> {
             ProgressDialogUtil.showProgressDialogUtil(false, context);
             GenericDialogFragment dialog = GenericDialogFragment.novoDialog(context,
                     0,
-                    R.string.titulo_dialog,
+                    R.string.title_dialog,
                     R.string.msg_dialog,
                     new int[]{
                             android.R.string.ok // String do Android
@@ -71,8 +71,8 @@ public class TeacherTask  extends AsyncTask<Void, Void, List<TeacherJson>> {
         if (teacherJsonListLocal == null) {
             GenericDialogFragment dialog = GenericDialogFragment.novoDialog(context,
                     0,
-                    R.string.titulo_dialog,
-                    R.string.msg_dialog1,
+                    R.string.title_dialog,
+                    R.string.msg_dialog_teacher,
                     new int[]{
                             android.R.string.ok // String do Android
                     });

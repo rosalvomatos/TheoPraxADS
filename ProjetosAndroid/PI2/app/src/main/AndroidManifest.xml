@@ -37,7 +37,7 @@
         </activity>
         <activity
             android:name=".Activity.CourseActivity"
-            android:label="@string/cursos"
+            android:label="@string/courses"
             android:parentActivityName=".Activity.HomeActivity"
             android:launchMode="singleTop">
         </activity>
@@ -48,7 +48,7 @@
         </activity>
         <activity
             android:name=".Activity.TeacherActivity"
-            android:label="@string/docentes"
+            android:label="@string/teachers"
             android:parentActivityName=".Activity.CourseActivity" >
         </activity>
     </application>

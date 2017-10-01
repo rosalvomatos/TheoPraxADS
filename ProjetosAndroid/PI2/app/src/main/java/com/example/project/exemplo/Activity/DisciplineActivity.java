@@ -50,7 +50,7 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
         typeSearch = intent.getExtras().getInt("typeSearch");
         refferId = intent.getExtras().getInt("refferId");
 
-        String titlePage = "Disciplinas";
+        String titlePage = getResources().getString(R.string.disciplines);
 
         disciplineAdapter = new DisciplineAdapter(disciplineJsonList, R.layout.layout_discipline, this, iDisciplineListener);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -143,7 +143,7 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
     private void populateDisciplineList() {
         disciplineJsonList = new ArrayList<>();
         ProgressDialogUtil.instantiateContext(this);
-        ProgressDialogUtil.setDialogMessage(R.string.msg_dialog1);
+        ProgressDialogUtil.setDialogMessage(R.string.msg_dialog_discipline);
         try {
             if (disciplineTask == null || disciplineTask.getStatus() != AsyncTask.Status.RUNNING) {
                 disciplineTask = new DisciplineTask(this, typeSearch, refferId, fragmentManager, disciplineAdapter, disciplineJsonList, iDisciplineListener, recyclerView);
@@ -152,7 +152,7 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
         } catch (Exception e) {
             GenericDialogFragment dialog = GenericDialogFragment.novoDialog(DisciplineActivity.this,
                     0,
-                    R.string.titulo_dialog,
+                    R.string.title_dialog,
                     R.string.msg_dialog,
                     new int[]{
                             android.R.string.ok // String do Android

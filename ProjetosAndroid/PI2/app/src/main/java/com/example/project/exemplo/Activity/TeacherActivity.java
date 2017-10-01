@@ -49,7 +49,7 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
         typeSearch = intent.getExtras().getInt("typeSearch");
         refferId = intent.getExtras().getInt("refferId");
 
-        String titlePage = "Docentes";
+        String titlePage = getResources().getString(R.string.teachers);
 
         teacherAdapter = new TeacherAdapter(teacherJsonList, R.layout.layout_teacher, this, iTeacherListener);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -57,7 +57,7 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fragmentManager = getSupportFragmentManager();
-        recyclerView = (RecyclerView) findViewById(R.id.RCV_teacher_list );
+        recyclerView = (RecyclerView) findViewById(R.id.RCV_teacher_list);
 
         if (savedInstanceState != null) {
             teacherJsonList = (List<TeacherJson>) savedInstanceState.getSerializable(teacherList);
@@ -137,7 +137,7 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
     private void populateTeacherList() {
         teacherJsonList = new ArrayList<>();
         ProgressDialogUtil.instantiateContext(this);
-        ProgressDialogUtil.setDialogMessage(R.string.msg_dialog1);
+        ProgressDialogUtil.setDialogMessage(R.string.msg_dialog_teacher);
         try {
             if (teacherTask == null || teacherTask.getStatus() != AsyncTask.Status.RUNNING) {
                 teacherTask = new TeacherTask(this, typeSearch, refferId, fragmentManager, teacherAdapter, teacherJsonList, iTeacherListener, recyclerView);
@@ -146,7 +146,7 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
         } catch (Exception e) {
             GenericDialogFragment dialog = GenericDialogFragment.novoDialog(TeacherActivity.this,
                     0,
-                    R.string.titulo_dialog,
+                    R.string.title_dialog,
                     R.string.msg_dialog,
                     new int[]{
                             android.R.string.ok // String do Android

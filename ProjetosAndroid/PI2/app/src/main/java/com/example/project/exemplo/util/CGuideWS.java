@@ -31,20 +31,20 @@ public class CGuideWS {
 
     }
 
-    private static HttpURLConnection openConnection(String url, String metodo, boolean saida) {
+    private static HttpURLConnection openConnection(String url, String metodo, boolean result) {
         try {
-            URL urlConexao = new URL(url);
-            HttpURLConnection conexao = (HttpURLConnection) urlConexao.openConnection();
-            conexao.setReadTimeout(15000);
-            conexao.setConnectTimeout(15000);
-            conexao.setRequestMethod(metodo);
-            conexao.setDoInput(true);
-            conexao.setDoOutput(saida);
-            if (saida) {
-                conexao.addRequestProperty("Content-Type", "application/json");
+            URL urlConnection = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) urlConnection.openConnection();
+            connection.setReadTimeout(15000);
+            connection.setConnectTimeout(15000);
+            connection.setRequestMethod(metodo);
+            connection.setDoInput(true);
+            connection.setDoOutput(result);
+            if (result) {
+                connection.addRequestProperty("Content-Type", "application/json");
             }
-            conexao.connect();
-            return conexao;
+            connection.connect();
+            return connection;
         } catch (Exception e) {
             return null;
         }
@@ -53,16 +53,16 @@ public class CGuideWS {
     private static String streamToString(InputStream is) throws Exception {
         byte[] bytes = new byte[9999999];
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        int lidos;
-        while ((lidos = is.read(bytes)) > 0) {
-            baos.write(bytes, 0, lidos);
+        int read;
+        while ((read = is.read(bytes)) > 0) {
+            baos.write(bytes, 0, read);
         }
         return new String(baos.toByteArray());
     }
 
     public static Intent openFile(String url) {
-        String caminnhoArq = base_ws_pdf + url;
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(caminnhoArq));
+        String filePath = base_ws_pdf + url;
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(filePath));
         return intent;
     }
 

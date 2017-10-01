@@ -48,8 +48,8 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
         setContentView(R.layout.layout_course_list);
         Intent intent = getIntent();
         typeCourse = intent.getExtras().getInt("typeCourse");
-        String titlePage = "Cursos de";
-        titlePage += typeCourse == 1 ? " Graduação" : " Pós Graduação";
+        String titlePage = getResources().getString(R.string.courses)+" " + getResources().getString(R.string.of) + " ";
+        titlePage += typeCourse == 1 ? getResources().getString(R.string.graduation) : getResources().getString(R.string.postgraduate);
 
         courseAdapter = new CourseAdapter(courseJsonList, R.layout.layout_course, this, iCourseListener);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -167,7 +167,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
     private void populateCourseList() {
         courseJsonList = new ArrayList<CourseJson>();
         ProgressDialogUtil.instantiateContext(this);
-        ProgressDialogUtil.setDialogMessage(R.string.msg_dialog1);
+        ProgressDialogUtil.setDialogMessage(R.string.msg_dialog_course);
         try {
             if (courseTask == null || courseTask.getStatus() != AsyncTask.Status.RUNNING) {
                 courseTask = new CourseTask(this, typeCourse, fragmentManager, courseAdapter, courseJsonList, iCourseListener, recyclerView);
@@ -176,7 +176,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
         } catch (Exception e) {
             GenericDialogFragment dialog = GenericDialogFragment.novoDialog(CourseActivity.this,
                     0,
-                    R.string.titulo_dialog,
+                    R.string.title_dialog,
                     R.string.msg_dialog,
                     new int[]{
                             android.R.string.ok // String do Android
