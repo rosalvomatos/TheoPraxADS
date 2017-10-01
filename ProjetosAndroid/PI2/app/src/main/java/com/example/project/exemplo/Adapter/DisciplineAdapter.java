@@ -13,6 +13,7 @@ import com.example.project.exemplo.Mapper.Json.DisciplineJson;
 import java.util.List;
 
 public class DisciplineAdapter extends RecyclerView.Adapter<DisciplineViewHolder> {
+
     List<DisciplineJson> disciplineJsonList;
     private int rowLayout;
     private Context context;

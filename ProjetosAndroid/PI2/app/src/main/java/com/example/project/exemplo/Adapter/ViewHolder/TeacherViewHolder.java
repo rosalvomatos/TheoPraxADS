@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.project.exemplo.R;
 
 public class TeacherViewHolder extends RecyclerView.ViewHolder {
+
     public Button Discipline;
     public TextView Name;
     public TextView CodeTeacher;

@@ -11,7 +11,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity android:name=".atividades.Splash" >
+        <activity android:name=".Activity.Splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,37 +19,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".atividades.GraduacaoActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".atividades.CursosActivity"
-            android:label="@string/cursos"
-            android:parentActivityName=".atividades.GraduacaoActivity"
-            android:launchMode="singleTop">
-        </activity>
-        <activity
-            android:name=".atividades.DocentesActivity"
-            android:label="@string/docentes"
-            android:parentActivityName=".atividades.CursosActivity" >
-        </activity>
-        <activity
-            android:name=".atividades.DirigentesActivity"
+            android:name=".Activity.LeaderActivity"
             android:label="Dirigentes"
-            android:parentActivityName=".atividades.GraduacaoActivity" >
+            android:parentActivityName=".Activity.HomeActivity" >
         </activity>
         <activity
-            android:name=".atividades.DisciplinasActivity"
-            android:label="Disciplinas"
-            android:parentActivityName=".atividades.CursosActivity" >
-        </activity>
-        <activity
-            android:name=".atividades.SobreActivity"
+            android:name=".Activity.AboutActivity"
             android:label="Sobre"
-            android:parentActivityName=".atividades.GraduacaoActivity" >
+            android:parentActivityName=".Activity.HomeActivity" >
         </activity>
         <activity
             android:name=".Activity.HomeActivity"

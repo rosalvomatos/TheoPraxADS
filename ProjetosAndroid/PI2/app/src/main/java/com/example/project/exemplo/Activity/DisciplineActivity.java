@@ -18,6 +18,7 @@ import com.example.project.exemplo.Adapter.DisciplineAdapter;
 import com.example.project.exemplo.Adapter.Interface.IDisciplineListener;
 import com.example.project.exemplo.Mapper.Json.DisciplineJson;
 import com.example.project.exemplo.R;
+import com.example.project.exemplo.util.CGuideWS;
 import com.example.project.exemplo.util.Enum.TeacherTypeSearch;
 import com.example.project.exemplo.util.GenericDialogFragment;
 import com.example.project.exemplo.util.ProgressDialogUtil;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DisciplineActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener {
+
     Toolbar toolbar;
     RecyclerView recyclerView;
     DisciplineAdapter disciplineAdapter;
@@ -93,7 +95,7 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.atualizar)
+        if (id == R.id.update)
             populateDisciplineList();
         return super.onOptionsItemSelected(item);
     }
@@ -134,7 +136,7 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
 
         @Override
         public void showMenu(DisciplineJson disciplineJson) {
-
+            startActivity(CGuideWS.openFile(disciplineJson.getCodigo()+".pdf"));
         }
     };
 

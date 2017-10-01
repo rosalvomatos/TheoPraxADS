@@ -13,6 +13,7 @@ import com.example.project.exemplo.Mapper.Json.TeacherJson;
 import java.util.List;
 
 public class TeacherAdapter extends RecyclerView.Adapter<TeacherViewHolder> {
+
     List<TeacherJson> teacherJsonList;
     private int rowLayout;
     private Context context;

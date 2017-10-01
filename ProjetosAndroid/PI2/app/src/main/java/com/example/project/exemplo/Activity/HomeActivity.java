@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.project.exemplo.R;
+import com.example.project.exemplo.util.CGuideWS;
 import com.example.project.exemplo.util.Enum.TypeCourseEnum;
 
 public class HomeActivity extends AppCompatActivity {
@@ -61,6 +62,42 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        btnShowGeneralAuthorizationAct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(CGuideWS.openFile("AUTORIZACAO.pdf"));
+            }
+        });
+
+        btnShowStudentManual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(CGuideWS.openFile("MANUAL.pdf"));
+            }
+        });
+
+        btnShowDisciplinaryRules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(CGuideWS.openFile("REGIMENTO.pdf"));
+            }
+        });
+
+        btnShowLeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomeActivity.this,LeaderActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnShowAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomeActivity.this,AboutActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

@@ -2,10 +2,6 @@ package com.example.project.exemplo.Mapper.Json;
 
 import java.io.Serializable;
 
-/**
- * Created by tiago on 30/09/2017.
- */
-
 public class CourseJson implements Serializable {
     int Id;
     String Nome;

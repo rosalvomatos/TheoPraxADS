@@ -1,25 +1,21 @@
-package com.example.project.exemplo.atividades;
+package com.example.project.exemplo.Activity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.project.exemplo.R;
 
-/**
- * Created by Casa on 17/11/2016.
- */
+public class AboutActivity extends AppCompatActivity {
 
-public class DirigentesActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_dirigente);
+        setContentView(R.layout.layout_sobre);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Dirigentes");
+        toolbar.setTitle("Sobre");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

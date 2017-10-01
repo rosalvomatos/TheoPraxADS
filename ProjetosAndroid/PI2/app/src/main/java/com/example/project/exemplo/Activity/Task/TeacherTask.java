@@ -16,7 +16,6 @@ import com.example.project.exemplo.util.ProgressDialogUtil;
 
 import java.util.List;
 
-
 public class TeacherTask  extends AsyncTask<Void, Void, List<TeacherJson>> {
 
     Context context;

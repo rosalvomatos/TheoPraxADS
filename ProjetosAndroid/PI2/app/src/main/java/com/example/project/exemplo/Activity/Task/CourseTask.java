@@ -42,7 +42,6 @@ public class CourseTask extends AsyncTask<Void, Void, List<CourseJson>> {
         ProgressDialogUtil.showProgressDialogUtil(true, context);
     }
 
-
     @Override
     protected List<CourseJson> doInBackground(Void... params) {
         List<CourseJson> courseJsonList = null;

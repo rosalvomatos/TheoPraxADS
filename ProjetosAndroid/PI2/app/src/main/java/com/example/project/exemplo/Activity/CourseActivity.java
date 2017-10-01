@@ -17,8 +17,8 @@ import com.example.project.exemplo.Activity.Task.CourseTask;
 import com.example.project.exemplo.Adapter.CourseAdapter;
 import com.example.project.exemplo.Adapter.Interface.ICourseListener;
 import com.example.project.exemplo.Mapper.Json.CourseJson;
-import com.example.project.exemplo.Mapper.Json.TeacherJson;
 import com.example.project.exemplo.R;
+import com.example.project.exemplo.util.CGuideWS;
 import com.example.project.exemplo.util.Enum.DisciplineTypeSearch;
 import com.example.project.exemplo.util.Enum.TeacherTypeSearch;
 import com.example.project.exemplo.util.GenericDialogFragment;
@@ -27,7 +27,6 @@ import com.example.project.exemplo.util.ProgressDialogUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class CourseActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener {
 
@@ -96,7 +95,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.atualizar)
+        if (id == R.id.update)
             populateCourseList();
         return super.onOptionsItemSelected(item);
     }
@@ -128,7 +127,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
 
         @Override
         public void showAuthorizationAct(CourseJson courseJson) {
-
+            startActivity(CGuideWS.openFile("ATO_" + courseJson.getCodigo() + ".pdf"));
         }
 
         @Override
@@ -142,7 +141,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
 
         @Override
         public void showCoursePedagogicalPlan(CourseJson courseJson) {
-
+            startActivity(CGuideWS.openFile("PPC_" + courseJson.getCodigo() + ".pdf"));
         }
 
         @Override
@@ -161,7 +160,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
 
         @Override
         public void showCurriculum(CourseJson courseJson) {
-
+            startActivity(CGuideWS.openFile("MATRIZ_" + courseJson.getCodigo() + ".pdf"));
         }
     };
 

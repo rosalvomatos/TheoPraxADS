@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeacherActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener {
+
     Toolbar toolbar;
     RecyclerView recyclerView;
     TeacherAdapter teacherAdapter;
@@ -39,6 +40,7 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
     List<TeacherJson> teachersFound;
     int typeSearch;
     int refferId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +94,7 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.atualizar)
+        if (id == R.id.update)
             populateTeacherList();
         return super.onOptionsItemSelected(item);
     }
@@ -121,6 +123,7 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
     }
 
     private ITeacherListener iTeacherListener = new ITeacherListener() {
+
         @Override
         public void showDiscipline(TeacherJson teacherJson) {
             Intent intent = new Intent(TeacherActivity.this, DisciplineActivity.class);
