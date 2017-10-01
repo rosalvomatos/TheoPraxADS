@@ -13,12 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.project.exemplo.Activity.Task.DisciplineTask;
-import com.example.project.exemplo.Adapter.DisciplineAdapter;
-import com.example.project.exemplo.Adapter.Interface.IDisciplineListener;
-import com.example.project.exemplo.Mapper.Json.DisciplineJson;
+import com.example.project.exemplo.Activity.Task.TeacherTask;
+import com.example.project.exemplo.Adapter.TeacherAdapter;
+import com.example.project.exemplo.Adapter.Interface.ITeacherListener;
+import com.example.project.exemplo.Mapper.Json.TeacherJson;
 import com.example.project.exemplo.R;
-import com.example.project.exemplo.util.Enum.TeacherTypeSearch;
+import com.example.project.exemplo.util.Enum.DisciplineTypeSearch;
 import com.example.project.exemplo.util.GenericDialogFragment;
 import com.example.project.exemplo.util.ProgressDialogUtil;
 
@@ -26,57 +26,56 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DisciplineActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener {
+public class TeacherActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItemCompat.OnActionExpandListener {
     Toolbar toolbar;
     RecyclerView recyclerView;
-    DisciplineAdapter disciplineAdapter;
-    private DisciplineTask disciplineTask;
+    TeacherAdapter teacherAdapter;
+    private TeacherTask teacherTask;
     private FragmentManager fragmentManager;
-    static final String disciplineList = "disciplineList";
-    static final String disciplineListOrigin = "disciplineListOrigin";
-    List<DisciplineJson> disciplineJsonList;
-    List<DisciplineJson> lastSearch;
-    List<DisciplineJson> disciplinesFound;
+    static final String teacherList = "teacherList";
+    static final String teacherListOrigin = "teacherListOrigin";
+    List<TeacherJson> teacherJsonList;
+    List<TeacherJson> lastSearch;
+    List<TeacherJson> teachersFound;
     int typeSearch;
     int refferId;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_discipline_list);
+        setContentView(R.layout.layout_teacher_list);
         Intent intent = getIntent();
         typeSearch = intent.getExtras().getInt("typeSearch");
         refferId = intent.getExtras().getInt("refferId");
 
-        String titlePage = "Disciplinas";
+        String titlePage = "Docentes";
 
-        disciplineAdapter = new DisciplineAdapter(disciplineJsonList, R.layout.layout_discipline, this, iDisciplineListener);
+        teacherAdapter = new TeacherAdapter(teacherJsonList, R.layout.layout_teacher, this, iTeacherListener);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(titlePage);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fragmentManager = getSupportFragmentManager();
-        recyclerView = (RecyclerView) findViewById(R.id.RCV_discipline_list );
+        recyclerView = (RecyclerView) findViewById(R.id.RCV_teacher_list );
 
         if (savedInstanceState != null) {
-            disciplineJsonList = (List<DisciplineJson>) savedInstanceState.getSerializable(disciplineList);
-            lastSearch = (List<DisciplineJson>) savedInstanceState.getSerializable(disciplineListOrigin);
-            if (disciplineJsonList != null) {
-                disciplineAdapter = new DisciplineAdapter(disciplineJsonList, R.layout.layout_discipline, this, iDisciplineListener);
-                recyclerView.setAdapter(disciplineAdapter);
+            teacherJsonList = (List<TeacherJson>) savedInstanceState.getSerializable(teacherList);
+            lastSearch = (List<TeacherJson>) savedInstanceState.getSerializable(teacherListOrigin);
+            if (teacherJsonList != null) {
+                teacherAdapter = new TeacherAdapter(teacherJsonList, R.layout.layout_teacher, this, iTeacherListener);
+                recyclerView.setAdapter(teacherAdapter);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             }
         } else {
-            if (disciplineJsonList == null) populateDisciplineList();
+            if (teacherJsonList == null) populateTeacherList();
         }
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putSerializable(disciplineList, (Serializable) disciplineJsonList);
-        savedInstanceState.putSerializable(disciplineListOrigin, (Serializable) lastSearch);
+        savedInstanceState.putSerializable(teacherList, (Serializable) teacherJsonList);
+        savedInstanceState.putSerializable(teacherListOrigin, (Serializable) lastSearch);
     }
 
     @Override
@@ -94,13 +93,13 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.atualizar)
-            populateDisciplineList();
+            populateTeacherList();
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onMenuItemActionExpand(MenuItem item) {
-        lastSearch = disciplineJsonList;
+        lastSearch = teacherJsonList;
         return true;
     }
 
@@ -121,34 +120,28 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
         return false;
     }
 
-    private IDisciplineListener iDisciplineListener = new IDisciplineListener() {
-
+    private ITeacherListener iTeacherListener = new ITeacherListener() {
         @Override
-        public void showTeacher(DisciplineJson disciplineJson) {
-            Intent intent = new Intent(DisciplineActivity.this, TeacherActivity.class);
-            int typeSearch = TeacherTypeSearch.valueOf("ByDiscipline").ordinal() + 1;
-            intent.putExtra("refferId", disciplineJson.getId());
+        public void showDiscipline(TeacherJson teacherJson) {
+            Intent intent = new Intent(TeacherActivity.this, DisciplineActivity.class);
+            int typeSearch = DisciplineTypeSearch.valueOf("ByTeacher").ordinal() + 1;
+            intent.putExtra("refferId", teacherJson.getId());
             intent.putExtra("typeSearch", typeSearch);
             startActivity(intent);
         }
-
-        @Override
-        public void showMenu(DisciplineJson disciplineJson) {
-
-        }
     };
 
-    private void populateDisciplineList() {
-        disciplineJsonList = new ArrayList<>();
+    private void populateTeacherList() {
+        teacherJsonList = new ArrayList<>();
         ProgressDialogUtil.instantiateContext(this);
         ProgressDialogUtil.setDialogMessage(R.string.msg_dialog1);
         try {
-            if (disciplineTask == null || disciplineTask.getStatus() != AsyncTask.Status.RUNNING) {
-                disciplineTask = new DisciplineTask(this, typeSearch, refferId, fragmentManager, disciplineAdapter, disciplineJsonList, iDisciplineListener, recyclerView);
-                disciplineTask.execute();
+            if (teacherTask == null || teacherTask.getStatus() != AsyncTask.Status.RUNNING) {
+                teacherTask = new TeacherTask(this, typeSearch, refferId, fragmentManager, teacherAdapter, teacherJsonList, iTeacherListener, recyclerView);
+                teacherTask.execute();
             }
         } catch (Exception e) {
-            GenericDialogFragment dialog = GenericDialogFragment.novoDialog(DisciplineActivity.this,
+            GenericDialogFragment dialog = GenericDialogFragment.novoDialog(TeacherActivity.this,
                     0,
                     R.string.titulo_dialog,
                     R.string.msg_dialog,
@@ -160,11 +153,11 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
     }
 
     public void clearSearch() {
-        disciplineJsonList = new ArrayList<>();
-        if (lastSearch != null) disciplineJsonList.addAll(lastSearch);
-        if (disciplineJsonList != null) {
-            disciplineAdapter = new DisciplineAdapter(disciplineJsonList, R.layout.layout_discipline, this, iDisciplineListener);
-            recyclerView.setAdapter(disciplineAdapter);
+        teacherJsonList = new ArrayList<>();
+        if (lastSearch != null) teacherJsonList.addAll(lastSearch);
+        if (teacherJsonList != null) {
+            teacherAdapter = new TeacherAdapter(teacherJsonList, R.layout.layout_teacher, this, iTeacherListener);
+            recyclerView.setAdapter(teacherAdapter);
             recyclerView.setHasFixedSize(true);
 
             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -177,15 +170,15 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
             clearSearch();
             return;
         }
-        disciplinesFound = new ArrayList<>();
-        disciplinesFound.addAll(disciplineJsonList);
-        for (int i = disciplinesFound.size() - 1; i >= 0; i--) {
-            DisciplineJson disciplineTemp = disciplinesFound.get(i);
-            if (!disciplineTemp.getNome().toUpperCase().contains(s.toUpperCase())) {
-                disciplinesFound.remove(disciplineTemp);
+        teachersFound = new ArrayList<>();
+        teachersFound.addAll(teacherJsonList);
+        for (int i = teachersFound.size() - 1; i >= 0; i--) {
+            TeacherJson teacherTemp = teachersFound.get(i);
+            if (!teacherTemp.getNome().toUpperCase().contains(s.toUpperCase())) {
+                teachersFound.remove(teacherTemp);
             }
         }
-        disciplineAdapter = new DisciplineAdapter(disciplinesFound, R.layout.layout_discipline, this, iDisciplineListener);
-        recyclerView.setAdapter(disciplineAdapter);
+        teacherAdapter = new TeacherAdapter(teachersFound, R.layout.layout_teacher, this, iTeacherListener);
+        recyclerView.setAdapter(teacherAdapter);
     }
 }

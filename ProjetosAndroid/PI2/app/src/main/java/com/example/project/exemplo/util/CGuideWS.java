@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.example.project.exemplo.Mapper.Json.DisciplineJson;
+import com.example.project.exemplo.Mapper.Json.TeacherJson;
 import com.example.project.exemplo.mapeamento.CursoPI;
 import com.example.project.exemplo.mapeamento.CursoSenai;
 import com.example.project.exemplo.Mapper.Json.CourseJson;
@@ -71,7 +72,7 @@ public class CGuideWS {
         try {
             String urlsessao = base_ws + "cursows";
             HttpURLConnection conn = abrirConexao(urlsessao, "GET", false);
-            List<CursoPI> lista = new ArrayList<CursoPI>();
+            List<CursoPI> list = new ArrayList<CursoPI>();
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream is = conn.getInputStream();
                 String s = streamToString(is);
@@ -79,10 +80,10 @@ public class CGuideWS {
                 Gson gson = new Gson();
                 Type collectionType = new TypeToken<ArrayList<CursoPI>>() {
                 }.getType();
-                lista = gson.fromJson(s, collectionType);
+                list = gson.fromJson(s, collectionType);
             }
             conn.disconnect();
-            return lista;
+            return list;
         } catch (Exception e) {
             return null;
         }
@@ -92,7 +93,7 @@ public class CGuideWS {
         try {
             String urlsessao = base_ws_senai + "cursos";
             HttpURLConnection conn = abrirConexao(urlsessao, "GET", false);
-            List<CursoSenai> lista = new ArrayList<CursoSenai>();
+            List<CursoSenai> list = new ArrayList<CursoSenai>();
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream is = conn.getInputStream();
                 String s = streamToString(is);
@@ -100,10 +101,10 @@ public class CGuideWS {
                 Gson gson = new Gson();
                 Type collectionType = new TypeToken<ArrayList<CursoSenai>>() {
                 }.getType();
-                lista = gson.fromJson(s, collectionType);
+                list = gson.fromJson(s, collectionType);
             }
             conn.disconnect();
-            return lista;
+            return list;
         } catch (Exception e) {
             return null;
         }
@@ -179,10 +180,10 @@ public class CGuideWS {
 
     }
 
-    private static boolean verificarExistenciaDeDocenteDoCurso(List<TbDocente> lista, String codDoc) {
+    private static boolean verificarExistenciaDeDocenteDoCurso(List<TbDocente> list, String codDoc) {
         boolean encontrou = false;
 
-        for (TbDocente c : lista) {
+        for (TbDocente c : list) {
             if (c.getDocente_codigo().equalsIgnoreCase(codDoc)) {
                 encontrou = true;
                 break;
@@ -191,10 +192,10 @@ public class CGuideWS {
         return encontrou;
     }
 
-    private static boolean verificarExistenciaDeDisciplinaDoCurso(List<TbDisciplina> lista, String codDisc) {
+    private static boolean verificarExistenciaDeDisciplinaDoCurso(List<TbDisciplina> list, String codDisc) {
         boolean encontrou = false;
 
-        for (TbDisciplina c : lista) {
+        for (TbDisciplina c : list) {
             if (c.getDisciplina_codigo().equalsIgnoreCase(codDisc)) {
                 encontrou = true;
                 break;
@@ -218,7 +219,7 @@ public class CGuideWS {
             }
             String fullPath = base_ws_test + partUrl;
             HttpURLConnection conn = abrirConexao(fullPath, "GET", false);
-            List<CourseJson> lista = new ArrayList<>();
+            List<CourseJson> list = new ArrayList<>();
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream is = conn.getInputStream();
                 String s = streamToString(is);
@@ -226,16 +227,16 @@ public class CGuideWS {
                 Gson gson = new Gson();
                 Type collectionType = new TypeToken<ArrayList<CourseJson>>() {
                 }.getType();
-                lista = gson.fromJson(s, collectionType);
+                list = gson.fromJson(s, collectionType);
             }
             conn.disconnect();
-            return lista;
+            return list;
         } catch (Exception e) {
             return null;
         }
     }
 
-    //TEST URL DISCIPLINE BY COURSE LAPA'S WEB API
+    //TEST URL DISCIPLINE LAPA'S WEB API
     public static List<DisciplineJson> getDiscipline(int typeSearch, int refferId) {
         try {
             String partUrl = "Disciplina/";
@@ -250,7 +251,7 @@ public class CGuideWS {
             partUrl +="?id=" + Integer.toString(refferId);
             String fullPath = base_ws_test + partUrl;
             HttpURLConnection conn = abrirConexao(fullPath, "GET", false);
-            List<DisciplineJson> lista = new ArrayList<>();
+            List<DisciplineJson> list = new ArrayList<>();
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream is = conn.getInputStream();
                 String s = streamToString(is);
@@ -258,10 +259,42 @@ public class CGuideWS {
                 Gson gson = new Gson();
                 Type collectionType = new TypeToken<ArrayList<DisciplineJson>>() {
                 }.getType();
-                lista = gson.fromJson(s, collectionType);
+                list = gson.fromJson(s, collectionType);
             }
             conn.disconnect();
-            return lista;
+            return list;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    //TEST URL TEACHER LAPA'S WEB API
+    public static List<TeacherJson> getTeacher(int typeSearch, int refferId) {
+        try {
+            String partUrl = "Professor/";
+            switch (typeSearch) {
+                case 1:
+                    partUrl += "GetByCurso";
+                    break;
+                case 2:
+                    partUrl += "GetByDisciplina";
+                    break;
+            }
+            partUrl +="?id=" + Integer.toString(refferId);
+            String fullPath = base_ws_test + partUrl;
+            HttpURLConnection conn = abrirConexao(fullPath, "GET", false);
+            List<TeacherJson> list = new ArrayList<>();
+            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                InputStream is = conn.getInputStream();
+                String s = streamToString(is);
+                is.close();
+                Gson gson = new Gson();
+                Type collectionType = new TypeToken<ArrayList<TeacherJson>>() {
+                }.getType();
+                list = gson.fromJson(s, collectionType);
+            }
+            conn.disconnect();
+            return list;
         } catch (Exception e) {
             return null;
         }

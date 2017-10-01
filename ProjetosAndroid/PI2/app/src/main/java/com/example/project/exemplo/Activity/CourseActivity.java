@@ -17,8 +17,10 @@ import com.example.project.exemplo.Activity.Task.CourseTask;
 import com.example.project.exemplo.Adapter.CourseAdapter;
 import com.example.project.exemplo.Adapter.Interface.ICourseListener;
 import com.example.project.exemplo.Mapper.Json.CourseJson;
+import com.example.project.exemplo.Mapper.Json.TeacherJson;
 import com.example.project.exemplo.R;
 import com.example.project.exemplo.util.Enum.DisciplineTypeSearch;
+import com.example.project.exemplo.util.Enum.TeacherTypeSearch;
 import com.example.project.exemplo.util.GenericDialogFragment;
 import com.example.project.exemplo.util.ProgressDialogUtil;
 
@@ -131,7 +133,11 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
 
         @Override
         public void showTeacher(CourseJson courseJson) {
-
+            Intent intent = new Intent(CourseActivity.this, TeacherActivity.class);
+            int typeSearch = TeacherTypeSearch.valueOf("ByCourse").ordinal() + 1;
+            intent.putExtra("refferId", courseJson.getId());
+            intent.putExtra("typeSearch", typeSearch);
+            startActivity(intent);
         }
 
         @Override
