@@ -10,29 +10,25 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.widget.Toast;
 
-/**
- * Created by Project on 22/04/2016.
- */
-public class GenericDialogFragment extends DialogFragment
-        implements DialogInterface.OnClickListener {
+import com.example.project.exemplo.util.Interface.IGenericDialogFragment;
+
+public class GenericDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
 
     private static final String EXTRA_ID = "id";
-    private static final String EXTRA_MENSAGEM = "message";
-    private static final String EXTRA_TITULO = "title";
-    private static final String EXTRA_BOTOES = "buttons";
+    private static final String EXTRA_MESSAGE = "message";
+    private static final String EXTRA_TITLE = "title";
+    private static final String EXTRA_BUTTONS = "buttons";
     private static final String DIALOG_TAG = "SimpleDialog";
     private Context context;
     private int mDialogId;
 
-    public static GenericDialogFragment novoDialog(Context c,
-            int id, int title, int message, int[] buttonTexts) {
+    public static GenericDialogFragment newDialog(Context c, int id, int title, int message, int[] buttonTexts) {
         Bundle bundle = new Bundle();
         bundle.putInt(EXTRA_ID, id);
-        bundle.putInt(EXTRA_TITULO, title);
-        bundle.putInt(EXTRA_MENSAGEM, message);
-        bundle.putIntArray(EXTRA_BOTOES, buttonTexts);
+        bundle.putInt(EXTRA_TITLE, title);
+        bundle.putInt(EXTRA_MESSAGE, message);
+        bundle.putIntArray(EXTRA_BUTTONS, buttonTexts);
 
         GenericDialogFragment dialog = new GenericDialogFragment();
         dialog.setArguments(bundle);
@@ -43,27 +39,26 @@ public class GenericDialogFragment extends DialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         mDialogId = getArguments().getInt(EXTRA_ID);
-        int titulo = getArguments().getInt(EXTRA_TITULO);
-        int mensagem = getArguments().getInt(EXTRA_MENSAGEM);
-        int[] botoes = getArguments().getIntArray(EXTRA_BOTOES);
+        int title = getArguments().getInt(EXTRA_TITLE);
+        int message = getArguments().getInt(EXTRA_MESSAGE);
+        int[] buttons = getArguments().getIntArray(EXTRA_BUTTONS);
 
-        AlertDialog.Builder alertDialogBuilder =
-                new AlertDialog.Builder(getActivity());
-        alertDialogBuilder.setTitle(titulo);
-        alertDialogBuilder.setMessage(mensagem);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        alertDialogBuilder.setTitle(title);
+        alertDialogBuilder.setMessage(message);
 
-        switch (botoes.length) {
+        switch (buttons.length) {
             case 3:
                 alertDialogBuilder.setNeutralButton(
-                        botoes[2], this);
+                        buttons[2], this);
 
             case 2:
                 alertDialogBuilder.setNegativeButton(
-                        botoes[1], this);
+                        buttons[1], this);
 
             case 1:
                 alertDialogBuilder.setPositiveButton(
-                        botoes[0], this);
+                        buttons[0], this);
         }
         return alertDialogBuilder.create();
     }
@@ -71,14 +66,14 @@ public class GenericDialogFragment extends DialogFragment
     @Override
     public void onClick(DialogInterface dialog, int which) {
         Activity activity = getActivity();
-        if (activity instanceof AoClicarNoDialog) {
-            AoClicarNoDialog listener =
-                    (AoClicarNoDialog) activity;
-            listener.aoClicar(mDialogId, which);
+        if (activity instanceof IGenericDialogFragment) {
+            IGenericDialogFragment listener =
+                    (IGenericDialogFragment) activity;
+            listener.onClickDialog(mDialogId, which);
         }
     }
 
-    public void abrir(FragmentManager supportFragmentManager) {
+    public void openDialog(FragmentManager supportFragmentManager) {
         try {
             if (supportFragmentManager != null) {
                 Fragment dialogFragment =
@@ -87,13 +82,9 @@ public class GenericDialogFragment extends DialogFragment
                     show(supportFragmentManager, DIALOG_TAG);
                 }
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             Log.e("Erro", e.getMessage());
         }
     }
 
-    public interface AoClicarNoDialog {
-        void aoClicar(int id, int botao);
-    }
 }
