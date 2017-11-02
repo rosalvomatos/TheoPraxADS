@@ -11,5 +11,7 @@ namespace PortalCG.Models.JsonModels
         public string Nome { get; set; }
         public int CH { get; set; }
         public bool clickable { get; set; }
+        public int? IdCourse { get; set; }
+        public int? CourseOptionRoute { get; set; }
     }
 }

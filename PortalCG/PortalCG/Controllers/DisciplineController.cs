@@ -1,6 +1,7 @@
 ﻿using PortalCG.Models;
 using PortalCG.Models.JsonModels;
 using PortalCG.Util;
+using PortalCG.Util.Enum;
 using PortalCG.WebAPIReference;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,14 @@ namespace PortalCG.Controllers
             return View();
         }
 
-        public ActionResult UploadFile(int idDiscipline, string disciplineName)
+        public ActionResult UploadFile(int idDiscipline, string disciplineName, int? courseOption, int? idCourse)
         {
             DisciplineUploadFileModel course = new DisciplineUploadFileModel()
             {
                 IdDiscipline = idDiscipline,
-                NameDiscipline = disciplineName
+                NameDiscipline = disciplineName,
+                IdCourse = idCourse,
+                CourseOptionRoute = courseOption
             };
             return View(course);
         }
@@ -40,13 +43,25 @@ namespace PortalCG.Controllers
                 {
                     if (arquivo.ContentType.Equals("application/pdf"))
                     {
-                        string fileName = "MATRIZ";
-                        fileName = fileName + "_" + discipline.IdDiscipline + ".pdf";
+                        string fileName = discipline.IdDiscipline + ".pdf";
                         UploadFileUtil.FTPUpload(fileName, arquivo);
                     }
                 }
             }
-            return RedirectToAction("AllDisciplines", "Discipline");
+            if (discipline.CourseOptionRoute != null)
+            {
+                string action = CourseController.getRoute((int)discipline.CourseOptionRoute);
+
+                if (discipline.CourseOptionRoute != (int)CourseOptionRouteEnum.INDIVIDUAL)
+                {
+                    return RedirectToAction(action, "Course");
+                }
+                return RedirectToAction(action, "Course", new { id = (int)discipline.IdCourse });
+            }
+            else
+            {
+                return RedirectToAction("AllDisciplines", "Discipline");
+            }
         }
     }
 }

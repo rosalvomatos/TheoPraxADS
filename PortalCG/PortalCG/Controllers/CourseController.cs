@@ -37,11 +37,16 @@ namespace PortalCG.Controllers
             return View(CourseList);
         }
 
-        public async Task<ActionResult> AllDisciplines(int id)
+        public async Task<ActionResult> AllDisciplines(int id, int option)
         {
             Course course = await CourseWebAPI.GetCourseById(id);
             List<Discipline> DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(id);
-            DisciplineList.ForEach(x => { x.clickable = false; });
+            DisciplineList.ForEach(x =>
+            {
+                x.clickable = false;
+                x.CourseOptionRoute = option;
+                x.IdCourse = id;
+            });
             DisciplineIndexViewModel disciplineIndex = new DisciplineIndexViewModel
             {
                 Course = course,
@@ -80,8 +85,25 @@ namespace PortalCG.Controllers
                 }
             }
             //CHANGE
+            string action = getRoute(course.OptionRoute);
+
+            if (course.OptionRoute != (int)CourseOptionRouteEnum.INDIVIDUAL)
+            {
+                return RedirectToAction(action, "Course");
+            }
+            return RedirectToAction(action, "Course", new { id = course.IdCourse });
+        }
+
+        string SetFileName(string idType)
+        {
+            int type = Int32.Parse(idType);
+            return ((TypeCourseFileEnum)type).ToString();
+        }
+
+        public static string getRoute(int option)
+        {
             string action = "";
-            switch (course.OptionRoute)
+            switch (option)
             {
                 case 1:
                     action = "AllCourses";
@@ -99,18 +121,7 @@ namespace PortalCG.Controllers
                     action = "AllCourses";
                     break;
             }
-            if (course.OptionRoute != (int)CourseOptionRouteEnum.INDIVIDUAL)
-            {
-                return RedirectToAction(action, "Course");
-            }
-            return RedirectToAction(action, "Course", new { id = course.IdCourse });
+            return action;
         }
-
-        string SetFileName(string idType)
-        {
-            int type = Int32.Parse(idType);
-            return ((TypeCourseFileEnum)type).ToString();
-        }
-
     }
 }

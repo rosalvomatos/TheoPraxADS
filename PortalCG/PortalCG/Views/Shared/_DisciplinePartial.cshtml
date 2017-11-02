@@ -7,9 +7,9 @@
         <div class="caption">
             @if (Model.clickable)
             {
-            <a class="caption-subject bold uppercase font-blue-steel" href="#">
-                @Model.Nome
-            </a>
+                <a class="caption-subject bold uppercase font-blue-steel" href="#">
+                    @Model.Nome
+                </a>
             }
             else
             {
@@ -34,7 +34,7 @@
             <div class="row">
                 <br />
                 <div class="col-md-12">
-                    <a href="@Url.Action("UploadFile", "Course", new { idCourse = Model.Id, courseName = Model.Nome })" class="btn blue btn-xs">Arquivos</a>
+                    <a href="@Url.Action("UploadFile", "Discipline", new { idDiscipline = Model.Id, disciplineName = Model.Nome, courseOption = Model.CourseOptionRoute, idCourse = Model.IdCourse })" class="btn blue btn-xs">Arquivos</a>
                 </div>
             </div>
         </div>

@@ -40,6 +40,8 @@ namespace PortalCG.Models
         public int IdDiscipline { get; set; }
         public string NameDiscipline { get; set; }
         public FileViewModel File { get; set; }
+        public int? IdCourse { get; set; }
+        public int? CourseOptionRoute { get; set; }
     }
 
     public class FileViewModel
