@@ -1,5 +1,6 @@
 ﻿using PortalCG.Models;
 using PortalCG.Models.JsonModels;
+using PortalCG.Util;
 using PortalCG.Util.Enum;
 using PortalCG.WebAPIReference;
 using System;
@@ -48,7 +49,6 @@ namespace PortalCG.Controllers
         [HttpPost]
         public ActionResult UploadFile(CourseUploadFileModel course)
         {
-            List<string> urlList = new List<string>();
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 HttpPostedFileBase arquivo = Request.Files[i];
@@ -60,20 +60,9 @@ namespace PortalCG.Controllers
                         var type = Request.Files.Keys[i];
                         string fileName = SetFileName(type);
                         fileName = fileName + "_" + course.IdCourse + ".pdf";
-                        var uploadPath = Server.MapPath("~/Content/Uploads");
-                        bool exists = Directory.Exists(uploadPath);
-                        if (!exists)
-                            Directory.CreateDirectory(uploadPath);
-                        var c = arquivo;
-                        string caminhoArquivo = Path.Combine(@uploadPath, fileName);
-                        arquivo.SaveAs(caminhoArquivo);
-                        urlList.Add(caminhoArquivo);
+                        UploadFileUtil.FTPUpload(fileName, arquivo);
                     }
                 }
-            }
-            if (urlList?.Count > 0)
-            {
-                teste(urlList);
             }
             return null;
         }
@@ -84,30 +73,5 @@ namespace PortalCG.Controllers
             return ((TypeCourseFileEnum)type).ToString();
         }
 
-        void teste(List<string> urlList)
-        {
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://ftp.dlptest.com/");
-            request.Method = WebRequestMethods.Ftp.UploadFile;
-
-            // This example assumes the FTP site uses anonymous logon.  
-            request.Credentials = new NetworkCredential("dlpuser@dlptest.com", "fwRhzAnR1vgig8s");
-
-            foreach (var item in urlList)
-            {
-                // Copy the contents of the file to the request stream.  
-                StreamReader sourceStream = new StreamReader(item);
-                byte[] fileContents = Encoding.UTF8.GetBytes(sourceStream.ReadToEnd());
-                sourceStream.Close();
-                request.ContentLength = fileContents.Length;
-
-                Stream requestStream = request.GetRequestStream();
-                requestStream.Write(fileContents, 0, fileContents.Length);
-                requestStream.Close();
-
-                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-
-                response.Close();
-            }
-        }
     }
 }

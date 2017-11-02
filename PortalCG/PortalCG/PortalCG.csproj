@@ -159,6 +159,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Enum\TypeCourseEnum.cs" />
     <Compile Include="Util\Enum\TypeCourseFileEnum.cs" />
+    <Compile Include="Util\UploadFileUtil.cs" />
     <Compile Include="WebAPIReference\ConfigData.cs" />
     <Compile Include="WebAPIReference\CourseWebAPI.cs" />
     <Compile Include="WebAPIReference\DisciplineWebAPI.cs" />
