@@ -1,4 +1,4 @@
-package com.example.project.exemplo.util;
+package com.example.project.exemplo.Util;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,7 +23,7 @@ public class CGuideWS {
     //private static String base_ws = "http://200.9.65.20:8080/WS_hibernate_pd/webresources/";
     private static String base_ws_pdf = "http://200.9.65.20:8080/WS_hibernate_pdSenai/webresources/";
     //private static String base_ws_senai = "http://senaiweb2.fieb.org.br/mec/api/";
-    private static String base_ws_test = "http://ws-tp.apphb.com/api/";
+    private static String base_ws = "http://ws-tp.apphb.com/api/";
     private Context context;
 
     public CGuideWS(Context context) {
@@ -31,13 +31,15 @@ public class CGuideWS {
 
     }
 
-    private static HttpURLConnection openConnection(String url, String metodo, boolean result) {
+    private static HttpURLConnection openConnection(String url,
+                                                    String method,
+                                                    boolean result) {
         try {
             URL urlConnection = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) urlConnection.openConnection();
             connection.setReadTimeout(15000);
             connection.setConnectTimeout(15000);
-            connection.setRequestMethod(metodo);
+            connection.setRequestMethod(method);
             connection.setDoInput(true);
             connection.setDoOutput(result);
             if (result) {
@@ -78,7 +80,7 @@ public class CGuideWS {
                     partUrl += "GetPosGrad/";
                     break;
             }
-            String fullPath = base_ws_test + partUrl;
+            String fullPath = base_ws + partUrl;
             HttpURLConnection conn = openConnection(fullPath, "GET", false);
             List<CourseJson> list = new ArrayList<>();
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -110,7 +112,7 @@ public class CGuideWS {
                     break;
             }
             partUrl += "?id=" + Integer.toString(refferId);
-            String fullPath = base_ws_test + partUrl;
+            String fullPath = base_ws + partUrl;
             HttpURLConnection conn = openConnection(fullPath, "GET", false);
             List<DisciplineJson> list = new ArrayList<>();
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -142,7 +144,7 @@ public class CGuideWS {
                     break;
             }
             partUrl += "?id=" + Integer.toString(refferId);
-            String fullPath = base_ws_test + partUrl;
+            String fullPath = base_ws + partUrl;
             HttpURLConnection conn = openConnection(fullPath, "GET", false);
             List<TeacherJson> list = new ArrayList<>();
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {

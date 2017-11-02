@@ -1,4 +1,4 @@
-package com.example.project.exemplo.util.Enum;
+package com.example.project.exemplo.Util.Enum;
 
 public enum TypeCourseEnum {
     Graduation,

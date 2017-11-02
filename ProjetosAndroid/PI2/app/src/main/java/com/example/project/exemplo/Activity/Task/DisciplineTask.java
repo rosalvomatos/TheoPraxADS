@@ -10,9 +10,9 @@ import com.example.project.exemplo.Adapter.DisciplineAdapter;
 import com.example.project.exemplo.Adapter.Interface.IDisciplineListener;
 import com.example.project.exemplo.Mapper.Json.DisciplineJson;
 import com.example.project.exemplo.R;
-import com.example.project.exemplo.util.CGuideWS;
-import com.example.project.exemplo.util.GenericDialogFragment;
-import com.example.project.exemplo.util.ProgressDialogUtil;
+import com.example.project.exemplo.Util.CGuideWS;
+import com.example.project.exemplo.Util.GenericDialogFragment;
+import com.example.project.exemplo.Util.ProgressDialogUtil;
 
 import java.util.List;
 

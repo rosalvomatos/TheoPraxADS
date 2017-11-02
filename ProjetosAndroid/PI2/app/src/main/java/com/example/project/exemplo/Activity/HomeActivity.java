@@ -12,8 +12,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.project.exemplo.R;
-import com.example.project.exemplo.util.CGuideWS;
-import com.example.project.exemplo.util.Enum.TypeCourseEnum;
+import com.example.project.exemplo.Util.CGuideWS;
+import com.example.project.exemplo.Util.Enum.TypeCourseEnum;
 
 public class HomeActivity extends AppCompatActivity {
 

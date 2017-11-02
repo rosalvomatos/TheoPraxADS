@@ -18,11 +18,11 @@ import com.example.project.exemplo.Adapter.CourseAdapter;
 import com.example.project.exemplo.Adapter.Interface.ICourseListener;
 import com.example.project.exemplo.Mapper.Json.CourseJson;
 import com.example.project.exemplo.R;
-import com.example.project.exemplo.util.CGuideWS;
-import com.example.project.exemplo.util.Enum.DisciplineTypeSearch;
-import com.example.project.exemplo.util.Enum.TeacherTypeSearch;
-import com.example.project.exemplo.util.GenericDialogFragment;
-import com.example.project.exemplo.util.ProgressDialogUtil;
+import com.example.project.exemplo.Util.CGuideWS;
+import com.example.project.exemplo.Util.Enum.DisciplineTypeSearch;
+import com.example.project.exemplo.Util.Enum.TeacherTypeSearch;
+import com.example.project.exemplo.Util.GenericDialogFragment;
+import com.example.project.exemplo.Util.ProgressDialogUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;

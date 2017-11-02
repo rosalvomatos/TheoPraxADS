@@ -1,4 +1,4 @@
-package com.example.project.exemplo.util;
+package com.example.project.exemplo.Util;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -20,10 +20,10 @@ public class ProgressDialogUtil {
         instantiateProgressDialog();
     }
 
-    public static void showProgressDialogUtil(boolean exibir, Context contextLocal) {
+    public static void showProgressDialogUtil(boolean show, Context contextLocal) {
         try {
             progressDialog.setCancelable(false);
-            if (exibir)
+            if (show)
                 progressDialog.show();
             else
                 progressDialog.dismiss();

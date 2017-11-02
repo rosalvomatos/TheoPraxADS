@@ -1,4 +1,4 @@
-package com.example.project.exemplo.util;
+package com.example.project.exemplo.Util;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
-import com.example.project.exemplo.util.Interface.IGenericDialogFragment;
+import com.example.project.exemplo.Util.Interface.IGenericDialogFragment;
 
 public class GenericDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
 

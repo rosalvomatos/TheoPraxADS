@@ -1,0 +1,20 @@
+﻿@model List<PortalCG.Models.JsonModels.Course>
+@{
+    ViewBag.Title = "Todos os Cursos";
+}
+@if (Model?.Count > 0)
+{
+    var countGroupped = (Model.Count / 4) + Model.Count % 4 != 0 ? 1 : 0;
+    for (int i = 0; i < countGroupped; i++)
+    {
+        var modelGroupped = Model.Skip(i * 4).Take(4).ToList();
+        <div class="row">
+            @foreach (var item in modelGroupped)
+            {
+                <div class="col-md-3">
+                    @Html.Partial("_CoursePartial", item)
+                </div>
+            }
+        </div>
+    }
+}

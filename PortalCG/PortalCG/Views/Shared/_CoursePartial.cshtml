@@ -1,0 +1,67 @@
+﻿@model PortalCG.Models.JsonModels.Course
+@{
+    Layout = null;
+}
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <a class="caption-subject bold uppercase font-blue-steel" href="#">
+                @Model.Nome
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="course-content">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Mensalidade)
+                </div>
+                <div class="col-md-8">
+                    @Model.Mensalidade
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.CH)
+                </div>
+                <div class="col-md-8">
+                    @Model.CH
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.NotaMEC)
+                </div>
+                <div class="col-md-8">
+                    @Model.NotaMEC
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Coordenador)
+                </div>
+                <div class="col-md-8">
+                    @Model.Coordenador
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Tipo)
+                </div>
+                <div class="col-md-8">
+                    @Model.Tipo
+                </div>
+            </div>
+        </div>
+        <div class="course-buttons">
+            <div class="row">
+                <br />
+                <div class="col-md-12">
+                    <button type="button" class="btn blue btn-xs">Disciplinas</button>
+                    <button type="button" class="btn blue btn-xs">Professores</button>
+                    <a href="@Url.Action("UploadFile", "Course", new { idCourse = Model.Id, courseName = Model.Nome })" class="btn blue btn-xs">Arquivos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
