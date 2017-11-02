@@ -13,6 +13,16 @@ namespace PortalCG.WebAPIReference
     {
         private static string url = ConfigData.path + "professor/";
 
+        public static async Task<List<Teacher>> GetAllTeachers()
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
+            HttpResponseMessage response = await httpClient.SendAsync(request);
+            string data = await response.Content.ReadAsStringAsync();
+            List<Teacher> obj = JsonConvert.DeserializeObject<List<Teacher>>(data);
+            return obj;
+        }
+
         public static async Task<List<Teacher>> GetTeachersByCourse(int idCourse)
         {
             HttpClient httpClient = new HttpClient();
@@ -30,6 +40,16 @@ namespace PortalCG.WebAPIReference
             HttpResponseMessage response = await httpClient.SendAsync(request);
             string data = await response.Content.ReadAsStringAsync();
             List<Teacher> obj = JsonConvert.DeserializeObject<List<Teacher>>(data);
+            return obj;
+        }
+
+        public static async Task<Teacher> GetTeacherById(int id)
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "Get?id=" + id);
+            HttpResponseMessage response = await httpClient.SendAsync(request);
+            string data = await response.Content.ReadAsStringAsync();
+            Teacher obj = JsonConvert.DeserializeObject<Teacher>(data);
             return obj;
         }
     }

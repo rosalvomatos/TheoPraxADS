@@ -151,6 +151,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DisciplineController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5107,6 +5108,8 @@
     <Content Include="Views\Course\DetailsCourse.cshtml" />
     <Content Include="Views\Discipline\AllDisciplines.cshtml" />
     <Content Include="Views\Discipline\AllTeachers.cshtml" />
+    <Content Include="Views\Teacher\AllTeachers.cshtml" />
+    <Content Include="Views\Teacher\AllDisciplines.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

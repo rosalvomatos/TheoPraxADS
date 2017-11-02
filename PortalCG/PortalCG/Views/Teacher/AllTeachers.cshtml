@@ -1,6 +1,6 @@
-﻿@model List<PortalCG.Models.JsonModels.Course>
+﻿@model List<PortalCG.Models.JsonModels.Teacher>
 @{
-    ViewBag.Title = "Cursos";
+    ViewBag.Title = "Professores";
     const int ITEM_PER_ROW = 3;
 }
 @if (Model?.Count > 0)
@@ -13,7 +13,7 @@
             @foreach (var item in modelGroupped)
             {
                 <div class="col-md-@(12/ITEM_PER_ROW)">
-                    @Html.Partial("_CoursePartial", item)
+                    @Html.Partial("_TeacherPartial", item)
                 </div>
             }
         </div>

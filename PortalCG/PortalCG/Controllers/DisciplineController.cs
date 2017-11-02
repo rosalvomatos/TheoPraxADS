@@ -15,7 +15,6 @@ namespace PortalCG.Controllers
 {
     public class DisciplineController : Controller
     {
-        // GET: Discipline
         public async Task<ActionResult> AllDisciplines()
         {
             List<Discipline> DisciplineList = await DisciplineWebAPI.GetAllDisciplines();
