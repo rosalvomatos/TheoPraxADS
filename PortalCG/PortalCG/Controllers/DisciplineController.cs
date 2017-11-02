@@ -1,5 +1,6 @@
 ﻿using PortalCG.Models;
 using PortalCG.Models.JsonModels;
+using PortalCG.Models.ViewModels;
 using PortalCG.Util;
 using PortalCG.Util.Enum;
 using PortalCG.WebAPIReference;
@@ -15,19 +16,43 @@ namespace PortalCG.Controllers
     public class DisciplineController : Controller
     {
         // GET: Discipline
-        public ActionResult Index()
+        public async Task<ActionResult> AllDisciplines()
         {
-            return View();
+            List<Discipline> DisciplineList = await DisciplineWebAPI.GetAllDisciplines();
+            DisciplineList.ForEach(x =>
+            {
+                x.OptionRoute = (int)DisciplineOptionRouteEnum.ALL;
+                x.ShowTeachers = true;
+            });
+            return View(DisciplineList);
         }
 
-        public ActionResult UploadFile(int idDiscipline, string disciplineName, int? courseOption, int? idCourse)
+        public async Task<ActionResult> AllTeachers(int id)
+        {
+            Discipline discipline = await DisciplineWebAPI.GetDisciplineById(id);
+            List<Teacher> TeacherList = await TeacherWebAPI.GetTeachersByDiscipline(id);
+            TeacherList.ForEach(x =>
+            {
+                x.ShowDisciplines = false;
+                x.IdCourse = id;
+            });
+            TeacherIndexViewModel teacherIndex = new TeacherIndexViewModel
+            {
+                Discipline = discipline,
+                TeacherList = TeacherList
+            };
+            return View(teacherIndex);
+        }
+
+        public ActionResult UploadFile(int idDiscipline, string disciplineName, int? courseOption, int? idCourse, int? option)
         {
             DisciplineUploadFileModel course = new DisciplineUploadFileModel()
             {
                 IdDiscipline = idDiscipline,
                 NameDiscipline = disciplineName,
                 IdCourse = idCourse,
-                CourseOptionRoute = courseOption
+                CourseOptionRoute = courseOption,
+                OptionRoute = option
             };
             return View(course);
         }
@@ -63,5 +88,6 @@ namespace PortalCG.Controllers
                 return RedirectToAction("AllDisciplines", "Discipline");
             }
         }
+        
     }
 }

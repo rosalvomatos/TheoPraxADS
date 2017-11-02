@@ -22,5 +22,15 @@ namespace PortalCG.WebAPIReference
             List<Teacher> obj = JsonConvert.DeserializeObject<List<Teacher>>(data);
             return obj;
         }
+
+        public static async Task<List<Teacher>> GetTeachersByDiscipline(int idDiscipline)
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "GetByDisciplina?id=" + idDiscipline);
+            HttpResponseMessage response = await httpClient.SendAsync(request);
+            string data = await response.Content.ReadAsStringAsync();
+            List<Teacher> obj = JsonConvert.DeserializeObject<List<Teacher>>(data);
+            return obj;
+        }
     }
 }

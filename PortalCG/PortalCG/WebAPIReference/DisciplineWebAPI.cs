@@ -13,6 +13,16 @@ namespace PortalCG.WebAPIReference
     {
         private static string url = ConfigData.path + "disciplina/";
 
+        public static async Task<List<Discipline>> GetAllDisciplines()
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
+            HttpResponseMessage response = await httpClient.SendAsync(request);
+            string data = await response.Content.ReadAsStringAsync();
+            List<Discipline> obj = JsonConvert.DeserializeObject<List<Discipline>>(data);
+            return obj;
+        }
+
         public static async Task<List<Discipline>> GetDisciplinesByCourse(int idCourse)
         {
             HttpClient httpClient = new HttpClient();
@@ -20,6 +30,16 @@ namespace PortalCG.WebAPIReference
             HttpResponseMessage response = await httpClient.SendAsync(request);
             string data = await response.Content.ReadAsStringAsync();
             List<Discipline> obj = JsonConvert.DeserializeObject<List<Discipline>>(data);
+            return obj;
+        }
+
+        public static async Task<Discipline> GetDisciplineById(int id)
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "Get?id=" + id);
+            HttpResponseMessage response = await httpClient.SendAsync(request);
+            string data = await response.Content.ReadAsStringAsync();
+            Discipline obj = JsonConvert.DeserializeObject<Discipline>(data);
             return obj;
         }
     }

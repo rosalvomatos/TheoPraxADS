@@ -42,6 +42,7 @@ namespace PortalCG.Models
         public FileViewModel File { get; set; }
         public int? IdCourse { get; set; }
         public int? CourseOptionRoute { get; set; }
+        public int? OptionRoute { get; set; }
     }
 
     public class FileViewModel

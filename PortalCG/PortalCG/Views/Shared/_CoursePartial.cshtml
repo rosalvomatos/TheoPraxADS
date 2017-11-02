@@ -58,7 +58,7 @@
                 <br />
                 <div class="col-md-12">
                     <a href="@Url.Action("AllDisciplines", "Course", new { id = Model.Id, option = Model.OptionRoute })" class="btn blue btn-xs">Disciplinas</a>
-                    <a href="@Url.Action("AllTeachers", "Course", new { id = Model.Id, option = Model.OptionRoute })" class="btn blue btn-xs">Professores</a>
+                    <a href="@Url.Action("AllTeachers", "Course", new { id = Model.Id})" class="btn blue btn-xs">Professores</a>
                     <a href="@Url.Action("UploadFile", "Course", new { idCourse = Model.Id, courseName = Model.Nome, option = Model.OptionRoute })" class="btn blue btn-xs">Arquivos</a>
                 </div>
             </div>

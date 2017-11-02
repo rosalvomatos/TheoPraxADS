@@ -63,14 +63,13 @@ namespace PortalCG.Controllers
             return View(disciplineIndex);
         }
 
-        public async Task<ActionResult> AllTeachers(int id, int option)
+        public async Task<ActionResult> AllTeachers(int id)
         {
             Course course = await CourseWebAPI.GetCourseById(id);
             List<Teacher> TeacherList = await TeacherWebAPI.GetTeachersByCourse(id);
             TeacherList.ForEach(x =>
             {
                 x.ShowDisciplines = false;
-                x.CourseOptionRoute = option;
                 x.IdCourse = id;
             });
             TeacherIndexViewModel teacherIndex = new TeacherIndexViewModel
@@ -84,9 +83,23 @@ namespace PortalCG.Controllers
         public async Task<ActionResult> DetailsCourse(int id)
         {
             DetailsCourseViewModel detailsCourse = new DetailsCourseViewModel();
+            var DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(id);
+            DisciplineList.ForEach(x =>
+            {
+                x.ShowTeachers = false;
+                x.CourseOptionRoute = (int)CourseOptionRouteEnum.INDIVIDUAL;
+                x.IdCourse = id;
+            });
+
             detailsCourse.Course = await CourseWebAPI.GetCourseById(id);
-            detailsCourse.DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(id);
-            detailsCourse.TeacherList = await TeacherWebAPI.GetTeachersByCourse(id);
+            detailsCourse.DisciplineList = DisciplineList;
+            var TeacherList = await TeacherWebAPI.GetTeachersByCourse(id);
+            TeacherList.ForEach(x =>
+            {
+                x.ShowDisciplines = false;
+                x.IdCourse = id;
+            });
+            detailsCourse.TeacherList = TeacherList;
             return View(detailsCourse);
         }
 
