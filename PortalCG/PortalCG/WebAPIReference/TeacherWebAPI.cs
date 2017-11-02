@@ -16,7 +16,7 @@ namespace PortalCG.WebAPIReference
         public static async Task<List<Teacher>> GetTeachersByCourse(int idCourse)
         {
             HttpClient httpClient = new HttpClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "?GetByCurso?id=" + idCourse);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "GetByCurso?id=" + idCourse);
             HttpResponseMessage response = await httpClient.SendAsync(request);
             string data = await response.Content.ReadAsStringAsync();
             List<Teacher> obj = JsonConvert.DeserializeObject<List<Teacher>>(data);
