@@ -31,9 +31,17 @@ namespace PortalCG.Controllers
             return View(CourseList);
         }
 
-        public async Task<ActionResult> GraduationCourse()
+        public async Task<ActionResult> GraduationCourses()
         {
             List<Course> CourseList = await CourseWebAPI.GetCoursesByType("GetGrad");
+            CourseList.ForEach(x => { x.OptionRoute = (int)CourseOptionRouteEnum.GRADUATION; });
+            return View(CourseList);
+        }
+
+        public async Task<ActionResult> PostGraduateCourses()
+        {
+            List<Course> CourseList = await CourseWebAPI.GetCoursesByType("GetPosGrad");
+            CourseList.ForEach(x => { x.OptionRoute = (int)CourseOptionRouteEnum.POSTGRADUATE; });
             return View(CourseList);
         }
 

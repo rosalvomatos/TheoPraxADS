@@ -5091,13 +5091,14 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index-old.cshtml" />
     <Content Include="Views\Course\AllCourses.cshtml" />
-    <Content Include="Views\Course\GraduationCourse.cshtml" />
     <Content Include="Views\Shared\_CoursePartial.cshtml" />
     <Content Include="Views\Course\UploadFile.cshtml" />
     <Content Include="Views\Course\AllDisciplines.cshtml" />
     <Content Include="Views\Shared\_DisciplinePartial.cshtml" />
     <Content Include="Views\Discipline\UploadFile.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Course\GraduationCourses.cshtml" />
+    <Content Include="Views\Course\PostGraduateCourses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

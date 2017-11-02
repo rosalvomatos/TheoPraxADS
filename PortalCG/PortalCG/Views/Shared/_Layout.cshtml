@@ -29,12 +29,6 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Mandatory/css")
     <!-- END GLOBAL MANDATORY STYLES -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
-    <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     @Styles.Render("~/Global/css")
     <!-- END THEME GLOBAL STYLES -->
@@ -102,44 +96,22 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <a href="@Url.Action("AllCourses","Course")"> Todos </a>
                                             </li>
                                             <li>
-                                                <a href="ui_metronic_grid.html"> Graduação </a>
+                                                <a href="@Url.Action("GraduationCourses","Course")"> Graduação </a>
                                             </li>
                                             <li>
-                                                <a href="ui_metronic_grid.html"> Pós Graduação </a>
+                                                <a href="@Url.Action("PostGraduateCourses","Course")"> Pós Graduação </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="dropdown more-dropdown-sub">
+                                    <li class="dropdown">
                                         <a href="@Url.Action("Index","Home")">
                                             <i class="icon-bar-chart"></i> Disciplinas
                                         </a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="ui_colors.html"> Todas </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_metronic_grid.html"> Graduação </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_metronic_grid.html"> Pós Graduação </a>
-                                            </li>
-                                        </ul>
                                     </li>
-                                    <li class="dropdown more-dropdown-sub">
+                                    <li class="dropdown">
                                         <a href="@Url.Action("Index","Home")">
                                             <i class="icon-bar-chart"></i> Professores
                                         </a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="ui_colors.html"> Todos </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_metronic_grid.html"> Graduação </a>
-                                            </li>
-                                            <li>
-                                                <a href="ui_metronic_grid.html"> Pós Graduação </a>
-                                            </li>
-                                        </ul>
                                     </li>
                                 </ul>
                             </li>
