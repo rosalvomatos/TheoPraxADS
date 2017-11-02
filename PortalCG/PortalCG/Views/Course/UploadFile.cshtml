@@ -10,7 +10,7 @@
 {
     var fileListGrouped = Model.FileList.GroupBy(e => e.IdType % 2 == 0).Select(f => f.ToList()).ToList();
     @Html.HiddenFor(m => m.IdCourse);
-
+    @Html.HiddenFor(m => m.OptionRoute);
     <div class="portlet light bordered">
         <div class="portlet-title">
             <div class="caption">

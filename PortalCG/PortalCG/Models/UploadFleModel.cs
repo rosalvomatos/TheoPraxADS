@@ -11,6 +11,9 @@ namespace PortalCG.Models
     {
         public int IdCourse { get; set; }
         public string NameCourse { get; set; }
+
+        public int OptionRoute { get; set; }
+
         public List<FileViewModel> FileList = new List<FileViewModel>
         {
             new FileViewModel

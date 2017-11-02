@@ -27,6 +27,7 @@ namespace PortalCG.Controllers
         public async Task<ActionResult> AllCourses()
         {
             List<Course> CourseList = await CourseWebAPI.GetAllCourses();
+            CourseList.ForEach(x => { x.OptionRoute = (int)CourseOptionRouteEnum.ALL; });
             return View(CourseList);
         }
 
@@ -49,12 +50,13 @@ namespace PortalCG.Controllers
             return View(disciplineIndex);
         }
 
-        public ActionResult UploadFile(int idCourse, string courseName)
+        public ActionResult UploadFile(int idCourse, string courseName, int option)
         {
             CourseUploadFileModel course = new CourseUploadFileModel()
             {
                 IdCourse = idCourse,
-                NameCourse = courseName
+                NameCourse = courseName,
+                OptionRoute = option
             };
             return View(course);
         }
@@ -78,7 +80,30 @@ namespace PortalCG.Controllers
                 }
             }
             //CHANGE
-            return RedirectToAction("AllCourses", "Course");
+            string action = "";
+            switch (course.OptionRoute)
+            {
+                case 1:
+                    action = "AllCourses";
+                    break;
+                case 2:
+                    action = "GraduationCourses";
+                    break;
+                case 3:
+                    action = "PostGraduateCourses";
+                    break;
+                case 4:
+                    action = "DetailsCourse";
+                    break;
+                default:
+                    action = "AllCourses";
+                    break;
+            }
+            if (course.OptionRoute != (int)CourseOptionRouteEnum.INDIVIDUAL)
+            {
+                return RedirectToAction(action, "Course");
+            }
+            return RedirectToAction(action, "Course", new { id = course.IdCourse });
         }
 
         string SetFileName(string idType)

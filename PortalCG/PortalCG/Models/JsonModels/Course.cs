@@ -14,5 +14,6 @@ namespace PortalCG.Models.JsonModels
         public int NotaMEC { get; set; }
         public string Mensalidade { get; set; }
         public int Tipo { get; set; }
+        public int OptionRoute { get; set; }
     }
 }
