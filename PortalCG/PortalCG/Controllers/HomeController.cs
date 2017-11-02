@@ -11,10 +11,15 @@ namespace PortalCG.Controllers
 {
     public class HomeController : Controller
     {
-        public async Task<ActionResult> Index()
+        //public async Task<ActionResult> Index()
+        //{
+        //    List<Course> CourseList = await CourseWebAPI.GetAllCourses();
+        //    return View(CourseList);
+        //}
+
+        public ActionResult Index()
         {
-            List<Course> CourseList = await CourseWebAPI.GetAllCourses();
-            return View(CourseList);
+            return View();
         }
         
     }

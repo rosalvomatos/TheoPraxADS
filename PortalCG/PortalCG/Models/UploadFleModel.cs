@@ -19,7 +19,7 @@ namespace PortalCG.Models
             },
             new FileViewModel
             {
-                IdType = (int) TypeCourseFileEnum.ATOAUTORIZAÇÃO
+                IdType = (int) TypeCourseFileEnum.ATO
             },
             new FileViewModel
             {
@@ -30,6 +30,13 @@ namespace PortalCG.Models
                 IdType = (int) TypeCourseFileEnum.PPC
             }
         };
+    }
+
+    public class DisciplineUploadFileModel
+    {
+        public int IdDiscipline { get; set; }
+        public string NameDiscipline { get; set; }
+        public FileViewModel File { get; set; }
     }
 
     public class FileViewModel

@@ -1,0 +1,42 @@
+﻿@model PortalCG.Models.JsonModels.Discipline
+@{
+    Layout = null;
+}
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            @if (Model.clickable)
+            {
+            <a class="caption-subject bold uppercase font-blue-steel" href="#">
+                @Model.Nome
+            </a>
+            }
+            else
+            {
+                <span class="caption-subject bold uppercase font-blue-steel">
+                    @Model.Nome
+                </span>
+            }
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="course-content">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.CH)
+                </div>
+                <div class="col-md-8">
+                    @Model.CH
+                </div>
+            </div>
+        </div>
+        <div class="course-buttons">
+            <div class="row">
+                <br />
+                <div class="col-md-12">
+                    <a href="@Url.Action("UploadFile", "Course", new { idCourse = Model.Id, courseName = Model.Nome })" class="btn blue btn-xs">Arquivos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

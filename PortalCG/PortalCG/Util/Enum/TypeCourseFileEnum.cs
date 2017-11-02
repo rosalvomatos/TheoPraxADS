@@ -18,6 +18,6 @@ namespace PortalCG.Util.Enum
         MATRIZ = 3,
 
         [Display(Name = "Ato de Autorização")]
-        ATOAUTORIZAÇÃO = 4
+        ATO = 4
     }
 }

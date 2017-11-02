@@ -10,5 +10,6 @@ namespace PortalCG.Models.JsonModels
         public int Id { get; set; }
         public string Nome { get; set; }
         public int CH { get; set; }
+        public bool clickable { get; set; }
     }
 }

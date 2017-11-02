@@ -57,7 +57,7 @@
             <div class="row">
                 <br />
                 <div class="col-md-12">
-                    <button type="button" class="btn blue btn-xs">Disciplinas</button>
+                    <a href="@Url.Action("AllDisciplines", "Course", new { id = Model.Id })" class="btn blue btn-xs">Disciplinas</a>
                     <button type="button" class="btn blue btn-xs">Professores</button>
                     <a href="@Url.Action("UploadFile", "Course", new { idCourse = Model.Id, courseName = Model.Nome })" class="btn blue btn-xs">Arquivos</a>
                 </div>

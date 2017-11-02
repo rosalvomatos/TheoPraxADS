@@ -1,5 +1,6 @@
 ﻿using PortalCG.Models;
 using PortalCG.Models.JsonModels;
+using PortalCG.Models.ViewModels;
 using PortalCG.Util;
 using PortalCG.Util.Enum;
 using PortalCG.WebAPIReference;
@@ -35,6 +36,18 @@ namespace PortalCG.Controllers
             return View(CourseList);
         }
 
+        public async Task<ActionResult> AllDisciplines(int id)
+        {
+            Course course = await CourseWebAPI.GetCourseById(id);
+            List<Discipline> DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(id);
+            DisciplineList.ForEach(x => { x.clickable = false; });
+            DisciplineIndexViewModel disciplineIndex = new DisciplineIndexViewModel
+            {
+                Course = course,
+                DisciplineList = DisciplineList
+            };
+            return View(disciplineIndex);
+        }
 
         public ActionResult UploadFile(int idCourse, string courseName)
         {
@@ -51,20 +64,21 @@ namespace PortalCG.Controllers
         {
             for (int i = 0; i < Request.Files.Count; i++)
             {
-                HttpPostedFileBase arquivo = Request.Files[i];
+                HttpPostedFileBase file = Request.Files[i];
 
-                if (arquivo.ContentLength > 0)
+                if (file.ContentLength > 0)
                 {
-                    if (arquivo.ContentType.Equals("application/pdf"))
+                    if (file.ContentType.Equals("application/pdf"))
                     {
                         var type = Request.Files.Keys[i];
                         string fileName = SetFileName(type);
                         fileName = fileName + "_" + course.IdCourse + ".pdf";
-                        UploadFileUtil.FTPUpload(fileName, arquivo);
+                        UploadFileUtil.FTPUpload(fileName, file);
                     }
                 }
             }
-            return null;
+            //CHANGE
+            return RedirectToAction("AllCourses", "Course");
         }
 
         string SetFileName(string idType)
