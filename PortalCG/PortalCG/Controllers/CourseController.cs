@@ -51,7 +51,7 @@ namespace PortalCG.Controllers
             List<Discipline> DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(id);
             DisciplineList.ForEach(x =>
             {
-                x.clickable = false;
+                x.ShowTeachers = false;
                 x.CourseOptionRoute = option;
                 x.IdCourse = id;
             });
@@ -62,6 +62,28 @@ namespace PortalCG.Controllers
             };
             return View(disciplineIndex);
         }
+
+        public async Task<ActionResult> AllTeachers(int id, int option)
+        {
+            Course course = await CourseWebAPI.GetCourseById(id);
+            List<Teacher> TeacherList = await TeacherWebAPI.GetTeachersByCourse(id);
+            TeacherList.ForEach(x =>
+            {
+                x.ShowDisciplines = false;
+                x.CourseOptionRoute = option;
+                x.IdCourse = id;
+            });
+            TeacherIndexViewModel teacherIndex = new TeacherIndexViewModel
+            {
+                Course = course,
+                TeacherList = TeacherList
+            };
+            return View(teacherIndex);
+        }
+
+        //public async Task<ActionResult> DetailsCourse(int id, int option)
+        //{
+        //}
 
         public ActionResult UploadFile(int idCourse, string courseName, int option)
         {

@@ -1,0 +1,23 @@
+﻿@model PortalCG.Models.ViewModels.TeacherIndexViewModel
+@{
+    ViewBag.Title = "Professores do curso " + Model.Course.Nome;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    const int ITEM_PER_ROW = 3;
+}
+
+@if (Model.TeacherList?.Count > 0)
+{
+    var countGroupped = (Model.TeacherList.Count / ITEM_PER_ROW) + (Model.TeacherList.Count % ITEM_PER_ROW != 0 ? 1 : 0);
+    for (int i = 0; i < countGroupped; i++)
+    {
+        var modelGroupped = Model.TeacherList.Skip(i * ITEM_PER_ROW).Take(ITEM_PER_ROW).ToList();
+        <div class="row">
+            @foreach (var item in modelGroupped)
+            {
+                <div class="col-md-@(12/ITEM_PER_ROW)">
+                    @Html.Partial("_TeacherPartial", item)
+                </div>
+            }
+        </div>
+    }
+}

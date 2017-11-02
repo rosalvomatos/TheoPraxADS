@@ -18,8 +18,8 @@ namespace PortalCG.WebAPIReference
             HttpClient httpClient = new HttpClient();
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
             HttpResponseMessage response = await httpClient.SendAsync(request);
-            string dados = await response.Content.ReadAsStringAsync();
-            List<Course> obj = JsonConvert.DeserializeObject<List<Course>>(dados);
+            string data = await response.Content.ReadAsStringAsync();
+            List<Course> obj = JsonConvert.DeserializeObject<List<Course>>(data);
             return obj;
         }
 
@@ -28,8 +28,8 @@ namespace PortalCG.WebAPIReference
             HttpClient httpClient = new HttpClient();
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + type);
             HttpResponseMessage response = await httpClient.SendAsync(request);
-            string dados = await response.Content.ReadAsStringAsync();
-            List<Course> obj = JsonConvert.DeserializeObject<List<Course>>(dados);
+            string data = await response.Content.ReadAsStringAsync();
+            List<Course> obj = JsonConvert.DeserializeObject<List<Course>>(data);
             return obj;
         }
 
@@ -38,8 +38,8 @@ namespace PortalCG.WebAPIReference
             HttpClient httpClient = new HttpClient();
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "Get?id=" + id);
             HttpResponseMessage response = await httpClient.SendAsync(request);
-            string dados = await response.Content.ReadAsStringAsync();
-            Course obj = JsonConvert.DeserializeObject<Course>(dados);
+            string data = await response.Content.ReadAsStringAsync();
+            Course obj = JsonConvert.DeserializeObject<Course>(data);
             return obj;
         }
     }

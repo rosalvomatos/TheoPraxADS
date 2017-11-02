@@ -9,17 +9,17 @@ using Newtonsoft.Json;
 
 namespace PortalCG.WebAPIReference
 {
-    public class DisciplineWebAPI
+    public class TeacherWebAPI
     {
-        private static string url = ConfigData.path + "disciplina/";
+        private static string url = ConfigData.path + "professor/";
 
-        public static async Task<List<Discipline>> GetDisciplinesByCourse(int idCourse)
+        public static async Task<List<Teacher>> GetTeachersByCourse(int idCourse)
         {
             HttpClient httpClient = new HttpClient();
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "?GetByCurso?id=" + idCourse);
             HttpResponseMessage response = await httpClient.SendAsync(request);
             string data = await response.Content.ReadAsStringAsync();
-            List<Discipline> obj = JsonConvert.DeserializeObject<List<Discipline>>(data);
+            List<Teacher> obj = JsonConvert.DeserializeObject<List<Teacher>>(data);
             return obj;
         }
     }

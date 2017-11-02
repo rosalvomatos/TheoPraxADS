@@ -1,4 +1,4 @@
-﻿@model PortalCG.Models.JsonModels.Discipline
+﻿@model PortalCG.Models.JsonModels.Teacher
 @{
     Layout = null;
 }
@@ -14,10 +14,10 @@
         <div class="course-content">
             <div class="row">
                 <div class="col-md-4">
-                    @Html.LabelFor(m => m.CH)
+                    @Html.LabelFor(m => m.ModContrato)
                 </div>
                 <div class="col-md-8">
-                    @Model.CH
+                    @Model.ModContrato
                 </div>
             </div>
         </div>
@@ -25,11 +25,10 @@
             <div class="row">
                 <br />
                 <div class="col-md-12">
-                    @if (Model.ShowTeachers)
+                    @if (Model.ShowDisciplines)
                     {
-                        <a href="#" class="btn blue btn-xs">Professores</a>
+                        <a href="#" class="btn blue btn-xs">Disciplinas</a>
                     }
-                    <a href="@Url.Action("UploadFile", "Discipline", new { idDiscipline = Model.Id, disciplineName = Model.Nome, courseOption = Model.CourseOptionRoute, idCourse = Model.IdCourse })" class="btn blue btn-xs">Arquivos</a>
                 </div>
             </div>
         </div>
