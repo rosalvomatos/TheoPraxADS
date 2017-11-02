@@ -5,7 +5,7 @@
 <div class="portlet light bordered">
     <div class="portlet-title">
         <div class="caption">
-            <a class="caption-subject bold uppercase font-blue-steel" href="#">
+            <a class="caption-subject bold uppercase font-blue-steel" href="@Url.Action("DetailsCourse", "Course", new { id = Model.Id})">
                 @Model.Nome
             </a>
         </div>
@@ -14,7 +14,7 @@
         <div class="course-content">
             <div class="row">
                 <div class="col-md-4">
-                    @Html.LabelFor(m => m.Mensalidade)
+                    @Html.LabelFor(m => m.Mensalidade, new { @class = "bold" })
                 </div>
                 <div class="col-md-8">
                     @Model.Mensalidade
@@ -22,7 +22,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    @Html.LabelFor(m => m.CH)
+                    @Html.LabelFor(m => m.CH, new { @class = "bold" })
                 </div>
                 <div class="col-md-8">
                     @Model.CH
@@ -30,7 +30,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    @Html.LabelFor(m => m.NotaMEC)
+                    @Html.LabelFor(m => m.NotaMEC, new { @class = "bold" })
                 </div>
                 <div class="col-md-8">
                     @Model.NotaMEC
@@ -38,7 +38,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    @Html.LabelFor(m => m.Coordenador)
+                    @Html.LabelFor(m => m.Coordenador, new { @class = "bold" })
                 </div>
                 <div class="col-md-8">
                     @Model.Coordenador
@@ -46,7 +46,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    @Html.LabelFor(m => m.Tipo)
+                    @Html.LabelFor(m => m.Tipo, new { @class = "bold" })
                 </div>
                 <div class="col-md-8">
                     @Model.Tipo
@@ -58,7 +58,7 @@
                 <br />
                 <div class="col-md-12">
                     <a href="@Url.Action("AllDisciplines", "Course", new { id = Model.Id, option = Model.OptionRoute })" class="btn blue btn-xs">Disciplinas</a>
-                    <a href="@Url.Action("AllTeachers", "Course", new { id = Model.Id, option = Model.OptionRoute })"  class="btn blue btn-xs">Professores</a>
+                    <a href="@Url.Action("AllTeachers", "Course", new { id = Model.Id, option = Model.OptionRoute })" class="btn blue btn-xs">Professores</a>
                     <a href="@Url.Action("UploadFile", "Course", new { idCourse = Model.Id, courseName = Model.Nome, option = Model.OptionRoute })" class="btn blue btn-xs">Arquivos</a>
                 </div>
             </div>

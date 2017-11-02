@@ -10,5 +10,6 @@ namespace PortalCG.Models.ViewModels
     {
         public Course Course { get; set; }
         public List<Discipline> DisciplineList { get; set; }
+        public List<Teacher> TeacherList { get; set; }
     }
 }

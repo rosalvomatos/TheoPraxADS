@@ -81,9 +81,14 @@ namespace PortalCG.Controllers
             return View(teacherIndex);
         }
 
-        //public async Task<ActionResult> DetailsCourse(int id, int option)
-        //{
-        //}
+        public async Task<ActionResult> DetailsCourse(int id)
+        {
+            DetailsCourseViewModel detailsCourse = new DetailsCourseViewModel();
+            detailsCourse.Course = await CourseWebAPI.GetCourseById(id);
+            detailsCourse.DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(id);
+            detailsCourse.TeacherList = await TeacherWebAPI.GetTeachersByCourse(id);
+            return View(detailsCourse);
+        }
 
         public ActionResult UploadFile(int idCourse, string courseName, int option)
         {

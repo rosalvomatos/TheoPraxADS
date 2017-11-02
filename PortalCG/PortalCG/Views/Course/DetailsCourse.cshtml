@@ -1,0 +1,104 @@
+﻿@model PortalCG.Models.ViewModels.DetailsCourseViewModel
+@{
+    ViewBag.Title = Model.Course.Nome;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    const int ITEM_PER_ROW = 3;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="caption-subject bold uppercase font-blue-steel">
+            Dados
+            <hr />
+        </h4>
+        <div class="portlet light bordered">
+            <div class="portlet-body">
+                <div class="course-content">
+                    <div class="row">
+                        <div class="col-md-1">
+                            @Html.LabelFor(m => m.Course.Mensalidade, new { @class = "bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Model.Course.Mensalidade
+                        </div>
+                        <div class="col-md-1">
+                            @Html.LabelFor(m => m.Course.CH, new { @class = "bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Model.Course.CH
+                        </div>
+                        <div class="col-md-1">
+                            @Html.LabelFor(m => m.Course.NotaMEC, new { @class = "bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Model.Course.NotaMEC
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            @Html.LabelFor(m => m.Course.Coordenador, new { @class = "bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Model.Course.Coordenador
+                        </div>
+                        <div class="col-md-1">
+                            @Html.LabelFor(m => m.Course.Tipo, new { @class = "bold" })
+                        </div>
+                        <div class="col-md-3">
+                            @Model.Course.Tipo
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="caption-subject bold uppercase font-blue-steel">
+            Disciplinas
+            <hr />
+        </h4>
+        @if (Model.DisciplineList?.Count > 0)
+        {
+            var countGroupped = (Model.DisciplineList.Count / ITEM_PER_ROW) + (Model.DisciplineList.Count % ITEM_PER_ROW != 0 ? 1 : 0);
+            for (int i = 0; i < countGroupped; i++)
+            {
+                var modelGroupped = Model.DisciplineList.Skip(i * ITEM_PER_ROW).Take(ITEM_PER_ROW).ToList();
+                <div class="row">
+                    @foreach (var item in modelGroupped)
+                    {
+                        <div class="col-md-@(12/ITEM_PER_ROW)">
+                            @Html.Partial("_DisciplinePartial", item)
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="caption-subject bold uppercase font-blue-steel">
+            Professores
+            <hr />
+        </h4>
+        @if (Model.TeacherList?.Count > 0)
+        {
+            var countGroupped = (Model.TeacherList.Count / ITEM_PER_ROW) + (Model.TeacherList.Count % ITEM_PER_ROW != 0 ? 1 : 0);
+            for (int i = 0; i < countGroupped; i++)
+            {
+                var modelGroupped = Model.TeacherList.Skip(i * ITEM_PER_ROW).Take(ITEM_PER_ROW).ToList();
+                <div class="row">
+                    @foreach (var item in modelGroupped)
+                    {
+                        <div class="col-md-@(12/ITEM_PER_ROW)">
+                            @Html.Partial("_TeacherPartial", item)
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>
+
