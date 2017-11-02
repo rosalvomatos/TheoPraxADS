@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace PortalCG.Models.JsonModels
+﻿namespace PortalCG.Models.JsonModels
 {
     public class Discipline
     {
@@ -13,6 +8,7 @@ namespace PortalCG.Models.JsonModels
         public int? OptionRoute { get; set; }
         public int? IdCourse { get; set; }
         public int? CourseOptionRoute { get; set; }
+        public int? IdTeacher { get; set; }
 
         public bool ShowTeachers { get; set; }
     }

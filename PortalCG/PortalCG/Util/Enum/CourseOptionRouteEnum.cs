@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace PortalCG.Util.Enum
+﻿namespace PortalCG.Util.Enum
 {
     public enum CourseOptionRouteEnum
     {

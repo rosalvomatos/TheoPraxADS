@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net.Http;
 using PortalCG.Models.JsonModels;

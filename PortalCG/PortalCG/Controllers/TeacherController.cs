@@ -1,12 +1,8 @@
 ﻿using PortalCG.Models.JsonModels;
 using PortalCG.Models.ViewModels;
-using PortalCG.Util.Enum;
 using PortalCG.WebAPIReference;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PortalCG.Controllers
@@ -30,6 +26,7 @@ namespace PortalCG.Controllers
             DisciplineList.ForEach(x =>
             {
                 x.ShowTeachers = false;
+                x.IdTeacher = id;
             });
             DisciplineIndexViewModel disciplineIndex = new DisciplineIndexViewModel
             {

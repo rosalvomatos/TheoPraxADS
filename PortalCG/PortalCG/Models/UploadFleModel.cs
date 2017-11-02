@@ -1,9 +1,5 @@
 ﻿using PortalCG.Util.Enum;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace PortalCG.Models
 {
@@ -43,6 +39,7 @@ namespace PortalCG.Models
         public int? IdCourse { get; set; }
         public int? CourseOptionRoute { get; set; }
         public int? OptionRoute { get; set; }
+        public int? IdTeacher { get; set; }
     }
 
     public class FileViewModel

@@ -4,9 +4,7 @@ using PortalCG.Models.ViewModels;
 using PortalCG.Util;
 using PortalCG.Util.Enum;
 using PortalCG.WebAPIReference;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -43,7 +41,7 @@ namespace PortalCG.Controllers
             return View(teacherIndex);
         }
 
-        public ActionResult UploadFile(int idDiscipline, string disciplineName, int? courseOption, int? idCourse, int? option)
+        public ActionResult UploadFile(int idDiscipline, string disciplineName, int? courseOption, int? idCourse, int? option, int? idTeacher)
         {
             DisciplineUploadFileModel course = new DisciplineUploadFileModel()
             {
@@ -51,7 +49,8 @@ namespace PortalCG.Controllers
                 NameDiscipline = disciplineName,
                 IdCourse = idCourse,
                 CourseOptionRoute = courseOption,
-                OptionRoute = option
+                OptionRoute = option,
+                IdTeacher = idTeacher
             };
             return View(course);
         }
@@ -81,6 +80,10 @@ namespace PortalCG.Controllers
                     return RedirectToAction(action, "Course");
                 }
                 return RedirectToAction(action, "Course", new { id = (int)discipline.IdCourse });
+            }
+            else if(discipline.IdTeacher != null)
+            {
+                return RedirectToAction("AllTeachers", "Teacher");
             }
             else
             {

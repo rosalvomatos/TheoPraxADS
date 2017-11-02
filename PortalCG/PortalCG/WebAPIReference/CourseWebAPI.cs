@@ -1,11 +1,8 @@
 ﻿using Newtonsoft.Json;
 using PortalCG.Models.JsonModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace PortalCG.WebAPIReference
 {
