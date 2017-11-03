@@ -5073,6 +5073,7 @@
     <Content Include="metronic\assets\global\plugins\wysihtml\minified\wysihtml.table_editing.min.map" />
     <Content Include="metronic\assets\global\plugins\wysihtml\minified\wysihtml.toolbar.min.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\globalScripts.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

@@ -109,6 +109,11 @@ namespace PortalCG
             bundles.Add(new StyleBundle("~/FileInput/css").Include(
                 "~/metronic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css"
                 ));
+
+
+            bundles.Add(new ScriptBundle("~/GlobalScript/js").Include(
+                "~/Scripts/globalScripts.js"
+                ));
         }
     }
 }

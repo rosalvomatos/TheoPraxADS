@@ -154,13 +154,12 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- END BREADCRUMBS -->
                 <!-- BEGIN PAGE BASE CONTENT -->
                 @RenderBody()
-
                 <!-- END PAGE BASE CONTENT -->
             </div>
             <!-- BEGIN FOOTER -->
             <p class="copyright">
                 2017 &copy;
-                <a target="_blank" href="http://keenthemes.com">SENAI CIMATEC</a>
+                <a target="_blank" href="http://senaicimatec.com.br">SENAI CIMATEC</a>
             </p>
             <a href="#index" class="go2top">
                 <i class="icon-arrow-up"></i>
@@ -189,41 +188,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN THEME LAYOUT SCRIPTS -->
     @Scripts.Render("~/Threme/js")
     <!-- END THEME LAYOUT SCRIPTS -->
-    <script>
-        $(document).ready(function () {
-            $('#clickmewow').click(function () {
-                $('#radio1003').attr('checked', 'checked');
-            });
-        })
-        $(document).ready(function () {
-            EqualizeHeight();
-            $("#search").keyup(function () {
-                var valSearch = $(this).val();
-                var searchable = $(".searchable");
-                searchable.each(function (index, element) {
-                    var valElement = $(element).html().trim().toUpperCase();
-                    if (valElement.indexOf(valSearch.toUpperCase()) !== -1) {
-                        $(element).parent().parent().parent().parent().show();
-                    } else {
-                        $(element).parent().parent().parent().parent().hide();
-                    }
-                });
-                EqualizeHeight();
-            });
-            function EqualizeHeight() {
-                var elements = $(".portlet");
-                var maxHeigth = 0;
-                elements.each(function (index, element) {
-                    if ($(element).height() >= maxHeigth) {
-                        maxHeigth = $(element).height();
-                    }
-                });
-                elements.each(function (index, element) {
-                    $(element).height(maxHeigth);
-                });
-            }
-        })
-    </script>
+    @Scripts.Render("~/GlobalScript/js")
 </body>
 
 </html>
