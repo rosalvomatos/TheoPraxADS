@@ -5,7 +5,7 @@
 <div class="portlet light bordered">
     <div class="portlet-title">
         <div class="caption">
-            <a class="caption-subject bold uppercase font-blue-steel" href="@Url.Action("DetailsCourse", "Course", new { id = Model.Id})">
+            <a class="caption-subject bold uppercase font-blue-steel searchable" href="@Url.Action("DetailsCourse", "Course", new { id = Model.Id})">
                 @Model.Nome
             </a>
         </div>
@@ -13,42 +13,37 @@
     <div class="portlet-body">
         <div class="course-content">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                     @Html.LabelFor(m => m.Mensalidade, new { @class = "bold" })
-                </div>
-                <div class="col-md-8">
+                    :
                     @Model.Mensalidade
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                     @Html.LabelFor(m => m.CH, new { @class = "bold" })
-                </div>
-                <div class="col-md-8">
+                    :
                     @Model.CH
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                     @Html.LabelFor(m => m.NotaMEC, new { @class = "bold" })
-                </div>
-                <div class="col-md-8">
+                    :
                     @Model.NotaMEC
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                     @Html.LabelFor(m => m.Coordenador, new { @class = "bold" })
-                </div>
-                <div class="col-md-8">
+                    :
                     @Model.Coordenador
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                     @Html.LabelFor(m => m.Tipo, new { @class = "bold" })
-                </div>
-                <div class="col-md-8">
+                    :
                     @Model.Tipo
                 </div>
             </div>
@@ -56,7 +51,7 @@
         <div class="course-buttons">
             <div class="row">
                 <br />
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                     <a href="@Url.Action("AllDisciplines", "Course", new { id = Model.Id, option = Model.OptionRoute })" class="btn blue btn-xs">Disciplinas</a>
                     <a href="@Url.Action("AllTeachers", "Course", new { id = Model.Id})" class="btn blue btn-xs">Professores</a>
                     <a href="@Url.Action("UploadFile", "Course", new { idCourse = Model.Id, courseName = Model.Nome, option = Model.OptionRoute })" class="btn blue btn-xs">Arquivos</a>

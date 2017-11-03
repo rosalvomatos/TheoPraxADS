@@ -7,17 +7,12 @@
 
 @if (Model.DisciplineList?.Count > 0)
 {
-    var countGroupped = (Model.DisciplineList.Count / ITEM_PER_ROW) + (Model.DisciplineList.Count % ITEM_PER_ROW != 0 ? 1 : 0);
-    for (int i = 0; i < countGroupped; i++)
-    {
-        var modelGroupped = Model.DisciplineList.Skip(i * ITEM_PER_ROW).Take(ITEM_PER_ROW).ToList();
-        <div class="row">
-            @foreach (var item in modelGroupped)
-            {
-                <div class="col-md-@(12/ITEM_PER_ROW)">
-                    @Html.Partial("_DisciplinePartial", item)
-                </div>
-            }
-        </div>
-    }
+    <div class="row">
+        @foreach (var item in Model?.DisciplineList)
+        {
+            <div class="col-md-@(12/ITEM_PER_ROW)">
+                @Html.Partial("_DisciplinePartial", item)
+            </div>
+        }
+    </div>
 }
