@@ -15,6 +15,7 @@ namespace PortalCG.Controllers
     {
         public async Task<ActionResult> AllDisciplines()
         {
+            ViewBag.Url = Url.Action("AllDisciplines");
             List<Discipline> DisciplineList = await DisciplineWebAPI.GetAllDisciplines();
             DisciplineList.ForEach(x =>
             {
@@ -26,6 +27,7 @@ namespace PortalCG.Controllers
 
         public async Task<ActionResult> AllTeachers(int id)
         {
+            ViewBag.Url = Url.Action("AllTeachers", "Teacher");
             Discipline discipline = await DisciplineWebAPI.GetDisciplineById(id);
             List<Teacher> TeacherList = await TeacherWebAPI.GetTeachersByDiscipline(id);
             TeacherList.ForEach(x =>
@@ -43,6 +45,7 @@ namespace PortalCG.Controllers
 
         public ActionResult UploadFile(int idDiscipline, string disciplineName, int? courseOption, int? idCourse, int? option, int? idTeacher)
         {
+            ViewBag.Url = Url.Action("AllDisciplines");
             DisciplineUploadFileModel course = new DisciplineUploadFileModel()
             {
                 IdDiscipline = idDiscipline,

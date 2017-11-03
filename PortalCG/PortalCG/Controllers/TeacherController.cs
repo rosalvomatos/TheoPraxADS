@@ -11,6 +11,7 @@ namespace PortalCG.Controllers
     {
         public async Task<ActionResult> AllTeachers()
         {
+            ViewBag.Url = Url.Action("AllTeachers");
             List<Teacher> DisciplineList = await TeacherWebAPI.GetAllTeachers();
             DisciplineList.ForEach(x =>
             {
@@ -21,6 +22,7 @@ namespace PortalCG.Controllers
 
         public async Task<ActionResult> AllDisciplines(int id)
         {
+            ViewBag.Url = Url.Action("AllDisciplines", "Discipline");
             Teacher teacher = await TeacherWebAPI.GetTeacherById(id);
             List<Discipline> DisciplineList = await DisciplineWebAPI.GetDisciplinesByTeacher(id);
             DisciplineList.ForEach(x =>

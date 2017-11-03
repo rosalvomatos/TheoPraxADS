@@ -14,6 +14,7 @@ namespace PortalCG.Controllers
 
         public ActionResult UploadFile(int id)
         {
+            ViewBag.Url = Url.Action("UploadFile");
             InstitutionalUploadFileModel model = new InstitutionalUploadFileModel()
             {
                 IdType = id

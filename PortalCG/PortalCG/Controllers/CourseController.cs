@@ -22,6 +22,7 @@ namespace PortalCG.Controllers
 
         public async Task<ActionResult> AllCourses()
         {
+            ViewBag.Url = Url.Action("AllCourses");
             List<Course> CourseList = await CourseWebAPI.GetAllCourses();
             CourseList.ForEach(x => { x.OptionRoute = (int)CourseOptionRouteEnum.ALL; });
             return View(CourseList);
@@ -29,6 +30,7 @@ namespace PortalCG.Controllers
 
         public async Task<ActionResult> GraduationCourses()
         {
+            ViewBag.Url = Url.Action("GraduationCourses");
             List<Course> CourseList = await CourseWebAPI.GetCoursesByType("GetGrad");
             CourseList.ForEach(x => { x.OptionRoute = (int)CourseOptionRouteEnum.GRADUATION; });
             return View(CourseList);
@@ -36,6 +38,7 @@ namespace PortalCG.Controllers
 
         public async Task<ActionResult> PostGraduateCourses()
         {
+            ViewBag.Url = Url.Action("PostGraduateCourses");
             List<Course> CourseList = await CourseWebAPI.GetCoursesByType("GetPosGrad");
             CourseList.ForEach(x => { x.OptionRoute = (int)CourseOptionRouteEnum.POSTGRADUATE; });
             return View(CourseList);
@@ -43,6 +46,7 @@ namespace PortalCG.Controllers
 
         public async Task<ActionResult> AllDisciplines(int id, int option)
         {
+            ViewBag.Url = Url.Action("AllDisciplines", "Discipline");
             Course course = await CourseWebAPI.GetCourseById(id);
             List<Discipline> DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(id);
             DisciplineList.ForEach(x =>
@@ -61,6 +65,7 @@ namespace PortalCG.Controllers
 
         public async Task<ActionResult> AllTeachers(int id)
         {
+            ViewBag.Url = Url.Action("AllTeachers", "Teacher");
             Course course = await CourseWebAPI.GetCourseById(id);
             List<Teacher> TeacherList = await TeacherWebAPI.GetTeachersByCourse(id);
             TeacherList.ForEach(x =>
@@ -78,6 +83,7 @@ namespace PortalCG.Controllers
 
         public async Task<ActionResult> DetailsCourse(int id)
         {
+            ViewBag.Url = Url.Action("AllCourses");
             DetailsCourseViewModel detailsCourse = new DetailsCourseViewModel();
             var DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(id);
             DisciplineList.ForEach(x =>
@@ -101,6 +107,7 @@ namespace PortalCG.Controllers
 
         public ActionResult UploadFile(int idCourse, string courseName, int option)
         {
+            ViewBag.Url = Url.Action(GetRoute(option <= 3 ? option : 1));
             CourseUploadFileModel course = new CourseUploadFileModel()
             {
                 IdCourse = idCourse,

@@ -41,6 +41,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-md">
     <!-- BEGIN CONTAINER -->
     <div class="wrapper">
+        <input type="hidden" id="url" value="@ViewBag.Url" />
         <!-- BEGIN HEADER -->
         <header class="page-header">
             <nav class="navbar mega-menu" role="navigation">
@@ -82,13 +83,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- BEGIN HEADER MENU -->
                     <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="dropdown dropdown-fw dropdown-fw-disabled  active open selected">
+                            <li class="dropdown dropdown-fw dropdown-fw-disabled">
                                 <a href="javascript:;" class="text-uppercase">
                                     <i class="icon-home"></i> Inicio
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-fw">
                                     <li class="dropdown more-dropdown-sub">
-                                        <a href="@Url.Action("AllCourses","Course")">
+                                        <a href="javascript:;">
                                             <i class="icon-bar-chart"></i> Cursos
                                         </a>
                                         <ul class="dropdown-menu">
@@ -115,7 +116,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown dropdown-fw dropdown-fw-disabled  ">
+                            <li class="dropdown dropdown-fw dropdown-fw-disabled">
                                 <a href="javascript:;" class="text-uppercase">
                                     <i class="icon-puzzle"></i> Institucional
                                 </a>
