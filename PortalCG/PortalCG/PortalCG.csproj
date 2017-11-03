@@ -5112,12 +5112,13 @@
     <Content Include="Views\Teacher\AllTeachers.cshtml" />
     <Content Include="Views\Teacher\AllDisciplines.cshtml" />
     <Content Include="Views\Institutional\UploadFile.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="metronic\assets\apps\img\" />
     <Folder Include="metronic\assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

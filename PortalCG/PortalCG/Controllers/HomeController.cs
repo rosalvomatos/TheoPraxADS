@@ -9,5 +9,9 @@ namespace PortalCG.Controllers
             return RedirectToAction("AllCourses", "Course");
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
     }
 }

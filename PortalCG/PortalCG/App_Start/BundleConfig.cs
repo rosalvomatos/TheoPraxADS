@@ -55,36 +55,8 @@ namespace PortalCG
                 ));
 
             bundles.Add(new ScriptBundle("~/PageLevelPlugin/js").Include(
-                "~/metronic/assets/global/plugins/moment.min.js",
-                "~/metronic/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js",
                 "~/metronic/assets/global/plugins/morris/morris.min.js",
-                "~/metronic/assets/global/plugins/morris/raphael-min.js",
-                "~/metronic/assets/global/plugins/counterup/jquery.waypoints.min.js",
-                "~/metronic/assets/global/plugins/counterup/jquery.counterup.min.js",
-                "~/metronic/assets/global/plugins/amcharts/amcharts/amcharts.js",
-                "~/metronic/assets/global/plugins/amcharts/amcharts/serial.js",
-                "~/metronic/assets/global/plugins/amcharts/amcharts/pie.js",
-                "~/metronic/assets/global/plugins/amcharts/amcharts/radar.js",
-                "~/metronic/assets/global/plugins/amcharts/amcharts/themes/light.js",
-                "~/metronic/assets/global/plugins/amcharts/amcharts/themes/patterns.js",
-                "~/metronic/assets/global/plugins/amcharts/amcharts/themes/chalk.js",
-                "~/metronic/assets/global/plugins/amcharts/ammap/ammap.js",
-                "~/metronic/assets/global/plugins/amcharts/ammap/maps/js/worldLow.js",
-                "~/metronic/assets/global/plugins/amcharts/amstockcharts/amstock.js",
-                "~/metronic/assets/global/plugins/fullcalendar/fullcalendar.min.js",
-                "~/metronic/assets/global/plugins/horizontal-timeline/horizontal-timeline.js",
-                "~/metronic/assets/global/plugins/flot/jquery.flot.min.js",
-                "~/metronic/assets/global/plugins/flot/jquery.flot.resize.min.js",
-                "~/metronic/assets/global/plugins/flot/jquery.flot.categories.min.js",
-                "~/metronic/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js",
-                "~/metronic/assets/global/plugins/jquery.sparkline.min.js",
-                "~/metronic/assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js",
-                "~/metronic/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js",
-                "~/metronic/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js",
-                "~/metronic/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js",
-                "~/metronic/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js",
-                "~/metronic/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js",
-                "~/metronic/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js"
+                "~/metronic/assets/global/plugins/morris/raphael-min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/Global/js").Include(
@@ -110,9 +82,16 @@ namespace PortalCG
                 "~/metronic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css"
                 ));
 
-
             bundles.Add(new ScriptBundle("~/GlobalScript/js").Include(
                 "~/Scripts/globalScripts.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/Login/css").Include(
+                "~/metronic/assets/pages/css/login.min.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Login/js").Include(
+                "~/metronic/assets/pages/scripts/login.min.js"
                 ));
         }
     }
