@@ -122,14 +122,14 @@ namespace PortalCG.Controllers
                     if (file.ContentType.Equals("application/pdf"))
                     {
                         var type = Request.Files.Keys[i];
-                        string fileName = SetFileName(type);
+                        string fileName = GetFileName(type);
                         fileName = fileName + "_" + course.IdCourse + ".pdf";
                         UploadFileUtil.FTPUpload(fileName, file);
                     }
                 }
             }
             //CHANGE
-            string action = getRoute(course.OptionRoute);
+            string action = GetRoute(course.OptionRoute);
 
             if (course.OptionRoute != (int)CourseOptionRouteEnum.INDIVIDUAL)
             {
@@ -138,13 +138,13 @@ namespace PortalCG.Controllers
             return RedirectToAction(action, "Course", new { id = course.IdCourse });
         }
 
-        string SetFileName(string idType)
+        string GetFileName(string idType)
         {
             int type = Int32.Parse(idType);
             return ((TypeCourseFileEnum)type).ToString();
         }
 
-        public static string getRoute(int option)
+        public static string GetRoute(int option)
         {
             string action = "";
             switch (option)

@@ -42,6 +42,12 @@ namespace PortalCG.Models
         public int? IdTeacher { get; set; }
     }
 
+    public class InstitutionalUploadFileModel
+    {
+        public int IdType { get; set; }
+        public FileViewModel File { get; set; }
+    }
+
     public class FileViewModel
     {
         public int IdType { get; set; }

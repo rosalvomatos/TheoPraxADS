@@ -73,7 +73,7 @@ namespace PortalCG.Controllers
             }
             if (discipline.CourseOptionRoute != null)
             {
-                string action = CourseController.getRoute((int)discipline.CourseOptionRoute);
+                string action = CourseController.GetRoute((int)discipline.CourseOptionRoute);
 
                 if (discipline.CourseOptionRoute != (int)CourseOptionRouteEnum.INDIVIDUAL)
                 {
