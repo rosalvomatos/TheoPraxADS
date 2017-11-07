@@ -1,19 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace PortalCG.Util.Enum
 {
     public enum TypeCourseFileEnum
     {
-        [Display(Name = "PPC")]
+        [Description("PPC")]
         PPC = 1,
 
-        [Display(Name = "Acervo")]
+        [Description("Acervo")]
         ACERVO = 2,
 
-        [Display(Name = "Matriz")]
+        [Description("Matriz")]
         MATRIZ = 3,
 
-        [Display(Name = "Ato de Autorização")]
+        [Description("Ato de Autorização")]
         ATO = 4
     }
 }

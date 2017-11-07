@@ -74,3 +74,4 @@ _[Ss]cripts
 *.ncrunchsolution
 *.dot[Cc]over
 *.pdf
+/PortalCG/.vs/PortalCG/v15/Server/sqlite3

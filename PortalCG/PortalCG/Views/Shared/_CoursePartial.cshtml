@@ -44,7 +44,7 @@
                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                     @Html.LabelFor(m => m.Tipo, new { @class = "bold" })
                     :
-                    @Model.Tipo
+                    @Html.Raw(PortalCG.Util.EnumDescription.GetEnumDescription(Enum.Parse(typeof(PortalCG.Util.Enum.TypeCourseEnum), @Model.Tipo.ToString())))
                 </div>
             </div>
         </div>

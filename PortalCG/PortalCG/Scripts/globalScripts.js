@@ -46,10 +46,8 @@
     parent.addClass("active");
     parent = parent.parent();
     if (parent.attr("class").indexOf("dropdown-menu") !== -1) {
-        console.log("FBAG");
         parent.addClass("active");
         if (parent.parent().attr("class").indexOf("more-dropdown-sub") !== -1) {
-            console.log("FFA");
             parent = parent.parent();
             parent.addClass("active");
             parent = parent.parent();
