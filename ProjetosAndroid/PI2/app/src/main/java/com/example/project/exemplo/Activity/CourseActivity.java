@@ -134,7 +134,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
         public void showTeacher(CourseJson courseJson) {
             Intent intent = new Intent(CourseActivity.this, TeacherActivity.class);
             int typeSearch = TeacherTypeSearch.valueOf("ByCourse").ordinal() + 1;
-            intent.putExtra("refferId", courseJson.getId());
+            intent.putExtra("refferId", courseJson.getCodigo());
             intent.putExtra("typeSearch", typeSearch);
             startActivity(intent);
         }
@@ -148,7 +148,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
         public void showDiscipline(CourseJson courseJson) {
             Intent intent = new Intent(CourseActivity.this, DisciplineActivity.class);
             int typeSearch = DisciplineTypeSearch.valueOf("ByCourse").ordinal() + 1;
-            intent.putExtra("refferId", courseJson.getId());
+            intent.putExtra("refferId", courseJson.getCodigo());
             intent.putExtra("typeSearch", typeSearch);
             startActivity(intent);
         }

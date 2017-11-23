@@ -26,9 +26,9 @@
                 <div class="col-md-12">
                     @if (Model.ShowTeachers)
                     {
-                        <a href="@Url.Action("AllTeachers","Discipline", new { id = Model.Id})" class="btn blue btn-xs">Professores</a>
+                        <a href="@Url.Action("AllTeachers","Discipline", new { code = Model.Codigo})" class="btn blue btn-xs">Professores</a>
                     }
-                    <a href="@Url.Action("UploadFile", "Discipline", new { idDiscipline = Model.Id, disciplineName = Model.Nome, courseOption = Model.CourseOptionRoute, idCourse = Model.IdCourse, option = Model.OptionRoute, idTeacher = Model.IdTeacher })" class="btn blue btn-xs">Arquivos</a>
+                    <a href="@Url.Action("UploadFile", "Discipline", new { codeDiscipline = Model.Codigo, disciplineName = Model.Nome, courseOption = Model.CourseOptionRoute, codeCourse = Model.CodeCourse, option = Model.OptionRoute, codeTeacher = Model.CodeTeacher})" class="btn blue btn-xs">Arquivos</a>
                 </div>
             </div>
         </div>

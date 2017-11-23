@@ -30,10 +30,10 @@ namespace PortalCG.WebAPIReference
             return obj;
         }
 
-        public static async Task<Course> GetCourseById(int id)
+        public static async Task<Course> GetCourseById(string code)
         {
             HttpClient httpClient = new HttpClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "Get?id=" + id);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "Get?cod=" + code);
             HttpResponseMessage response = await httpClient.SendAsync(request);
             string data = await response.Content.ReadAsStringAsync();
             Course obj = JsonConvert.DeserializeObject<Course>(data);

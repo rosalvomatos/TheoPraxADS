@@ -23,7 +23,8 @@ public class CGuideWS {
     //private static String base_ws = "http://200.9.65.20:8080/WS_hibernate_pd/webresources/";
     private static String base_ws_pdf = "http://200.9.65.20:8080/WS_hibernate_pdSenai/webresources/";
     //private static String base_ws_senai = "http://senaiweb2.fieb.org.br/mec/api/";
-    private static String base_ws = "http://ws-tp.apphb.com/api/";
+//    private static String base_ws = "http://ws-tp.apphb.com/api/";
+    private static String base_ws = "http://snp305-030/CimatecAPI/api/";
     private Context context;
 
     public CGuideWS(Context context) {
@@ -100,18 +101,18 @@ public class CGuideWS {
     }
 
     //TEST URL DISCIPLINE LAPA'S WEB API
-    public static List<DisciplineJson> getDiscipline(int typeSearch, int refferId) {
+    public static List<DisciplineJson> getDiscipline(int typeSearch, String refferId) {
         try {
             String partUrl = "Disciplina/";
             switch (typeSearch) {
                 case 1:
-                    partUrl += "GetByCurso";
+                    partUrl += "GetByCurso?codCurso=";
                     break;
                 case 2:
-                    partUrl += "GetByProfessor";
+                    partUrl += "GetByProfessor?codProf=";
                     break;
             }
-            partUrl += "?id=" + Integer.toString(refferId);
+            partUrl += refferId;
             String fullPath = base_ws + partUrl;
             HttpURLConnection conn = openConnection(fullPath, "GET", false);
             List<DisciplineJson> list = new ArrayList<>();
@@ -132,18 +133,18 @@ public class CGuideWS {
     }
 
     //TEST URL TEACHER LAPA'S WEB API
-    public static List<TeacherJson> getTeacher(int typeSearch, int refferId) {
+    public static List<TeacherJson> getTeacher(int typeSearch, String refferId) {
         try {
             String partUrl = "Professor/";
             switch (typeSearch) {
                 case 1:
-                    partUrl += "GetByCurso";
+                    partUrl += "GetByCurso?codCurso=";
                     break;
                 case 2:
-                    partUrl += "GetByDisciplina";
+                    partUrl += "GetByDisciplina?codDisc=";
                     break;
             }
-            partUrl += "?id=" + Integer.toString(refferId);
+            partUrl += refferId;
             String fullPath = base_ws + partUrl;
             HttpURLConnection conn = openConnection(fullPath, "GET", false);
             List<TeacherJson> list = new ArrayList<>();

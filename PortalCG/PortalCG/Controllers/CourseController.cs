@@ -12,6 +12,8 @@ using System.Web.Mvc;
 
 namespace PortalCG.Controllers
 {
+
+    //[Authorize(Users = @"fieb.org.br\tiago.franca, DOMINIO\usuario02 ")]
     public class CourseController : Controller
     {
         // GET: Course
@@ -44,16 +46,16 @@ namespace PortalCG.Controllers
             return View(CourseList);
         }
 
-        public async Task<ActionResult> AllDisciplines(int id, int option)
+        public async Task<ActionResult> AllDisciplines(string code, int option)
         {
             ViewBag.Url = Url.Action("AllDisciplines", "Discipline");
-            Course course = await CourseWebAPI.GetCourseById(id);
-            List<Discipline> DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(id);
+            Course course = await CourseWebAPI.GetCourseById(code);
+            List<Discipline> DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(code);
             DisciplineList.ForEach(x =>
             {
                 x.ShowTeachers = false;
                 x.CourseOptionRoute = option;
-                x.IdCourse = id;
+                x.CodeCourse = code;
             });
             DisciplineIndexViewModel disciplineIndex = new DisciplineIndexViewModel
             {
@@ -63,15 +65,15 @@ namespace PortalCG.Controllers
             return View(disciplineIndex);
         }
 
-        public async Task<ActionResult> AllTeachers(int id)
+        public async Task<ActionResult> AllTeachers(string code)
         {
             ViewBag.Url = Url.Action("AllTeachers", "Teacher");
-            Course course = await CourseWebAPI.GetCourseById(id);
-            List<Teacher> TeacherList = await TeacherWebAPI.GetTeachersByCourse(id);
+            Course course = await CourseWebAPI.GetCourseById(code);
+            List<Teacher> TeacherList = await TeacherWebAPI.GetTeachersByCourse(code);
             TeacherList.ForEach(x =>
             {
                 x.ShowDisciplines = false;
-                x.IdCourse = id;
+                x.CodeCourse = code;
             });
             TeacherIndexViewModel teacherIndex = new TeacherIndexViewModel
             {
@@ -81,36 +83,36 @@ namespace PortalCG.Controllers
             return View(teacherIndex);
         }
 
-        public async Task<ActionResult> DetailsCourse(int id)
+        public async Task<ActionResult> DetailsCourse(string code)
         {
             ViewBag.Url = Url.Action("AllCourses");
             DetailsCourseViewModel detailsCourse = new DetailsCourseViewModel();
-            var DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(id);
+            var DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(code);
             DisciplineList.ForEach(x =>
             {
                 x.ShowTeachers = false;
                 x.CourseOptionRoute = (int)CourseOptionRouteEnum.INDIVIDUAL;
-                x.IdCourse = id;
+                x.CodeCourse = code;
             });
 
-            detailsCourse.Course = await CourseWebAPI.GetCourseById(id);
+            detailsCourse.Course = await CourseWebAPI.GetCourseById(code);
             detailsCourse.DisciplineList = DisciplineList;
-            var TeacherList = await TeacherWebAPI.GetTeachersByCourse(id);
+            var TeacherList = await TeacherWebAPI.GetTeachersByCourse(code);
             TeacherList.ForEach(x =>
             {
                 x.ShowDisciplines = false;
-                x.IdCourse = id;
+                x.CodeCourse = code;
             });
             detailsCourse.TeacherList = TeacherList;
             return View(detailsCourse);
         }
 
-        public ActionResult UploadFile(int idCourse, string courseName, int option)
+        public ActionResult UploadFile(string codeCourse, string courseName, int option)
         {
             ViewBag.Url = Url.Action(GetRoute(option <= 3 ? option : 1));
             CourseUploadFileModel course = new CourseUploadFileModel()
             {
-                IdCourse = idCourse,
+                CodeCourse = codeCourse,
                 NameCourse = courseName,
                 OptionRoute = option
             };
@@ -130,7 +132,7 @@ namespace PortalCG.Controllers
                     {
                         var type = Request.Files.Keys[i];
                         string fileName = GetFileName(type);
-                        fileName = fileName + "_" + course.IdCourse + ".pdf";
+                        fileName = fileName + "_" + course.CodeCourse + ".pdf";
                         UploadFileUtil.FTPUpload(fileName, file);
                     }
                 }
@@ -142,7 +144,7 @@ namespace PortalCG.Controllers
             {
                 return RedirectToAction(action, "Course");
             }
-            return RedirectToAction(action, "Course", new { id = course.IdCourse });
+            return RedirectToAction(action, "Course", new { code = course.CodeCourse });
         }
 
         string GetFileName(string idType)

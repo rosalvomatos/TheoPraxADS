@@ -3,7 +3,6 @@ package com.example.project.exemplo.Mapper.Json;
 import java.io.Serializable;
 
 public class CourseJson implements Serializable {
-    int Id;
     String Nome;
     String Codigo;
     String CH;
@@ -14,13 +13,6 @@ public class CourseJson implements Serializable {
     String Turno;
     String Modalidade;
 
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
-    }
 
     public String getNome() {
         return Nome;

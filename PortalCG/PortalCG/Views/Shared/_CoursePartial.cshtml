@@ -5,7 +5,7 @@
 <div class="portlet light bordered">
     <div class="portlet-title">
         <div class="caption">
-            <a class="caption-subject bold uppercase font-blue-steel searchable" href="@Url.Action("DetailsCourse", "Course", new { id = Model.Id})">
+            <a class="caption-subject bold uppercase font-blue-steel searchable" href="@Url.Action("DetailsCourse", "Course", new { code = Model.Codigo})">
                 @Model.Nome
             </a>
         </div>
@@ -52,9 +52,9 @@
             <div class="row">
                 <br />
                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                    <a href="@Url.Action("AllDisciplines", "Course", new { id = Model.Id, option = Model.OptionRoute })" class="btn blue btn-xs">Disciplinas</a>
-                    <a href="@Url.Action("AllTeachers", "Course", new { id = Model.Id})" class="btn blue btn-xs">Professores</a>
-                    <a href="@Url.Action("UploadFile", "Course", new { idCourse = Model.Id, courseName = Model.Nome, option = Model.OptionRoute })" class="btn blue btn-xs">Arquivos</a>
+                    <a href="@Url.Action("AllDisciplines", "Course", new { code = Model.Codigo, option = Model.OptionRoute })" class="btn blue btn-xs">Disciplinas</a>
+                    <a href="@Url.Action("AllTeachers", "Course", new { code = Model.Codigo})" class="btn blue btn-xs">Professores</a>
+                    <a href="@Url.Action("UploadFile", "Course", new { codeCourse = Model.Codigo, courseName = Model.Nome, option = Model.OptionRoute })" class="btn blue btn-xs">Arquivos</a>
                 </div>
             </div>
         </div>

@@ -2,13 +2,13 @@
 {
     public class Discipline
     {
-        public int Id { get; set; }
+        public string Codigo { get; set; }
         public string Nome { get; set; }
-        public int CH { get; set; }
+        public string CH { get; set; }
         public int? OptionRoute { get; set; }
-        public int? IdCourse { get; set; }
+        public string CodeCourse { get; set; }
         public int? CourseOptionRoute { get; set; }
-        public int? IdTeacher { get; set; }
+        public string CodeTeacher { get; set; }
 
         public bool ShowTeachers { get; set; }
     }

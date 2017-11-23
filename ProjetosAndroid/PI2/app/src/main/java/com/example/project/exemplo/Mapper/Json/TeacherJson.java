@@ -3,18 +3,9 @@ package com.example.project.exemplo.Mapper.Json;
 import java.io.Serializable;
 
 public class TeacherJson implements Serializable {
-    int Id;
     String Nome;
     String ModContrato;
     String Codigo;
-
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
-    }
 
     public String getNome() {
         return Nome;

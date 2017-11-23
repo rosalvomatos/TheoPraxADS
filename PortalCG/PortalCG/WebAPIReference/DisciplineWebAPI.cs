@@ -20,30 +20,30 @@ namespace PortalCG.WebAPIReference
             return obj;
         }
 
-        public static async Task<List<Discipline>> GetDisciplinesByCourse(int idCourse)
+        public static async Task<List<Discipline>> GetDisciplinesByCourse(string codeCourse)
         {
             HttpClient httpClient = new HttpClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "GetByCurso?id=" + idCourse);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "GetByCurso?codCurso=" + codeCourse);
             HttpResponseMessage response = await httpClient.SendAsync(request);
             string data = await response.Content.ReadAsStringAsync();
             List<Discipline> obj = JsonConvert.DeserializeObject<List<Discipline>>(data);
             return obj;
         }
 
-        public static async Task<Discipline> GetDisciplineById(int id)
+        public static async Task<Discipline> GetDisciplineById(string code)
         {
             HttpClient httpClient = new HttpClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "Get?id=" + id);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "Get?cod=" + code);
             HttpResponseMessage response = await httpClient.SendAsync(request);
             string data = await response.Content.ReadAsStringAsync();
             Discipline obj = JsonConvert.DeserializeObject<Discipline>(data);
             return obj;
         }
 
-        public static async Task<List<Discipline>> GetDisciplinesByTeacher(int idTeacher)
+        public static async Task<List<Discipline>> GetDisciplinesByTeacher(string codeTeacher)
         {
             HttpClient httpClient = new HttpClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "GetByProfessor?id=" + idTeacher);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "GetByProfessor?codProf=" + codeTeacher);
             HttpResponseMessage response = await httpClient.SendAsync(request);
             string data = await response.Content.ReadAsStringAsync();
             List<Discipline> obj = JsonConvert.DeserializeObject<List<Discipline>>(data);

@@ -5,7 +5,7 @@ namespace PortalCG.Models
 {
     public class CourseUploadFileModel
     {
-        public int IdCourse { get; set; }
+        public string CodeCourse { get; set; }
         public string NameCourse { get; set; }
 
         public int OptionRoute { get; set; }
@@ -33,13 +33,13 @@ namespace PortalCG.Models
 
     public class DisciplineUploadFileModel
     {
-        public int IdDiscipline { get; set; }
+        public string CodeDiscipline { get; set; }
         public string NameDiscipline { get; set; }
         public FileViewModel File { get; set; }
-        public int? IdCourse { get; set; }
+        public string CodeCourse { get; set; }
         public int? CourseOptionRoute { get; set; }
         public int? OptionRoute { get; set; }
-        public int? IdTeacher { get; set; }
+        public string CodeTeacher { get; set; }
     }
 
     public class InstitutionalUploadFileModel

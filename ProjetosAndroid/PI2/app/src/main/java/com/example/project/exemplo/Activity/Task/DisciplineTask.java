@@ -20,14 +20,14 @@ public class DisciplineTask extends AsyncTask<Void, Void, List<DisciplineJson>> 
 
     Context context;
     int typeSearch;
-    int refferId;
+    String refferId;
     FragmentManager mFragmentManager;
     DisciplineAdapter disciplineAdapter;
     List<DisciplineJson> disciplineJsonList;
     IDisciplineListener iDisciplineListener;
     RecyclerView recyclerView;
 
-    public DisciplineTask(Context context, int typeSearch, int refferId, FragmentManager mFragmentManager, DisciplineAdapter disciplineAdapter, List<DisciplineJson> disciplineJsonList, IDisciplineListener iDisciplineListener, RecyclerView recyclerView) {
+    public DisciplineTask(Context context, int typeSearch, String refferId, FragmentManager mFragmentManager, DisciplineAdapter disciplineAdapter, List<DisciplineJson> disciplineJsonList, IDisciplineListener iDisciplineListener, RecyclerView recyclerView) {
         this.context = context;
         this.typeSearch = typeSearch;
         this.refferId = refferId;

@@ -25,15 +25,15 @@ namespace PortalCG.Controllers
             return View(DisciplineList);
         }
 
-        public async Task<ActionResult> AllTeachers(int id)
+        public async Task<ActionResult> AllTeachers(string code)
         {
             ViewBag.Url = Url.Action("AllTeachers", "Teacher");
-            Discipline discipline = await DisciplineWebAPI.GetDisciplineById(id);
-            List<Teacher> TeacherList = await TeacherWebAPI.GetTeachersByDiscipline(id);
+            Discipline discipline = await DisciplineWebAPI.GetDisciplineById(code);
+            List<Teacher> TeacherList = await TeacherWebAPI.GetTeachersByDiscipline(code);
             TeacherList.ForEach(x =>
             {
                 x.ShowDisciplines = false;
-                x.IdCourse = id;
+                x.CodeCourse = code;
             });
             TeacherIndexViewModel teacherIndex = new TeacherIndexViewModel
             {
@@ -43,17 +43,17 @@ namespace PortalCG.Controllers
             return View(teacherIndex);
         }
 
-        public ActionResult UploadFile(int idDiscipline, string disciplineName, int? courseOption, int? idCourse, int? option, int? idTeacher)
+        public ActionResult UploadFile(string codeDiscipline, string disciplineName, int? courseOption, string codeCourse, int? option, string codeTeacher)
         {
             ViewBag.Url = Url.Action("AllDisciplines");
             DisciplineUploadFileModel course = new DisciplineUploadFileModel()
             {
-                IdDiscipline = idDiscipline,
+                CodeDiscipline = codeDiscipline,
                 NameDiscipline = disciplineName,
-                IdCourse = idCourse,
+                CodeCourse = codeCourse,
                 CourseOptionRoute = courseOption,
                 OptionRoute = option,
-                IdTeacher = idTeacher
+                CodeTeacher = codeTeacher
             };
             return View(course);
         }
@@ -69,7 +69,7 @@ namespace PortalCG.Controllers
                 {
                     if (arquivo.ContentType.Equals("application/pdf"))
                     {
-                        string fileName = discipline.IdDiscipline + ".pdf";
+                        string fileName = discipline.CodeDiscipline + ".pdf";
                         UploadFileUtil.FTPUpload(fileName, arquivo);
                     }
                 }
@@ -82,9 +82,9 @@ namespace PortalCG.Controllers
                 {
                     return RedirectToAction(action, "Course");
                 }
-                return RedirectToAction(action, "Course", new { id = (int)discipline.IdCourse });
+                return RedirectToAction(action, "Course", new { code = discipline.CodeCourse });
             }
-            else if(discipline.IdTeacher != null)
+            else if (discipline.CodeTeacher != null)
             {
                 return RedirectToAction("AllTeachers", "Teacher");
             }
@@ -93,6 +93,6 @@ namespace PortalCG.Controllers
                 return RedirectToAction("AllDisciplines", "Discipline");
             }
         }
-        
+
     }
 }

@@ -6,7 +6,8 @@
         {
             get
             {
-                return "http://ws-tp.apphb.com/api/";
+                //return "http://ws-tp.apphb.com/api/";
+                return "http://snp305-030/CimatecAPI/api/";
             }
             private set { }
         }

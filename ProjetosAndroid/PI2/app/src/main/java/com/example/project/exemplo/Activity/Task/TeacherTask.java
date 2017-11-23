@@ -20,14 +20,14 @@ public class TeacherTask  extends AsyncTask<Void, Void, List<TeacherJson>> {
 
     Context context;
     int typeSearch;
-    int refferId;
+    String refferId;
     FragmentManager mFragmentManager;
     TeacherAdapter teacherAdapter;
     List<TeacherJson> teacherJsonList;
     ITeacherListener iTeacherListener;
     RecyclerView recyclerView;
 
-    public TeacherTask(Context context, int typeSearch, int refferId, FragmentManager mFragmentManager, TeacherAdapter teacherAdapter, List<TeacherJson> teacherJsonList, ITeacherListener iTeacherListener, RecyclerView recyclerView) {
+    public TeacherTask(Context context, int typeSearch, String refferId, FragmentManager mFragmentManager, TeacherAdapter teacherAdapter, List<TeacherJson> teacherJsonList, ITeacherListener iTeacherListener, RecyclerView recyclerView) {
         this.context = context;
         this.typeSearch = typeSearch;
         this.refferId = refferId;
