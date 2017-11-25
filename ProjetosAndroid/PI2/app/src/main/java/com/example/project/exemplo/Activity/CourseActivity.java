@@ -18,11 +18,11 @@ import com.example.project.exemplo.Adapter.CourseAdapter;
 import com.example.project.exemplo.Adapter.Interface.ICourseListener;
 import com.example.project.exemplo.Mapper.Json.CourseJson;
 import com.example.project.exemplo.R;
-import com.example.project.exemplo.util.CGuideWS;
-import com.example.project.exemplo.util.Enum.DisciplineTypeSearch;
-import com.example.project.exemplo.util.Enum.TeacherTypeSearch;
-import com.example.project.exemplo.util.GenericDialogFragment;
-import com.example.project.exemplo.util.ProgressDialogUtil;
+import com.example.project.exemplo.Util.CGuideWS;
+import com.example.project.exemplo.Util.Enum.DisciplineTypeSearch;
+import com.example.project.exemplo.Util.Enum.TeacherTypeSearch;
+import com.example.project.exemplo.Util.GenericDialogFragment;
+import com.example.project.exemplo.Util.ProgressDialogUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -134,7 +134,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
         public void showTeacher(CourseJson courseJson) {
             Intent intent = new Intent(CourseActivity.this, TeacherActivity.class);
             int typeSearch = TeacherTypeSearch.valueOf("ByCourse").ordinal() + 1;
-            intent.putExtra("refferId", courseJson.getId());
+            intent.putExtra("refferId", courseJson.getCodigo());
             intent.putExtra("typeSearch", typeSearch);
             startActivity(intent);
         }
@@ -148,7 +148,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
         public void showDiscipline(CourseJson courseJson) {
             Intent intent = new Intent(CourseActivity.this, DisciplineActivity.class);
             int typeSearch = DisciplineTypeSearch.valueOf("ByCourse").ordinal() + 1;
-            intent.putExtra("refferId", courseJson.getId());
+            intent.putExtra("refferId", courseJson.getCodigo());
             intent.putExtra("typeSearch", typeSearch);
             startActivity(intent);
         }

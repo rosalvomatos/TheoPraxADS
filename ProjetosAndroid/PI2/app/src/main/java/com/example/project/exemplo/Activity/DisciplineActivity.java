@@ -18,10 +18,10 @@ import com.example.project.exemplo.Adapter.DisciplineAdapter;
 import com.example.project.exemplo.Adapter.Interface.IDisciplineListener;
 import com.example.project.exemplo.Mapper.Json.DisciplineJson;
 import com.example.project.exemplo.R;
-import com.example.project.exemplo.util.CGuideWS;
-import com.example.project.exemplo.util.Enum.TeacherTypeSearch;
-import com.example.project.exemplo.util.GenericDialogFragment;
-import com.example.project.exemplo.util.ProgressDialogUtil;
+import com.example.project.exemplo.Util.CGuideWS;
+import com.example.project.exemplo.Util.Enum.TeacherTypeSearch;
+import com.example.project.exemplo.Util.GenericDialogFragment;
+import com.example.project.exemplo.Util.ProgressDialogUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
     List<DisciplineJson> lastSearch;
     List<DisciplineJson> disciplinesFound;
     int typeSearch;
-    int refferId;
+    String refferId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
         setContentView(R.layout.layout_discipline_list);
         Intent intent = getIntent();
         typeSearch = intent.getExtras().getInt("typeSearch");
-        refferId = intent.getExtras().getInt("refferId");
+        refferId = intent.getExtras().getString("refferId");
 
         String titlePage = getResources().getString(R.string.disciplines);
 
@@ -129,7 +129,7 @@ public class DisciplineActivity extends AppCompatActivity implements SearchView.
         public void showTeacher(DisciplineJson disciplineJson) {
             Intent intent = new Intent(DisciplineActivity.this, TeacherActivity.class);
             int typeSearch = TeacherTypeSearch.valueOf("ByDiscipline").ordinal() + 1;
-            intent.putExtra("refferId", disciplineJson.getId());
+            intent.putExtra("refferId", disciplineJson.getCodigo());
             intent.putExtra("typeSearch", typeSearch);
             startActivity(intent);
         }

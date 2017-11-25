@@ -1,0 +1,35 @@
+﻿@model PortalCG.Models.JsonModels.Teacher
+@{
+    Layout = null;
+}
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="caption-subject bold uppercase font-blue-steel searchable">
+                @Model.Nome
+            </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="course-content">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    @Html.LabelFor(m => m.ModContrato, new { @class = "bold" })
+                    :
+                    @Model.ModContrato
+                </div>
+            </div>
+        </div>
+        <div class="course-buttons">
+            <div class="row">
+                <br />
+                <div class="col-md-12">
+                    @if (Model.ShowDisciplines)
+                    {
+                        <a href="@Url.Action("AllDisciplines","Teacher", new { code = Model.Codigo})" class="btn blue btn-xs">Disciplinas</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

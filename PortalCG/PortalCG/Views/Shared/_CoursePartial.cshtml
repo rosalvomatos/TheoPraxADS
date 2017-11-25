@@ -1,0 +1,62 @@
+﻿@model PortalCG.Models.JsonModels.Course
+@{
+    Layout = null;
+}
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <a class="caption-subject bold uppercase font-blue-steel searchable" href="@Url.Action("DetailsCourse", "Course", new { code = Model.Codigo})">
+                @Model.Nome
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="course-content">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    @Html.LabelFor(m => m.Mensalidade, new { @class = "bold" })
+                    :
+                    @Model.Mensalidade
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    @Html.LabelFor(m => m.CH, new { @class = "bold" })
+                    :
+                    @Model.CH
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    @Html.LabelFor(m => m.NotaMEC, new { @class = "bold" })
+                    :
+                    @Model.NotaMEC
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    @Html.LabelFor(m => m.Coordenador, new { @class = "bold" })
+                    :
+                    @Model.Coordenador
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    @Html.LabelFor(m => m.Tipo, new { @class = "bold" })
+                    :
+                    @Html.Raw(PortalCG.Util.EnumDescription.GetEnumDescription(Enum.Parse(typeof(PortalCG.Util.Enum.TypeCourseEnum), @Model.Tipo.ToString())))
+                </div>
+            </div>
+        </div>
+        <div class="course-buttons">
+            <div class="row">
+                <br />
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    <a href="@Url.Action("AllDisciplines", "Course", new { code = Model.Codigo, option = Model.OptionRoute })" class="btn blue btn-xs">Disciplinas</a>
+                    <a href="@Url.Action("AllTeachers", "Course", new { code = Model.Codigo})" class="btn blue btn-xs">Professores</a>
+                    <a href="@Url.Action("UploadFile", "Course", new { codeCourse = Model.Codigo, courseName = Model.Nome, option = Model.OptionRoute })" class="btn blue btn-xs">Arquivos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

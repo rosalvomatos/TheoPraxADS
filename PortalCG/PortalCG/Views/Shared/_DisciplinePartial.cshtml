@@ -1,0 +1,36 @@
+﻿@model PortalCG.Models.JsonModels.Discipline
+@{
+    Layout = null;
+}
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="caption-subject bold uppercase font-blue-steel searchable">
+                @Model.Nome
+            </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="course-content">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    @Html.LabelFor(m => m.CH, new { @class = "bold" })
+                    :
+                    @Model.CH
+                </div>
+            </div>
+        </div>
+        <div class="course-buttons">
+            <div class="row">
+                <br />
+                <div class="col-md-12">
+                    @if (Model.ShowTeachers)
+                    {
+                        <a href="@Url.Action("AllTeachers","Discipline", new { code = Model.Codigo})" class="btn blue btn-xs">Professores</a>
+                    }
+                    <a href="@Url.Action("UploadFile", "Discipline", new { codeDiscipline = Model.Codigo, disciplineName = Model.Nome, courseOption = Model.CourseOptionRoute, codeCourse = Model.CodeCourse, option = Model.OptionRoute, codeTeacher = Model.CodeTeacher})" class="btn blue btn-xs">Arquivos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

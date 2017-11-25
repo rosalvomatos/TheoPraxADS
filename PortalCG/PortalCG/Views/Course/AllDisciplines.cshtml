@@ -1,0 +1,18 @@
+﻿@model PortalCG.Models.ViewModels.DisciplineIndexViewModel
+@{
+    ViewBag.Title = "Disciplinas do curso " + Model.Course.Nome;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    const int ITEM_PER_ROW = 3;
+}
+
+@if (Model.DisciplineList?.Count > 0)
+{
+    <div class="row">
+        @foreach (var item in Model?.DisciplineList)
+        {
+            <div class="col-md-@(12/ITEM_PER_ROW)">
+                @Html.Partial("_DisciplinePartial", item)
+            </div>
+        }
+    </div>
+}

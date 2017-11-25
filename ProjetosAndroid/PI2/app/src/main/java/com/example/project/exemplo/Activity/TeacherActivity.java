@@ -18,9 +18,9 @@ import com.example.project.exemplo.Adapter.TeacherAdapter;
 import com.example.project.exemplo.Adapter.Interface.ITeacherListener;
 import com.example.project.exemplo.Mapper.Json.TeacherJson;
 import com.example.project.exemplo.R;
-import com.example.project.exemplo.util.Enum.DisciplineTypeSearch;
-import com.example.project.exemplo.util.GenericDialogFragment;
-import com.example.project.exemplo.util.ProgressDialogUtil;
+import com.example.project.exemplo.Util.Enum.DisciplineTypeSearch;
+import com.example.project.exemplo.Util.GenericDialogFragment;
+import com.example.project.exemplo.Util.ProgressDialogUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
     List<TeacherJson> lastSearch;
     List<TeacherJson> teachersFound;
     int typeSearch;
-    int refferId;
+    String refferId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
         setContentView(R.layout.layout_teacher_list);
         Intent intent = getIntent();
         typeSearch = intent.getExtras().getInt("typeSearch");
-        refferId = intent.getExtras().getInt("refferId");
+        refferId = intent.getExtras().getString("refferId");
 
         String titlePage = getResources().getString(R.string.teachers);
 
@@ -128,7 +128,7 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
         public void showDiscipline(TeacherJson teacherJson) {
             Intent intent = new Intent(TeacherActivity.this, DisciplineActivity.class);
             int typeSearch = DisciplineTypeSearch.valueOf("ByTeacher").ordinal() + 1;
-            intent.putExtra("refferId", teacherJson.getId());
+            intent.putExtra("refferId", teacherJson.getCodigo());
             intent.putExtra("typeSearch", typeSearch);
             startActivity(intent);
         }

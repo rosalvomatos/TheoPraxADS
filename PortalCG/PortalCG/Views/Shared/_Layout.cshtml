@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<!--
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.7
+Version: 4.7.5
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>SENAI | @ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Preview page of Metronic Admin Theme #4 for statistics, charts, recent events and reports" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Mandatory/css")
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    @Styles.Render("~/Global/css")
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    @Styles.Render("~/Threme/css")
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="@Url.Content("~/Content/favicon.ico")" />
+</head>
+<!-- END HEAD -->
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-md">
+    <!-- BEGIN CONTAINER -->
+    <div class="wrapper">
+        <input type="hidden" id="url" value="@ViewBag.Url" />
+        <!-- BEGIN HEADER -->
+        <header class="page-header">
+            <nav class="navbar mega-menu" role="navigation">
+                <div class="container-fluid">
+                    <div class="clearfix navbar-fixed-top">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="toggle-icon">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </span>
+                        </button>
+                        <!-- End Toggle Button -->
+                        <!-- BEGIN LOGO -->
+                        <a id="index" class="page-logo" href="@Url.Action("Index","Home")">
+                            <img src="@Url.Content("~/Content/marca-topo.png")" alt="Logo">
+                        </a>
+                        <!-- END LOGO -->
+                        <!-- BEGIN SEARCH -->
+                        <div class="search">
+                            <input type="name" class="form-control" name="query" id="search" placeholder="Pesquisar">
+                            <a href="javascript:;" class="btn submit md-skip">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </div>
+                        <!-- END SEARCH -->
+                        <!-- BEGIN TOPBAR ACTIONS -->
+                        <div class="topbar-actions">
+                            <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+                            <button type="button" class="quick-sidebar-toggler md-skip" data-toggle="collapse">
+                                <i class="icon-logout"></i>
+                            </button>
+                            <!-- END QUICK SIDEBAR TOGGLER -->
+                        </div>
+                        <!-- END TOPBAR ACTIONS -->
+                    </div>
+                    <!-- BEGIN HEADER MENU -->
+                    <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown dropdown-fw dropdown-fw-disabled">
+                                <a href="javascript:;" class="text-uppercase">
+                                    <i class="icon-graduation"></i> Cursos
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-fw">
+                                    <li class="dropdown more-dropdown-sub">
+                                        <a href="javascript:;">
+                                            <i class="icon-graduation"></i> Tipo
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="@Url.Action("AllCourses","Course")"> Todos </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GraduationCourses","Course")"> Graduação </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("PostGraduateCourses","Course")"> Pós Graduação </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="@Url.Action("AllDisciplines","Discipline")">
+                                            <i class="icon-book-open"></i> Disciplinas
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="@Url.Action("AllTeachers","Teacher")">
+                                            <i class="icon-users"></i> Professores
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-fw dropdown-fw-disabled">
+                                <a href="javascript:;" class="text-uppercase">
+                                    <i class="fa fa-building-o"></i> Institucional
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-fw">
+                                    <li class="dropdown">
+                                        <a href="@Url.Action("Leaders", "Institutional", new { id = (int)PortalCG.Util.Enum.TypeInstitutionalFileEnum.AUTORIZACAO })">
+                                            <i class="fa fa-file"></i> Dirigentes
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="@Url.Action("UploadFile", "Institutional", new { id = (int)PortalCG.Util.Enum.TypeInstitutionalFileEnum.AUTORIZACAO })">
+                                            <i class="fa fa-upload"></i> Ato de Autorização
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="@Url.Action("UploadFile", "Institutional", new { id = (int)PortalCG.Util.Enum.TypeInstitutionalFileEnum.MANUAL })">
+                                            <i class="fa fa-upload"></i> Manual do Aluno
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="@Url.Action("UploadFile", "Institutional", new { id = (int)PortalCG.Util.Enum.TypeInstitutionalFileEnum.REGIMENTO })">
+                                            <i class="fa fa-upload"></i> Regimento Disciplinar
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END HEADER MENU -->
+                </div>
+                <!--/container-->
+            </nav>
+        </header>
+        <!-- END HEADER -->
+        <div class="container-fluid">
+            <div class="page-content">
+                <!-- BEGIN BREADCRUMBS -->
+                <div class="breadcrumbs">
+                    <h1>@ViewBag.Title</h1>
+                </div>
+                <!-- END BREADCRUMBS -->
+                <!-- BEGIN PAGE BASE CONTENT -->
+                @RenderBody()
+                <!-- END PAGE BASE CONTENT -->
+            </div>
+            <!-- BEGIN FOOTER -->
+            <p class="copyright">
+                2017 &copy;
+                <a target="_blank" href="http://senaicimatec.com.br">SENAI CIMATEC</a>
+            </p>
+            <a href="#index" class="go2top">
+                <i class="icon-arrow-up"></i>
+            </a>
+            <!-- END FOOTER -->
+        </div>
+    </div>
+    <!-- END CONTAINER -->
+    <!--[if lt IE 9]>
+    <script src="../assets/global/plugins/respond.min.js"></script>
+    <script src="../assets/global/plugins/excanvas.min.js"></script>
+    <script src="../assets/global/plugins/ie8.fix.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    @Scripts.Render("~/Core/js")
+    <!-- END CORE PLUGINS -->
+    @Scripts.Render("~/PageLevelPlugin/js")
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    @Scripts.Render("~/Global/js")
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    @Scripts.Render("~/Page/js")
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    @Scripts.Render("~/Threme/js")
+    <!-- END THEME LAYOUT SCRIPTS -->
+    @Scripts.Render("~/GlobalScript/js")
+</body>
+
+</html>

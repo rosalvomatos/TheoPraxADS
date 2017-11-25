@@ -1,0 +1,18 @@
+﻿@model PortalCG.Models.ViewModels.TeacherIndexViewModel
+@{
+    ViewBag.Title = "Professores do curso " + Model.Course.Nome;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    const int ITEM_PER_ROW = 3;
+}
+
+@if (Model.TeacherList?.Count > 0)
+{
+    <div class="row">
+        @foreach (var item in Model?.TeacherList)
+        {
+            <div class="col-md-@(12/ITEM_PER_ROW)">
+                @Html.Partial("_TeacherPartial", item)
+            </div>
+        }
+    </div>
+}

@@ -84,41 +84,17 @@
         android:textColor="@color/md_grey_900"
         android:textSize="15dp" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btnShowLeader"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnShowLeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="220dp"
-            android:layout_marginLeft="59dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:background="@color/md_light_blue_A700"
-            android:padding="5dp"
-            android:text="@string/leaders"
-            android:textColor="@color/md_grey_900"
-            android:textSize="10dp" />
-
-        <Button
-            android:id="@+id/btnShowAbout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="220dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="59dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:background="@color/md_light_blue_A700"
-            android:padding="5dp"
-            android:text="@string/about"
-            android:textColor="@color/md_grey_900"
-            android:textSize="10dp" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/md_yellow_A200"
+        android:padding="5dp"
+        android:text="@string/leaders"
+        android:textColor="@color/md_grey_900"
+        android:textSize="15dp" />
 
 </LinearLayout>
