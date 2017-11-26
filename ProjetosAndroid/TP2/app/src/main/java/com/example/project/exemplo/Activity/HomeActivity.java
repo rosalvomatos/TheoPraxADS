@@ -23,7 +23,6 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnShowStudentManual;
     private Button btnShowDisciplinaryRules;
     private Button btnShowLeader;
-    private Button btnShowAbout;
     Toolbar toolbar;
 
     @Override
@@ -40,7 +39,6 @@ public class HomeActivity extends AppCompatActivity {
         btnShowStudentManual = (Button) findViewById(R.id.btnShowStudentManual);
         btnShowDisciplinaryRules = (Button) findViewById(R.id.btnShowDisciplinaryRules);
         btnShowLeader = (Button) findViewById(R.id.btnShowLeader);
-        btnShowAbout = (Button) findViewById(R.id.btnShowAbout);
 
         btnShowGraduationCourse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,14 +85,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomeActivity.this, LeaderActivity.class);
-                startActivity(i);
-            }
-        });
-
-        btnShowAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this, AboutActivity.class);
                 startActivity(i);
             }
         });
