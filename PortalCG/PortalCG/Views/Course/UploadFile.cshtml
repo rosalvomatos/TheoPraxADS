@@ -9,7 +9,7 @@
 @using (Html.BeginForm("UploadFile", "Course", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     var fileListGrouped = Model.FileList.GroupBy(e => e.IdType % 2 == 0).Select(f => f.ToList()).ToList();
-    @Html.HiddenFor(m => m.IdCourse);
+    @Html.HiddenFor(m => m.CodeCourse);
     @Html.HiddenFor(m => m.OptionRoute);
     <div class="portlet light bordered">
         <div class="portlet-title">

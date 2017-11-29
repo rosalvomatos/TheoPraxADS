@@ -8,11 +8,11 @@
 
 @using (Html.BeginForm("UploadFile", "Discipline", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.HiddenFor(m => m.IdDiscipline)
-    @Html.HiddenFor(m => m.IdCourse)
+    @Html.HiddenFor(m => m.CodeDiscipline)
+    @Html.HiddenFor(m => m.CodeCourse)
     @Html.HiddenFor(m => m.CourseOptionRoute)
     @Html.HiddenFor(m => m.OptionRoute)
-    @Html.HiddenFor(m => m.IdTeacher)
+    @Html.HiddenFor(m => m.CodeTeacher)
     <div class="portlet light bordered">
         <div class="portlet-title">
             <div class="caption">
