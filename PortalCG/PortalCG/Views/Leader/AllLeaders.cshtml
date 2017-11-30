@@ -9,8 +9,7 @@
             @foreach (var item in Model)
             {
                 <div class="col-md-@(12/ITEM_PER_ROW)">
-                    TESTE
-                    @*@Html.Partial("_DisciplinePartial", item)*@
+                    @Html.Partial("_LeaderPartial", item)
                 </div>
             }
         </div>

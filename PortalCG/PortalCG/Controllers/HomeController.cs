@@ -6,7 +6,8 @@ namespace PortalCG.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("AllCourses", "Course");
+            //return RedirectToAction("AllCourses", "Course");
+            return RedirectToAction("AllLeaders", "Leader");
         }
 
         public ActionResult Login()

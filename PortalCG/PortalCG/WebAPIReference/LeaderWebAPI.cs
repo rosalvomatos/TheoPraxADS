@@ -11,12 +11,22 @@ namespace PortalCG.WebAPIReference
 {
     public class LeaderWebAPI
     {
-        private static string url = ConfigData.path + "ConfigDirigente/";
+        private static string url = ConfigData.path + "ConfigDirigente";
 
         public static async Task<List<Leader>> GetAllLeaders()
         {
             HttpClient httpClient = new HttpClient();
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
+            HttpResponseMessage response = await httpClient.SendAsync(request);
+            string data = await response.Content.ReadAsStringAsync();
+            List<Leader> obj = JsonConvert.DeserializeObject<List<Leader>>(data);
+            return obj;
+        }
+
+        public static async Task<List<Leader>> GetLeadersByKey(string key)
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url + "?chave=" + key);
             HttpResponseMessage response = await httpClient.SendAsync(request);
             string data = await response.Content.ReadAsStringAsync();
             List<Leader> obj = JsonConvert.DeserializeObject<List<Leader>>(data);

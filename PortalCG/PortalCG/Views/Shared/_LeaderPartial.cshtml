@@ -1,0 +1,34 @@
+﻿@model PortalCG.Models.ViewModels.LeaderViewModel
+@{
+    Layout = null;
+}
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="caption-subject bold uppercase font-blue-steel searchable">
+                @Model.LeaderTitle.Valor
+            </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="course-content">
+            @foreach (var item in Model.LeaderContentList.Where(x => !x.Chave.Equals(Model.LeaderTitle.Chave)))
+            {
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                        @item.Valor
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="course-buttons">
+            <div class="row">
+                <br />
+                <div class="col-md-12">
+                    <a href="@Url.Action("Delete", "Leader", new { key = Model.LeaderTitle.Chave})" class="btn btn-danger btn-xs">Excluir</a>
+                    <a href="@Url.Action("Edit", "Leader", new { key = Model.LeaderTitle.Chave})" class="btn blue btn-xs">Editar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

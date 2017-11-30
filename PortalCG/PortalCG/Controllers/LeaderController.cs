@@ -14,11 +14,23 @@ namespace PortalCG.Controllers
     {
         public async Task<ActionResult> AllLeaders()
         {
+            ViewBag.Url = Url.Action("AllLeaders");
             List<Leader> AllLeaderList = await LeaderWebAPI.GetAllLeaders();
             var LeaderViewIndex = GetNames(AllLeaderList);
             return View(LeaderViewIndex);
         }
 
+        public async Task<ActionResult> Edit(string key)
+        {
+            ViewBag.Url = Url.Action("AllLeaders");
+            if (!String.IsNullOrEmpty(key?.Trim()))
+            {
+                var leaderFound = await LeaderWebAPI.GetLeadersByKey(key);
+                var leaderMapped = GetNames(leaderFound).FirstOrDefault();
+                return View(leaderMapped);
+            }
+            return RedirectToAction("AllLeaders");
+        }
 
         private List<LeaderViewModel> GetNames(List<Leader> leaderList)
         {

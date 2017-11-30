@@ -5242,6 +5242,8 @@
     <Content Include="Views\Teacher\AllDisciplines.cshtml" />
     <Content Include="Views\Teacher\AllTeachers.cshtml" />
     <Content Include="Views\Leader\AllLeaders.cshtml" />
+    <Content Include="Views\Shared\_LeaderPartial.cshtml" />
+    <Content Include="Views\Leader\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

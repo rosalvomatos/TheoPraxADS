@@ -1,0 +1,56 @@
+﻿@model PortalCG.Models.ViewModels.LeaderViewModel
+@{
+    ViewBag.Title = "Editar "+Model.LeaderTitle.Valor;
+    const int ITEM_PER_ROW = 3;
+    int count = 0;
+    var list = Model.LeaderContentList?.Where(x => !x.Chave.Equals(Model.LeaderTitle.Chave));
+    var rows = (list.Count() / ITEM_PER_ROW) + (list.Count() % ITEM_PER_ROW > 0 ? 1 : 0);
+}
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="caption-subject bold uppercase font-blue-steel searchable">
+                Título
+            </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="course-content">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    @Html.TextBoxFor(m => m.LeaderTitle.Valor, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@for (int i = 0; i < rows; i++)
+{
+    var listPerRow = list.Skip(i * ITEM_PER_ROW).Take(ITEM_PER_ROW);
+    <div class="row">
+        @foreach (var item in listPerRow)
+        {
+            count++;
+            <div class="col-md-@(12/listPerRow.Count())">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <span class="caption-subject bold uppercase font-blue-steel searchable">
+                                Elemento #@count
+                            </span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="course-content">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                    @Html.TextBoxFor(m => item.Valor, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
