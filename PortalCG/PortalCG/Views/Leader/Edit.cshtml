@@ -1,37 +1,36 @@
 ﻿@model PortalCG.Models.ViewModels.LeaderViewModel
 @{
-    ViewBag.Title = "Editar "+Model.LeaderTitle.Valor;
+    ViewBag.Title = "Editar " + Model.LeaderTitle.Valor;
     const int ITEM_PER_ROW = 3;
     int count = 0;
-    var list = Model.LeaderContentList?.Where(x => !x.Chave.Equals(Model.LeaderTitle.Chave));
-    var rows = (list.Count() / ITEM_PER_ROW) + (list.Count() % ITEM_PER_ROW > 0 ? 1 : 0);
 }
-<div class="portlet light bordered">
-    <div class="portlet-title">
-        <div class="caption">
-            <span class="caption-subject bold uppercase font-blue-steel searchable">
-                Título
-            </span>
+@using (Html.BeginForm("Edit", "Leader", FormMethod.Post, new { @id = "form-edit" }))
+{
+    <input type="hidden" id="item-per-row" value="@ITEM_PER_ROW" />
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption">
+                <span class="caption-subject bold uppercase font-blue-steel searchable">
+                    Título
+                </span>
+            </div>
         </div>
-    </div>
-    <div class="portlet-body">
-        <div class="course-content">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                    @Html.TextBoxFor(m => m.LeaderTitle.Valor, new { @class = "form-control" })
+        <div class="portlet-body">
+            <div class="course-content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                        @Html.HiddenFor(m => m.LeaderTitle.Chave)
+                        @Html.TextBoxFor(m => m.LeaderTitle.Valor, new { @class = "form-control" })
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@for (int i = 0; i < rows; i++)
-{
-    var listPerRow = list.Skip(i * ITEM_PER_ROW).Take(ITEM_PER_ROW);
-    <div class="row">
-        @foreach (var item in listPerRow)
+    <div class="row" id="general-item-list">
+        @foreach (var item in Model.LeaderContentList?.Where(x => !x.Chave.Equals(Model.LeaderTitle.Chave)))
         {
             count++;
-            <div class="col-md-@(12/listPerRow.Count())">
+            <div class="col-md-@(12/ITEM_PER_ROW)">
                 <div class="portlet light bordered">
                     <div class="portlet-title">
                         <div class="caption">
@@ -44,7 +43,17 @@
                         <div class="course-content">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                    @Html.TextBoxFor(m => item.Valor, new { @class = "form-control" })
+                                    @Html.HiddenFor(m => Model.LeaderContentList[Model.LeaderContentList.IndexOf(item)].Chave)
+                                    @Html.TextBoxFor(m => Model.LeaderContentList[Model.LeaderContentList.IndexOf(item)].Valor, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-buttons">
+                            <div class="row">
+                                <br />
+                                <div class="col-md-12">
+                                    <input type="hidden" value="@item.Chave" class="key-remove" />
+                                    <a class="btn btn-danger btn-xs btn-remove">Excluir</a>
                                 </div>
                             </div>
                         </div>
@@ -52,5 +61,66 @@
                 </div>
             </div>
         }
+        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                    <input type="button" class="btn blue btn-large" id="add-item" name="Adicionar" value="Adicionar" />
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 text-right">
+            <input type="submit" class="btn btn-success btn-lg" value="Salvar" />
+        </div>
+    </div>
+
 }
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $('.btn-remove').click(function () {
+        var value = $(this).parent().find('.key-remove').val();
+        $('#form-edit').append($('<input type="hidden" name="LeaderToDelete" value="' + value + '"/>'));
+        removePortlet(this);
+    });
+    $('#add-item').click(function () {
+        var item_per_row = $("#item-per-row").val();
+        $('<div class="col-md-'+(12/item_per_row)+'">' +
+            '<div class="portlet light bordered">' +
+                '<div class="portlet-title">' +
+                    '<div class="caption">'+
+                        '<span class="caption-subject bold uppercase font-blue-steel searchable">'+
+                            'Novo Elemento '+
+                        '</span>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="portlet-body">'+
+                    '<div class="course-content">'+
+                        '<div class="row">'+
+                            '<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">'+
+                                '<input type="text" class="form-control" name="LeaderToInsert"/>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="course-buttons">'+
+                        '<div class="row">'+
+                            '<br />'+
+                            '<div class="col-md-12">'+
+                                '<a class="btn btn-danger btn-xs btn-remove-new">Excluir</a>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>' +
+        '</div>').insertBefore($(this).parent().parent().parent());
+    });
+    $('#general-item-list').on('click', '.btn-remove-new', function () {
+        removePortlet(this);
+    });
+
+    function removePortlet(item) {
+        $(item).parent().parent().parent().parent().parent().parent().remove();
+    }
+</script>

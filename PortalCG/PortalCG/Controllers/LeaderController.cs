@@ -32,6 +32,25 @@ namespace PortalCG.Controllers
             return RedirectToAction("AllLeaders");
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Edit(LeaderViewModel leader)
+        {
+            if(leader.LeaderToInsert?.Count > 0)
+            {
+                await SaveNewLeaderAsync(leader);
+            }
+            return null;
+        }
+
+        private async Task SaveNewLeaderAsync(LeaderViewModel leader)
+        {
+            await LeaderWebAPI.SaveLeaderAsync(new Leader
+            {
+                Chave = "TESTE",
+                Valor = "32"
+            });
+        }
+
         private List<LeaderViewModel> GetNames(List<Leader> leaderList)
         {
             List<LeaderViewModel> leaderListTemp = new List<LeaderViewModel>();
@@ -44,7 +63,7 @@ namespace PortalCG.Controllers
                     leaderListTemp.Add(new LeaderViewModel()
                     {
                         LeaderTitle = x,
-                        LeaderContentList = temp
+                        LeaderContentList = temp.Where(e => !e.Chave.Equals(x.Chave)).ToList()
                     });
                 }
             });

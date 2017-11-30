@@ -10,5 +10,7 @@ namespace PortalCG.Models.ViewModels
     {
         public Leader LeaderTitle { get; set; }
         public List<Leader> LeaderContentList { get; set; }
+        public List<string> LeaderToInsert { get; set; }
+        public List<string> LeaderToDelete { get; set; }
     }
 }

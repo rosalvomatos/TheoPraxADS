@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -31,6 +32,19 @@ namespace PortalCG.WebAPIReference
             string data = await response.Content.ReadAsStringAsync();
             List<Leader> obj = JsonConvert.DeserializeObject<List<Leader>>(data);
             return obj;
+        }
+
+        public static async Task SaveLeaderAsync(Leader leader)
+        {
+            var objSerialized = JsonConvert.SerializeObject(leader);
+            HttpClient httpClient = new HttpClient();
+            //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,url);
+            //HttpResponseMessage response = await httpClient.PostAsync(request);
+            //response.Content.W();
+
+            StringContent queryString = new StringContent(objSerialized, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await httpClient.PostAsync(url, queryString);
+            response.EnsureSuccessStatusCode();
         }
     }
 }
