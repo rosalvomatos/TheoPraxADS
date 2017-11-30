@@ -14,6 +14,7 @@ namespace PortalCG.Controllers
 {
 
     //[Authorize(Users = @"fieb.org.br\tiago.franca, DOMINIO\usuario02 ")]
+    //[Authorize(Users = "*")]
     public class CourseController : Controller
     {
         // GET: Course
@@ -48,7 +49,7 @@ namespace PortalCG.Controllers
 
         public async Task<ActionResult> AllDisciplines(string code, int option)
         {
-            ViewBag.Url = Url.Action("AllDisciplines", "Discipline");
+            ViewBag.Url = Url.Action("AllCourses");
             Course course = await CourseWebAPI.GetCourseById(code);
             List<Discipline> DisciplineList = await DisciplineWebAPI.GetDisciplinesByCourse(code);
             DisciplineList.ForEach(x =>
