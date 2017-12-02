@@ -185,24 +185,24 @@ public class CGuideWS {
                 list = gson.fromJson(s, collectionType);
             }
             conn.disconnect();
-            List<LeaderJson> listTemp = CGuideWS.GroupLeaderList(list);
+            List<LeaderJson> listTemp = CGuideWS.groupLeaderList(list);
             return listTemp;
         } catch (Exception e) {
             return null;
         }
     }
 
-    private static List<LeaderJson> GroupLeaderList(List<LeaderJson> leaderJsonList) {
+    private static List<LeaderJson> groupLeaderList(List<LeaderJson> leaderJsonList) {
         List<LeaderJson> leaderJsonResult = new ArrayList<>();
         for (LeaderJson leader : leaderJsonList) {
-            List<LeaderJson> leaderJsonListTemp = CGuideWS.GetElementsByKey(leaderJsonList, leader.getChave());
+            List<LeaderJson> leaderJsonListTemp = CGuideWS.getElementsByKey(leaderJsonList, leader.getChave());
             if (leaderJsonListTemp.size() > 0)
-                leaderJsonResult.add(new LeaderJson(leader.getValor(), ConcatenateLeaderValueList(leaderJsonListTemp)));
+                leaderJsonResult.add(new LeaderJson(leader.getValor(), concatenateLeaderValueList(leaderJsonListTemp)));
         }
         return leaderJsonResult;
     }
 
-    private static List<LeaderJson> GetElementsByKey(List<LeaderJson> leaderJsonList, String key) {
+    private static List<LeaderJson> getElementsByKey(List<LeaderJson> leaderJsonList, String key) {
         List<LeaderJson> leaderJsonResult = new ArrayList<>();
         for (LeaderJson leader : leaderJsonList) {
             if (leader.getChave().contains(key) && !leader.getChave().equals(key))
@@ -211,7 +211,7 @@ public class CGuideWS {
         return leaderJsonResult;
     }
 
-    private static String ConcatenateLeaderValueList(List<LeaderJson> leaderJsonList) {
+    private static String concatenateLeaderValueList(List<LeaderJson> leaderJsonList) {
         String result = "";
         for (LeaderJson leader : leaderJsonList) {
             result += (leader.getValor() + newline);
