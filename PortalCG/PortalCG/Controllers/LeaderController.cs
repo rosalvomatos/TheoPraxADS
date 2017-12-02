@@ -35,20 +35,25 @@ namespace PortalCG.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(LeaderViewModel leader)
         {
-            if(leader.LeaderToInsert?.Count > 0)
+            if (leader.LeaderToInsert?.Count > 0)
             {
-                await SaveNewLeaderAsync(leader);
+                await SaveNewLeaderFromExistsLeader(leader);
             }
             return null;
         }
 
-        private async Task SaveNewLeaderAsync(LeaderViewModel leader)
+        private async Task SaveNewLeaderFromExistsLeader(LeaderViewModel leader)
         {
-            await LeaderWebAPI.SaveLeaderAsync(new Leader
+            var leaderRoot = leader.LeaderTitle;
+            foreach (var item in leader.LeaderToInsert)
             {
-                Chave = "TESTE",
-                Valor = "32"
-            });
+                Guid c = Guid.NewGuid();
+                await LeaderWebAPI.SaveLeaderAsync(new Leader
+                {
+                    Chave = leaderRoot.Chave + "_" + c.ToString().Replace("-", ""),
+                    Valor = item
+                });
+            }
         }
 
         private List<LeaderViewModel> GetNames(List<Leader> leaderList)

@@ -2,7 +2,9 @@
 using PortalCG.Models.JsonModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,8 @@ namespace PortalCG.WebAPIReference
 
         public static async Task<List<Leader>> GetAllLeaders()
         {
+            //REMOVE AFTER TEST
+            url = "http://tp-ws.somee.com/api/configdirigente";
             HttpClient httpClient = new HttpClient();
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
             HttpResponseMessage response = await httpClient.SendAsync(request);
@@ -36,15 +40,22 @@ namespace PortalCG.WebAPIReference
 
         public static async Task SaveLeaderAsync(Leader leader)
         {
-            var objSerialized = JsonConvert.SerializeObject(leader);
-            HttpClient httpClient = new HttpClient();
-            //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post,url);
-            //HttpResponseMessage response = await httpClient.PostAsync(request);
-            //response.Content.W();
-
-            StringContent queryString = new StringContent(objSerialized, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await httpClient.PostAsync(url, queryString);
-            response.EnsureSuccessStatusCode();
+            WebRequest request = WebRequest.Create(url + "/post");
+            request.Method = "POST";
+            string postData = JsonConvert.SerializeObject(leader);
+            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+            request.ContentType = "application/json; charset=utf-8";
+            request.ContentLength = byteArray.Length;
+            Stream dataStream = request.GetRequestStream();
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+            WebResponse response = request.GetResponse();
+            dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            dataStream.Close();
+            response.Close();
         }
     }
 }
