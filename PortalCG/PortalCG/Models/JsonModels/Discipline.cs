@@ -9,7 +9,6 @@
         public string CodeCourse { get; set; }
         public int? CourseOptionRoute { get; set; }
         public string CodeTeacher { get; set; }
-
         public bool ShowTeachers { get; set; }
     }
 }

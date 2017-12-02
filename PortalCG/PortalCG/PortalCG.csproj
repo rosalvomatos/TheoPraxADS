@@ -149,6 +149,7 @@
     <Compile Include="Controllers\InstitutionalController.cs" />
     <Compile Include="Controllers\LeaderController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Extensions\FlashMessageExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5204,6 +5205,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.flashmessage.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -5234,11 +5237,9 @@
     <Content Include="Views\Discipline\AllDisciplines.cshtml" />
     <Content Include="Views\Discipline\AllTeachers.cshtml" />
     <Content Include="Views\Discipline\UploadFile.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Institutional\UploadFile.cshtml" />
     <Content Include="Views\Shared\_CoursePartial.cshtml" />
     <Content Include="Views\Shared\_DisciplinePartial.cshtml" />
-    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Shared\_TeacherPartial.cshtml" />
     <Content Include="Views\Teacher\AllDisciplines.cshtml" />
     <Content Include="Views\Teacher\AllTeachers.cshtml" />
@@ -5246,10 +5247,12 @@
     <Content Include="Views\Shared\_LeaderPartial.cshtml" />
     <Content Include="Views\Leader\Edit.cshtml" />
     <Content Include="Views\Leader\Create.cshtml" />
+    <Content Include="Views\Shared\_Flash.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="metronic\assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

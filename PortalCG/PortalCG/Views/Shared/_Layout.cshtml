@@ -154,6 +154,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <!-- END BREADCRUMBS -->
                 <!-- BEGIN PAGE BASE CONTENT -->
+                @Html.Partial("_Flash")
                 @RenderBody()
                 <!-- END PAGE BASE CONTENT -->
             </div>
@@ -188,6 +189,9 @@ License: You must have a valid license purchased only from themeforest(the above
     @Scripts.Render("~/Threme/js")
     <!-- END THEME LAYOUT SCRIPTS -->
     @Scripts.Render("~/GlobalScript/js")
+
+    <script src="@Url.Content("~/Scripts/jquery.cookie.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.flashmessage.js")"></script>
 </body>
 
 </html>

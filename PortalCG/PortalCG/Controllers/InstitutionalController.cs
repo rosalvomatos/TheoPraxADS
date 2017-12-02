@@ -1,4 +1,5 @@
-﻿using PortalCG.Models;
+﻿using PortalCG.Extensions;
+using PortalCG.Models;
 using PortalCG.Util;
 using PortalCG.Util.Enum;
 using System;
@@ -38,7 +39,7 @@ namespace PortalCG.Controllers
                     }
                 }
             }
-            return RedirectToAction("AllCourses", "Course");
+            return RedirectToAction("AllCourses", "Course").Success("Arquivo enviado com sucesso");
         }
 
         string SetFileName(int idType)

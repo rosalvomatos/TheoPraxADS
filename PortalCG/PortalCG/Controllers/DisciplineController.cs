@@ -1,4 +1,5 @@
-﻿using PortalCG.Models;
+﻿using PortalCG.Extensions;
+using PortalCG.Models;
 using PortalCG.Models.JsonModels;
 using PortalCG.Models.ViewModels;
 using PortalCG.Util;
@@ -80,17 +81,17 @@ namespace PortalCG.Controllers
 
                 if (discipline.CourseOptionRoute != (int)CourseOptionRouteEnum.INDIVIDUAL)
                 {
-                    return RedirectToAction(action, "Course");
+                    return RedirectToAction(action, "Course").Success("Arquivo enviado com sucesso");
                 }
-                return RedirectToAction(action, "Course", new { code = discipline.CodeCourse });
+                return RedirectToAction(action, "Course", new { code = discipline.CodeCourse }).Success("Arquivo enviado com sucesso");
             }
             else if (discipline.CodeTeacher != null)
             {
-                return RedirectToAction("AllTeachers", "Teacher");
+                return RedirectToAction("AllTeachers", "Teacher").Success("Arquivo enviado com sucesso");
             }
             else
             {
-                return RedirectToAction("AllDisciplines", "Discipline");
+                return RedirectToAction("AllDisciplines", "Discipline").Success("Arquivo enviado com sucesso");
             }
         }
 

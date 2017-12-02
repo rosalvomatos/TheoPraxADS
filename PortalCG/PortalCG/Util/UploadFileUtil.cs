@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
@@ -10,6 +7,7 @@ namespace PortalCG.Util
 {
     public class UploadFileUtil
     {
+        //CHANGE
         private static string userName = "dlpuser@dlptest.com";
         private static string path = "ftp://ftp.dlptest.com/";
         private static string password = "fwRhzAnR1vgig8s";

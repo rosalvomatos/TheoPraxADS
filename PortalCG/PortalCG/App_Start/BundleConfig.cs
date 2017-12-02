@@ -86,15 +86,7 @@ namespace PortalCG
             bundles.Add(new ScriptBundle("~/GlobalScript/js").Include(
                 "~/Scripts/globalScripts.js"
                 ));
-
-            bundles.Add(new StyleBundle("~/Login/css").Include(
-                "~/metronic/assets/pages/css/login.min.css"
-                ));
-
-            bundles.Add(new ScriptBundle("~/Login/js").Include(
-                "~/metronic/assets/pages/scripts/login.min.js"
-                ));
-
+            
             bundles.Add(new ScriptBundle("~/Leader/js").Include(
                 "~/Scripts/Leader.js"
                 ));

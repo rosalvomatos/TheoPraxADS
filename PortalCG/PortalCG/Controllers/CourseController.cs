@@ -1,4 +1,5 @@
-﻿using PortalCG.Models;
+﻿using PortalCG.Extensions;
+using PortalCG.Models;
 using PortalCG.Models.JsonModels;
 using PortalCG.Models.ViewModels;
 using PortalCG.Util;
@@ -17,11 +18,6 @@ namespace PortalCG.Controllers
     //[Authorize(Users = "*")]
     public class CourseController : Controller
     {
-        // GET: Course
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public async Task<ActionResult> AllCourses()
         {
@@ -138,14 +134,14 @@ namespace PortalCG.Controllers
                     }
                 }
             }
-            //CHANGE
+
             string action = GetRoute(course.OptionRoute);
 
             if (course.OptionRoute != (int)CourseOptionRouteEnum.INDIVIDUAL)
             {
                 return RedirectToAction(action, "Course");
             }
-            return RedirectToAction(action, "Course", new { code = course.CodeCourse });
+            return RedirectToAction(action, "Course", new { code = course.CodeCourse }).Success("Arquivo enviado com sucesso");
         }
 
         string GetFileName(string idType)

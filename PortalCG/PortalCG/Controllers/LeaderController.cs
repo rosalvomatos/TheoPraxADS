@@ -1,4 +1,5 @@
-﻿using PortalCG.Models.JsonModels;
+﻿using PortalCG.Extensions;
+using PortalCG.Models.JsonModels;
 using PortalCG.Models.ViewModels;
 using PortalCG.WebAPIReference;
 using System;
@@ -32,23 +33,23 @@ namespace PortalCG.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(LeaderViewModel leader)
+        public ActionResult Edit(LeaderViewModel leader)
         {
             if (leader.LeaderToInsert?.Count > 0)
             {
-                await SaveNewLeaderFromExistsLeader(leader);
+                SaveNewLeaderFromExistsLeader(leader);
             }
-            await LeaderWebAPI.UpdateLeaderAsync(leader.LeaderTitle);
-            return RedirectToAction("AllLeaders");
+            LeaderWebAPI.UpdateLeaderAsync(leader.LeaderTitle);
+            return RedirectToAction("AllLeaders").Success("Dirigente editado com sucesso");
         }
 
-        private async Task SaveNewLeaderFromExistsLeader(LeaderViewModel leader)
+        private void SaveNewLeaderFromExistsLeader(LeaderViewModel leader)
         {
             var leaderRoot = leader.LeaderTitle;
             foreach (var item in leader.LeaderToInsert)
             {
                 Guid c = Guid.NewGuid();
-                await LeaderWebAPI.SaveLeaderAsync(new Leader
+                LeaderWebAPI.SaveLeaderAsync(new Leader
                 {
                     Chave = leaderRoot.Chave + "_" + c.ToString().Replace("-", ""),
                     Valor = item
@@ -82,16 +83,16 @@ namespace PortalCG.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(LeaderViewModel leader)
+        public ActionResult Create(LeaderViewModel leader)
         {
             Guid c = Guid.NewGuid();
             leader.LeaderTitle.Chave = c.ToString().Replace("-", "");
-            await LeaderWebAPI.SaveLeaderAsync(leader.LeaderTitle);
+            LeaderWebAPI.SaveLeaderAsync(leader.LeaderTitle);
             if (leader.LeaderToInsert?.Count > 0)
             {
-                await SaveNewLeaderFromExistsLeader(leader);
+                SaveNewLeaderFromExistsLeader(leader);
             }
-            return RedirectToAction("AllLeaders");
+            return RedirectToAction("AllLeaders").Success("Dirigente cadastrado com sucesso");
         }
     }
 }
