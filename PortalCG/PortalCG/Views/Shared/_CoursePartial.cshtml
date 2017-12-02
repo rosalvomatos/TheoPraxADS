@@ -35,7 +35,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                    @Html.LabelFor(m => m.Coordenador, new { @class = "bold" })
+                    @Html.Label("Coordenador(a)", new { @class = "bold" })
                     :
                     @Model.Coordenador
                 </div>
@@ -53,7 +53,7 @@
                 <br />
                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                     <a href="@Url.Action("AllDisciplines", "Course", new { code = Model.Codigo, option = Model.OptionRoute })" class="btn blue btn-xs">Disciplinas</a>
-                    <a href="@Url.Action("AllTeachers", "Course", new { code = Model.Codigo})" class="btn blue btn-xs">Professores</a>
+                    <a href="@Url.Action("AllTeachers", "Course", new { code = Model.Codigo})" class="btn blue btn-xs">Docentes</a>
                     <a href="@Url.Action("UploadFile", "Course", new { codeCourse = Model.Codigo, courseName = Model.Nome, option = Model.OptionRoute })" class="btn blue btn-xs">Arquivos</a>
                 </div>
             </div>
