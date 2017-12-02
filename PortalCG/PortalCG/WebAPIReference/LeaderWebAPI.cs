@@ -1,14 +1,11 @@
 ﻿using Newtonsoft.Json;
 using PortalCG.Models.JsonModels;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace PortalCG.WebAPIReference
 {
@@ -40,8 +37,30 @@ namespace PortalCG.WebAPIReference
 
         public static async Task SaveLeaderAsync(Leader leader)
         {
-            WebRequest request = WebRequest.Create(url + "/post");
-            request.Method = "POST";
+            string method = "POST";
+            WebRequest request = WebRequest.Create(url + "/" + method);
+            request.Method = method;
+            string postData = JsonConvert.SerializeObject(leader);
+            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+            request.ContentType = "application/json; charset=utf-8";
+            request.ContentLength = byteArray.Length;
+            Stream dataStream = request.GetRequestStream();
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+            WebResponse response = request.GetResponse();
+            dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+        }
+
+        public static async Task UpdateLeaderAsync(Leader leader)
+        {
+            string method = "PUT";
+            WebRequest request = WebRequest.Create(url + "/" + method);
+            request.Method = method;
             string postData = JsonConvert.SerializeObject(leader);
             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
             request.ContentType = "application/json; charset=utf-8";

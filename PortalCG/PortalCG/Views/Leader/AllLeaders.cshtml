@@ -1,16 +1,26 @@
 ﻿@model List<PortalCG.Models.ViewModels.LeaderViewModel>
-    @{
-        ViewBag.Title = "Dirigentes";
-        const int ITEM_PER_ROW = 3;
-    }
-    @if (Model?.Count > 0)
-    {
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-@(12/ITEM_PER_ROW)">
-                    @Html.Partial("_LeaderPartial", item)
-                </div>
-            }
-        </div>
-    }
+@{
+    ViewBag.Title = "Dirigentes";
+    const int ITEM_PER_ROW = 3;
+}
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+        <a class="btn blue btn-lg" href="@Url.Action("Create","Leader")">Novo</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+        <br />
+    </div>
+</div>
+@if (Model?.Count > 0)
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-@(12/ITEM_PER_ROW)">
+                @Html.Partial("_LeaderPartial", item)
+            </div>
+        }
+    </div>
+}

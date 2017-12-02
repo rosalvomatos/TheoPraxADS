@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PortalCG.Controllers
@@ -39,7 +38,8 @@ namespace PortalCG.Controllers
             {
                 await SaveNewLeaderFromExistsLeader(leader);
             }
-            return null;
+            await LeaderWebAPI.UpdateLeaderAsync(leader.LeaderTitle);
+            return RedirectToAction("AllLeaders");
         }
 
         private async Task SaveNewLeaderFromExistsLeader(LeaderViewModel leader)
@@ -73,6 +73,25 @@ namespace PortalCG.Controllers
                 }
             });
             return leaderListTemp;
+        }
+
+        public ActionResult Create()
+        {
+            ViewBag.Url = Url.Action("AllLeaders");
+            return View(new LeaderViewModel());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Create(LeaderViewModel leader)
+        {
+            Guid c = Guid.NewGuid();
+            leader.LeaderTitle.Chave = c.ToString().Replace("-", "");
+            await LeaderWebAPI.SaveLeaderAsync(leader.LeaderTitle);
+            if (leader.LeaderToInsert?.Count > 0)
+            {
+                await SaveNewLeaderFromExistsLeader(leader);
+            }
+            return RedirectToAction("AllLeaders");
         }
     }
 }
