@@ -72,7 +72,7 @@ public class DisciplineTask extends AsyncTask<Void, Void, List<DisciplineJson>> 
             GenericDialogFragment dialog = GenericDialogFragment.newDialog(context,
                     0,
                     R.string.title_dialog,
-                    R.string.msg_dialog_discipline,
+                    R.string.msg_dialog_error,
                     new int[]{
                             android.R.string.ok // String do Android
                     });

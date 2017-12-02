@@ -70,7 +70,7 @@ public class CourseTask extends AsyncTask<Void, Void, List<CourseJson>> {
             GenericDialogFragment dialog = GenericDialogFragment.newDialog(context,
                     0,
                     R.string.title_dialog,
-                    R.string.msg_dialog_course,
+                    R.string.msg_dialog_error,
                     new int[]{
                             android.R.string.ok // String do Android
                     });

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.example.project.exemplo.Mapper.Json.DisciplineJson;
+import com.example.project.exemplo.Mapper.Json.LeaderJson;
 import com.example.project.exemplo.Mapper.Json.TeacherJson;
 import com.example.project.exemplo.Mapper.Json.CourseJson;
 import com.google.gson.Gson;
@@ -25,11 +26,12 @@ public class CGuideWS {
     //private static String base_ws_senai = "http://senaiweb2.fieb.org.br/mec/api/";
 //    private static String base_ws = "http://ws-tp.apphb.com/api/";
     private static String base_ws = "http://snp305-030/CimatecAPI/api/";
+    public static String newline = System.getProperty("line.separator");
+
     private Context context;
 
     public CGuideWS(Context context) {
         this.context = context;
-
     }
 
     private static HttpURLConnection openConnection(String url,
@@ -69,7 +71,7 @@ public class CGuideWS {
         return intent;
     }
 
-    //TEST URL COURSE LAPA'S WEB API
+    //URL COURSE LAPA'S WEB API
     public static List<CourseJson> getCourse(int typeCourse) {
         try {
             String partUrl = "Curso/";
@@ -100,7 +102,7 @@ public class CGuideWS {
         }
     }
 
-    //TEST URL DISCIPLINE LAPA'S WEB API
+    //URL DISCIPLINE LAPA'S WEB API
     public static List<DisciplineJson> getDiscipline(int typeSearch, String refferId) {
         try {
             String partUrl = "Disciplina/";
@@ -132,7 +134,7 @@ public class CGuideWS {
         }
     }
 
-    //TEST URL TEACHER LAPA'S WEB API
+    //URL TEACHER LAPA'S WEB API
     public static List<TeacherJson> getTeacher(int typeSearch, String refferId) {
         try {
             String partUrl = "Professor/";
@@ -162,5 +164,58 @@ public class CGuideWS {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public static List<LeaderJson> getLeader() {
+        try {
+            //REMOVE AFTER TEST COMPLETE
+//            base_ws = "http://tp-ws.somee.com/api/";
+            String partUrl = "ConfigDirigente/";
+
+            String fullPath = base_ws + partUrl;
+            HttpURLConnection conn = openConnection(fullPath, "GET", false);
+            List<LeaderJson> list = new ArrayList<>();
+            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                InputStream is = conn.getInputStream();
+                String s = streamToString(is);
+                is.close();
+                Gson gson = new Gson();
+                Type collectionType = new TypeToken<ArrayList<LeaderJson>>() {
+                }.getType();
+                list = gson.fromJson(s, collectionType);
+            }
+            conn.disconnect();
+            List<LeaderJson> listTemp = CGuideWS.GroupLeaderList(list);
+            return listTemp;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private static List<LeaderJson> GroupLeaderList(List<LeaderJson> leaderJsonList) {
+        List<LeaderJson> leaderJsonResult = new ArrayList<>();
+        for (LeaderJson leader : leaderJsonList) {
+            List<LeaderJson> leaderJsonListTemp = CGuideWS.GetElementsByKey(leaderJsonList, leader.getChave());
+            if (leaderJsonListTemp.size() > 0)
+                leaderJsonResult.add(new LeaderJson(leader.getValor(), ConcatenateLeaderValueList(leaderJsonListTemp)));
+        }
+        return leaderJsonResult;
+    }
+
+    private static List<LeaderJson> GetElementsByKey(List<LeaderJson> leaderJsonList, String key) {
+        List<LeaderJson> leaderJsonResult = new ArrayList<>();
+        for (LeaderJson leader : leaderJsonList) {
+            if (leader.getChave().contains(key) && !leader.getChave().equals(key))
+                leaderJsonResult.add(leader);
+        }
+        return leaderJsonResult;
+    }
+
+    private static String ConcatenateLeaderValueList(List<LeaderJson> leaderJsonList) {
+        String result = "";
+        for (LeaderJson leader : leaderJsonList) {
+            result += (leader.getValor() + newline);
+        }
+        return result;
     }
 }

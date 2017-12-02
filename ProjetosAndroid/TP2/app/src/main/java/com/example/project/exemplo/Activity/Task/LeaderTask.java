@@ -6,9 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.project.exemplo.Adapter.TeacherAdapter;
-import com.example.project.exemplo.Adapter.Interface.ITeacherListener;
-import com.example.project.exemplo.Mapper.Json.TeacherJson;
+import com.example.project.exemplo.Adapter.LeaderAdapter;
+import com.example.project.exemplo.Mapper.Json.LeaderJson;
 import com.example.project.exemplo.R;
 import com.example.project.exemplo.Util.CGuideWS;
 import com.example.project.exemplo.Util.GenericDialogFragment;
@@ -16,25 +15,19 @@ import com.example.project.exemplo.Util.ProgressDialogUtil;
 
 import java.util.List;
 
-public class TeacherTask  extends AsyncTask<Void, Void, List<TeacherJson>> {
+public class LeaderTask extends AsyncTask<Void, Void, List<LeaderJson>> {
 
     Context context;
-    int typeSearch;
-    String refferId;
     FragmentManager mFragmentManager;
-    TeacherAdapter teacherAdapter;
-    List<TeacherJson> teacherJsonList;
-    ITeacherListener iTeacherListener;
+    LeaderAdapter leaderAdapter;
+    List<LeaderJson> leaderJsonList;
     RecyclerView recyclerView;
 
-    public TeacherTask(Context context, int typeSearch, String refferId, FragmentManager mFragmentManager, TeacherAdapter teacherAdapter, List<TeacherJson> teacherJsonList, ITeacherListener iTeacherListener, RecyclerView recyclerView) {
+    public LeaderTask(Context context, FragmentManager mFragmentManager, LeaderAdapter leaderAdapter, List<LeaderJson> leaderJsonList, RecyclerView recyclerView) {
         this.context = context;
-        this.typeSearch = typeSearch;
-        this.refferId = refferId;
         this.mFragmentManager = mFragmentManager;
-        this.teacherAdapter = teacherAdapter;
-        this.teacherJsonList = teacherJsonList;
-        this.iTeacherListener = iTeacherListener;
+        this.leaderAdapter = leaderAdapter;
+        this.leaderJsonList = leaderJsonList;
         this.recyclerView = recyclerView;
     }
 
@@ -45,10 +38,10 @@ public class TeacherTask  extends AsyncTask<Void, Void, List<TeacherJson>> {
     }
 
     @Override
-    protected List<TeacherJson> doInBackground(Void... params) {
-        List<TeacherJson> teacherJsonList = null;
+    protected List<LeaderJson> doInBackground(Void... params) {
+        List<LeaderJson> leaderJsonList = null;
         try {
-            teacherJsonList = CGuideWS.getTeacher(typeSearch, refferId);
+            leaderJsonList = CGuideWS.getLeader();
         } catch (Exception e) {
             ProgressDialogUtil.showProgressDialogUtil(false, context);
             GenericDialogFragment dialog = GenericDialogFragment.newDialog(context,
@@ -61,14 +54,14 @@ public class TeacherTask  extends AsyncTask<Void, Void, List<TeacherJson>> {
                     });
             dialog.openDialog(mFragmentManager);
         }
-        return teacherJsonList;
+        return leaderJsonList;
     }
 
     @Override
-    protected void onPostExecute(List<TeacherJson> teacherJsonListLocal) {
-        super.onPostExecute(teacherJsonListLocal);
+    protected void onPostExecute(List<LeaderJson> leaderJsonListLocal) {
+        super.onPostExecute(leaderJsonListLocal);
         ProgressDialogUtil.showProgressDialogUtil(false, context);
-        if (teacherJsonListLocal == null) {
+        if (leaderJsonListLocal == null) {
             GenericDialogFragment dialog = GenericDialogFragment.newDialog(context,
                     0,
                     R.string.title_dialog,
@@ -78,9 +71,9 @@ public class TeacherTask  extends AsyncTask<Void, Void, List<TeacherJson>> {
                     });
             dialog.openDialog(mFragmentManager);
         } else {
-            teacherJsonList.addAll(teacherJsonListLocal);
-            teacherAdapter = new TeacherAdapter(teacherJsonList, R.layout.layout_teacher, context, iTeacherListener);
-            recyclerView.setAdapter(teacherAdapter);
+            leaderJsonList.addAll(leaderJsonListLocal);
+            leaderAdapter = new LeaderAdapter(leaderJsonList, R.layout.layout_leader, context);
+            recyclerView.setAdapter(leaderAdapter);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
         }
