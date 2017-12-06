@@ -26,8 +26,11 @@ namespace PortalCG.Controllers
             if (!String.IsNullOrEmpty(key?.Trim()))
             {
                 var leaderFound = await LeaderWebAPI.GetLeadersByKey(key);
-                var leaderMapped = GetNames(leaderFound).FirstOrDefault();
-                return View(leaderMapped);
+                if (leaderFound?.Count > 0)
+                {
+                    var leaderMapped = GetNames(leaderFound).FirstOrDefault();
+                    return View(leaderMapped);
+                }
             }
             return RedirectToAction("AllLeaders");
         }
@@ -38,6 +41,13 @@ namespace PortalCG.Controllers
             if (leader.LeaderToInsert?.Count > 0)
             {
                 SaveNewLeaderFromExistsLeader(leader);
+            }
+            if (leader.LeaderToDelete?.Count > 0)
+            {
+                foreach (var item in leader.LeaderToDelete)
+                {
+                    DeleteLeader(item);
+                }
             }
             LeaderWebAPI.UpdateLeaderAsync(leader.LeaderTitle);
             return RedirectToAction("AllLeaders").Success("Dirigente editado com sucesso");
@@ -93,6 +103,25 @@ namespace PortalCG.Controllers
                 SaveNewLeaderFromExistsLeader(leader);
             }
             return RedirectToAction("AllLeaders").Success("Dirigente cadastrado com sucesso");
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Delete(string key, bool isTitle = false)
+        {
+            if (isTitle)
+            {
+                List<Leader> leaderList = await LeaderWebAPI.GetLeadersByKey(key);
+                foreach (var item in leaderList)
+                {
+                    DeleteLeader(item.Chave);
+                }
+            }
+            return RedirectToAction("AllLeaders").Success("Dirigente excluido com sucesso.");
+        }
+
+        private void DeleteLeader(string key)
+        {
+            LeaderWebAPI.DeleteLeaderAsync(key);
         }
     }
 }

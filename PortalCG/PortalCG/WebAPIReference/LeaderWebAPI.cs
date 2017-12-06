@@ -77,5 +77,24 @@ namespace PortalCG.WebAPIReference
             dataStream.Close();
             response.Close();
         }
+
+        public static void DeleteLeaderAsync(string key)
+        {
+            string method = "DELETE";
+            WebRequest request = WebRequest.Create(url + "?chave=" + key);
+            request.Method = method;
+            string postData = key;
+            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+            Stream dataStream = request.GetRequestStream();
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+            WebResponse response = request.GetResponse();
+            dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+        }
     }
 }
