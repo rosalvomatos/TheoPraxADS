@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace PortalCG.Controllers
 {
+    //[Authorize(Users = "*")]
     public class DisciplineController : Controller
     {
         public async Task<ActionResult> AllDisciplines()

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace PortalCG.Controllers
 {
+    //[Authorize(Users = "*")]
     public class InstitutionalController : Controller
     {
 
