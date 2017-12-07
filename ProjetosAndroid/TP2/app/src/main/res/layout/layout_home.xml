@@ -30,41 +30,15 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnShowStudentManual"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginTop="5dp"
-                android:background="@color/md_yellow_A200"
-                android:padding="20dp"
-                android:text="@string/student_manual"
-                android:textColor="@color/md_grey_900"
-                android:textSize="15dp" />
-
-            <Button
                 android:id="@+id/btnShowGraduationCourse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:background="@color/md_yellow_A200"
                 android:padding="20dp"
                 android:text="@string/graduation"
-                android:textColor="@color/md_grey_900"
-                android:textSize="15dp" />
-
-            <Button
-                android:id="@+id/btnShowDisciplinaryRules"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginTop="5dp"
-                android:background="@color/md_yellow_A200"
-                android:padding="20dp"
-                android:text="@string/disciplinary_rules"
                 android:textColor="@color/md_grey_900"
                 android:textSize="15dp" />
 
@@ -82,15 +56,28 @@
                 android:textSize="15dp" />
 
             <Button
-                android:id="@+id/btnShowLeader"
+                android:id="@+id/btnShowStudentManual"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/md_yellow_A200"
-                android:padding="5dp"
-                android:text="@string/leaders"
+                android:padding="20dp"
+                android:text="@string/student_manual"
+                android:textColor="@color/md_grey_900"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/btnShowDisciplinaryRules"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/md_yellow_A200"
+                android:padding="20dp"
+                android:text="@string/disciplinary_rules"
                 android:textColor="@color/md_grey_900"
                 android:textSize="15dp" />
 
@@ -104,6 +91,19 @@
                 android:background="@color/md_yellow_A200"
                 android:padding="20dp"
                 android:text="@string/authorization_act"
+                android:textColor="@color/md_grey_900"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/btnShowLeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/md_yellow_A200"
+                android:padding="5dp"
+                android:text="@string/leaders"
                 android:textColor="@color/md_grey_900"
                 android:textSize="15dp" />
         </LinearLayout>

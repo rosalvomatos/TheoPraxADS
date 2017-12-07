@@ -155,7 +155,7 @@ public class CourseActivity extends AppCompatActivity implements SearchView.OnQu
 
         @Override
         public void showBibliographicCollection(CourseJson courseJson) {
-
+            startActivity(CGuideWS.openFile("ACERVO_" + courseJson.getCodigo() + ".pdf"));
         }
 
         @Override
