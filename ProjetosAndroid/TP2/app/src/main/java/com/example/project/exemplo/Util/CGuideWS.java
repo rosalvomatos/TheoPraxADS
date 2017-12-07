@@ -22,7 +22,8 @@ import java.util.List;
 
 public class CGuideWS {
     //private static String base_ws = "http://200.9.65.20:8080/WS_hibernate_pd/webresources/";
-    private static String base_ws_pdf = "http://200.9.65.20:8080/WS_hibernate_pdSenai/webresources/";
+//    private static String base_ws_pdf = "http://200.9.65.20:8080/WS_hibernate_pdSenai/webresources/";
+    private static String base_ws_pdf = "http://snp305-030/CimatecAPI/pdfs/";
     //private static String base_ws_senai = "http://senaiweb2.fieb.org.br/mec/api/";
 //    private static String base_ws = "http://ws-tp.apphb.com/api/";
     private static String base_ws = "http://snp305-030/CimatecAPI/api/";
