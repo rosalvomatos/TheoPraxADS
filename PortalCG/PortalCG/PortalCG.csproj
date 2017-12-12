@@ -277,6 +277,10 @@
     <Content Include="metronic\assets\layouts\global\scripts\quick-nav.min.js" />
     <Content Include="metronic\assets\layouts\global\scripts\quick-sidebar.js" />
     <Content Include="metronic\assets\layouts\global\scripts\quick-sidebar.min.js" />
+    <Content Include="metronic\assets\layouts\layout5\css\custom.css" />
+    <Content Include="metronic\assets\layouts\layout5\css\custom.min.css" />
+    <Content Include="metronic\assets\layouts\layout5\css\layout.css" />
+    <Content Include="metronic\assets\layouts\layout5\css\layout.min.css" />
     <Content Include="metronic\assets\layouts\layout5\scripts\index.js" />
     <Content Include="metronic\assets\layouts\layout5\scripts\index.min.js" />
     <Content Include="metronic\assets\layouts\layout5\scripts\layout.js" />
