@@ -8,7 +8,7 @@ namespace PortalCG.Util
     public class UploadFileUtil
     {
 
-        private static string url = ConfigData.path + "PDFS";
+        private static string url = ConfigData.path + "Documentos/";
 
 
         public static void FTPUpload(string fileName, HttpPostedFileBase file)
@@ -19,7 +19,7 @@ namespace PortalCG.Util
                 Directory.CreateDirectory(folder);
             var path = Path.Combine(folder, fileName);
             file.SaveAs(path);
-            client.UploadFile(url + fileName, path);
+            client.UploadFile(url, "POST", path);
             if (File.Exists(path))
                 File.Delete(path);
         }
