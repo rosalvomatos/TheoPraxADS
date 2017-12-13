@@ -35,13 +35,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/monthly_payment"
+                android:text="@string/code"
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewMonthlyPayment"
+                android:id="@+id/textViewCodeCourse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -60,18 +60,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/code"
+                android:text="@string/monthly_payment"
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewCodeCourse"
+                android:id="@+id/textViewMonthlyPayment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
                 android:text=""
                 android:textColor="@color/md_grey_900"
                 android:textSize="12dp" />
