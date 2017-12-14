@@ -50,6 +50,14 @@ namespace PortalCG.Controllers
                     DeleteLeader(item);
                 }
             }
+            if (leader.LeaderContentList?.Count > 0)
+            {
+                var leaderDistinct = leader.LeaderContentList.GroupBy(e => e.Chave).Select(t => t.FirstOrDefault()).ToList();
+                foreach (var item in leaderDistinct)
+                {
+                    LeaderWebAPI.UpdateLeaderAsync(item);
+                }
+            }
             LeaderWebAPI.UpdateLeaderAsync(leader.LeaderTitle);
             return RedirectToAction("AllLeaders").Success("Dirigente editado com sucesso");
         }

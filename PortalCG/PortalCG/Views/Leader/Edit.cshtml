@@ -43,8 +43,8 @@
                         <div class="course-content">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                    @Html.HiddenFor(m => Model.LeaderContentList[Model.LeaderContentList.IndexOf(item)].Chave)
-                                    @Html.TextBoxFor(m => Model.LeaderContentList[Model.LeaderContentList.IndexOf(item)].Valor, new { @class = "form-control" })
+                                    @Html.HiddenFor(m => Model.LeaderContentList[Model.LeaderContentList.IndexOf(item)].Chave, new { @class = "leader-content-list-key"} )
+                                    @Html.TextBoxFor(m => Model.LeaderContentList[Model.LeaderContentList.IndexOf(item)].Valor, new { @class = "form-control leader-content-list-value" })
                                 </div>
                             </div>
                         </div>

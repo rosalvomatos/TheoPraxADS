@@ -41,3 +41,15 @@ $('#general-item-list').on('click', '.btn-remove-new', function () {
 function removePortlet(item) {
     $(item).parent().parent().parent().parent().parent().parent().remove();
 }
+$('#form-edit').submit(function (e) {
+    e.preventDefault();
+    var keyElements = $('.leader-content-list-key');
+    var valueElements = $('.leader-content-list-value');
+    $(keyElements).each(function (index, element) {
+        $('#form-edit').append($('<input type="hidden" name="LeaderContentList[' + index + '].Chave" value="' + $(element).val() + '"/>'));
+    });
+    $(valueElements).each(function (index, element) {
+        $('#form-edit').append($('<input type="hidden" name="LeaderContentList[' + index + '].Valor" value="' + $(element).val() + '"/>'));
+    });
+    $(this).submit();
+});
