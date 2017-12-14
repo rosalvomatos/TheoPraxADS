@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PortalCG.Models.JsonModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -38,23 +39,34 @@ namespace PortalCG.WebAPIReference
 
         public static void SaveLeaderAsync(Leader leader)
         {
-            string method = "POST";
-            WebRequest request = WebRequest.Create(url + "/" + method);
-            request.Method = method;
-            string postData = JsonConvert.SerializeObject(leader);
-            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = byteArray.Length;
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-            WebResponse response = request.GetResponse();
-            dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            dataStream.Close();
-            response.Close();
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(url);
+            var request = new HttpRequestMessage(HttpMethod.Post, "/post");
+
+            var keyValues = new List<KeyValuePair<string, string>>();
+            keyValues.Add(new KeyValuePair<string, string>("Chave", leader.Chave));
+            keyValues.Add(new KeyValuePair<string, string>("Valor", leader.Valor));
+
+            request.Content = new FormUrlEncodedContent(keyValues);
+            client.SendAsync(request);
+
+            //string method = "POST";
+            //WebRequest request = WebRequest.Create(url + "/" + method);
+            //request.Method = method;
+            //string postData = JsonConvert.SerializeObject(leader);
+            //byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+            //request.ContentType = "application/x-www-form-urlencoded";
+            //request.ContentLength = byteArray.Length;
+            //Stream dataStream = request.GetRequestStream();
+            //dataStream.Write(byteArray, 0, byteArray.Length);
+            //dataStream.Close();
+            //WebResponse response = request.GetResponse();
+            //dataStream = response.GetResponseStream();
+            //StreamReader reader = new StreamReader(dataStream);
+            //string responseFromServer = reader.ReadToEnd();
+            //reader.Close();
+            //dataStream.Close();
+            //response.Close();
         }
 
         public static void UpdateLeaderAsync(Leader leader)
