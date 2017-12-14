@@ -9,7 +9,6 @@ namespace PortalCG.Controllers
         {
 
             return RedirectToAction("AllCourses", "Course");
-            //return RedirectToAction("AllLeaders", "Leader");
         }
     }
 }

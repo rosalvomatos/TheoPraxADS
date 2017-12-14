@@ -14,7 +14,6 @@ using System.Web.Mvc;
 namespace PortalCG.Controllers
 {
 
-    //[Authorize(Users = @"fieb.org.br\tiago.franca, DOMINIO\usuario02 ")]
     //[Authorize(Users = "*")]
     public class CourseController : Controller
     {

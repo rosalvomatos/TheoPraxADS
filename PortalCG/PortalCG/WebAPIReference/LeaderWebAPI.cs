@@ -15,9 +15,6 @@ namespace PortalCG.WebAPIReference
 
         public static async Task<List<Leader>> GetAllLeaders()
         {
-            //REMOVE AFTER TEST
-            //url = "http://tp-ws.somee.com/api/configdirigente";
-
             HttpClient httpClient = new HttpClient();
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
             HttpResponseMessage response = await httpClient.SendAsync(request);
@@ -39,7 +36,7 @@ namespace PortalCG.WebAPIReference
         public static void SaveLeaderAsync(Leader leader)
         {
             string method = "POST";
-            WebRequest request = WebRequest.Create(url);//+ "/" + method);
+            WebRequest request = WebRequest.Create(url);
             request.Method = method;
             string postData = JsonConvert.SerializeObject(leader);
             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
