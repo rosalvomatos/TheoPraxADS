@@ -43,7 +43,7 @@ namespace PortalCG.WebAPIReference
             request.Method = method;
             string postData = JsonConvert.SerializeObject(leader);
             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-            request.ContentType = "application/x-www-form-urlencoded;
+            request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = byteArray.Length;
             Stream dataStream = request.GetRequestStream();
             dataStream.Write(byteArray, 0, byteArray.Length);
