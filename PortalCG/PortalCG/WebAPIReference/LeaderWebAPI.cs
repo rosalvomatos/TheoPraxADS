@@ -60,7 +60,7 @@ namespace PortalCG.WebAPIReference
         public static void UpdateLeaderAsync(Leader leader)
         {
             string method = "PUT";
-            WebRequest request = WebRequest.Create(url);// + "/" + method);
+            WebRequest request = WebRequest.Create(url + "/" + method);
             request.Method = method;
             string postData = JsonConvert.SerializeObject(leader);
             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
