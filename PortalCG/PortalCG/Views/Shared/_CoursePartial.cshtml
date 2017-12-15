@@ -12,25 +12,46 @@
     </div>
     <div class="portlet-body">
         <div class="course-content">
+            @if (Model.Tipo != (int)PortalCG.Util.Enum.TypeCourseEnum.POSTGRADUATE)
+            {
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                        @Html.LabelFor(m => m.Mensalidade, new { @class = "bold" })
+                        :
+                        @Model.Mensalidade
+                    </div>
+                </div>
+            }
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                    @Html.LabelFor(m => m.Mensalidade, new { @class = "bold" })
+                    @Html.LabelFor(m => m.Turno, new { @class = "bold" })
                     :
-                    @Model.Mensalidade
+                    @Model.Turno
                 </div>
             </div>
+
+            @if (Model.Tipo != (int)PortalCG.Util.Enum.TypeCourseEnum.POSTGRADUATE)
+            {
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                        @Html.LabelFor(m => m.Modalidade, new { @class = "bold" })
+                        :
+                        @Model.Modalidade
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                        @Html.Label("Avaliação do MEC", new { @class = "bold" })
+                        :
+                        @Model.NotaMEC
+                    </div>
+                </div>
+            }
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                    @Html.LabelFor(m => m.CH, new { @class = "bold" })
+                    @Html.Label("Carga Horária", new { @class = "bold" })
                     :
                     @Model.CH
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                    @Html.LabelFor(m => m.NotaMEC, new { @class = "bold" })
-                    :
-                    @Model.NotaMEC
                 </div>
             </div>
             <div class="row">
@@ -54,7 +75,7 @@
                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                     <a href="@Url.Action("AllDisciplines", "Course", new { code = Model.Codigo, option = Model.OptionRoute })" class="btn blue btn-xs">Disciplinas</a>
                     <a href="@Url.Action("AllTeachers", "Course", new { code = Model.Codigo})" class="btn blue btn-xs">Docentes</a>
-                    <a href="@Url.Action("UploadFile", "Course", new { codeCourse = Model.Codigo, courseName = Model.Nome, option = Model.OptionRoute })" class="btn blue btn-xs">Arquivos</a>
+                    <a href="@Url.Action("UploadFile", "Course", new { codeCourse = Model.Codigo, courseName = Model.Nome, option = Model.OptionRoute, type = Model.Tipo })" class="btn blue btn-xs">Arquivos</a>
                 </div>
             </div>
         </div>

@@ -103,15 +103,21 @@ namespace PortalCG.Controllers
             return View(detailsCourse);
         }
 
-        public ActionResult UploadFile(string codeCourse, string courseName, int option)
+        public ActionResult UploadFile(string codeCourse, string courseName, int option, int type)
         {
             ViewBag.Url = Url.Action(GetRoute(option <= 3 ? option : 1));
             CourseUploadFileModel course = new CourseUploadFileModel()
             {
                 CodeCourse = codeCourse,
                 NameCourse = courseName,
-                OptionRoute = option
+                OptionRoute = option,
+                Type = type
             };
+            if (type == (int)TypeCourseEnum.POSTGRADUATE)
+            {
+                int index = course.FileList.FindIndex(e => e.IdType == (int)TypeCourseFileEnum.ATO);
+                course.FileList.RemoveAt(index);
+            }
             return View(course);
         }
 

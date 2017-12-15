@@ -8,6 +8,8 @@
         public string Coordenador { get; set; }
         public string NotaMEC { get; set; }
         public string Mensalidade { get; set; }
+        public string Modalidade { get; set; }
+        public string Turno { get; set; }
         public int Tipo { get; set; }
         public int OptionRoute { get; set; }
     }

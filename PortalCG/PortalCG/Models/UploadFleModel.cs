@@ -9,6 +9,7 @@ namespace PortalCG.Models
         public string NameCourse { get; set; }
 
         public int OptionRoute { get; set; }
+        public int Type { get; set; }
 
         public List<FileViewModel> FileList = new List<FileViewModel>
         {
