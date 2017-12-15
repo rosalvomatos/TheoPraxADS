@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.project.exemplo.Adapter.Interface.ICourseListener;
 import com.example.project.exemplo.Adapter.ViewHolder.CourseViewHolder;
 import com.example.project.exemplo.Mapper.Json.CourseJson;
+import com.example.project.exemplo.Util.Enum.TypeCourseEnum;
 
 import java.util.List;
 
@@ -35,7 +37,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
     @Override
     public void onBindViewHolder(CourseViewHolder holder, int position) {
         String name = courseJsonList.get(position).getNome();
-        String codeCourse = courseJsonList.get(position).getCodigo();
         String shift = courseJsonList.get(position).getTurno();
         String modality = courseJsonList.get(position).getModalidade();
         int mecEvaluation = courseJsonList.get(position).getNotaMEC();
@@ -44,13 +45,21 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
         String monthlyPayment = courseJsonList.get(position).getMensalidade();
 
         holder.Name.setText(name == null ? "???" : name);
-        holder.CodeCourse.setText(codeCourse == null ? "???" : codeCourse);
         holder.Shift.setText(shift == null ? "???" : shift);
         holder.Modality.setText(modality == null ? "???" : modality);
         holder.MECEvaluation.setText(Integer.toString(mecEvaluation));
         holder.Coordinator.setText(coordinator == null ? "???" : coordinator);
         holder.Duration.setText(duration == null ? "???" : duration);
         holder.MonthlyPayment.setText(monthlyPayment == null ? "???" : monthlyPayment);
+
+        if (courseJsonList.get(position).getTipo() == (TypeCourseEnum.Postgraduate.ordinal() + 1)) {
+            holder.AuthorizationAct.setVisibility(View.GONE);
+            holder.LinearMECEvaluation.setVisibility(View.GONE);
+            holder.LinearMonthlyPayment.setVisibility(View.GONE);
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.CoursePedagogicalPlan.getLayoutParams();
+            params.setMargins(0, params.topMargin, params.rightMargin, params.bottomMargin);
+            holder.CoursePedagogicalPlan.setLayoutParams(params);
+        }
 
         final CourseJson courseActual = courseJsonList.get(position);
 
