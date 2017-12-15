@@ -12,8 +12,6 @@ public class DisciplineViewHolder extends RecyclerView.ViewHolder {
     public Button Teacher;
     public Button Menu;
     public TextView Name;
-    public TextView CodeDiscipline;
-    public TextView Id;
     public TextView Duration;
 
     public DisciplineViewHolder(View itemView) {
@@ -22,6 +20,5 @@ public class DisciplineViewHolder extends RecyclerView.ViewHolder {
         Menu = (Button) itemView.findViewById(R.id.btnShowMenu);
         Name = (TextView) itemView.findViewById(R.id.textViewNameDiscipline);
         Duration = (TextView) itemView.findViewById(R.id.textViewDurationDiscipline);
-        CodeDiscipline = (TextView) itemView.findViewById(R.id.textViewCodeDiscipline);
     }
 }

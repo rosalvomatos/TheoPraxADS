@@ -35,11 +35,9 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherViewHolder> {
     @Override
     public void onBindViewHolder(TeacherViewHolder holder, int position) {
         String name = teacherJsonList.get(position).getNome();
-        String codeTeacher = teacherJsonList.get(position).getCodigo();
         String hiring = teacherJsonList.get(position).getModContrato();
 
         holder.Name.setText(name == null ? "???" : name);
-        holder.CodeTeacher.setText(codeTeacher == null ? "???" : codeTeacher);
         holder.Hiring.setText(hiring == null ? "???" : hiring);
 
         final TeacherJson teacherJson = teacherJsonList.get(position);

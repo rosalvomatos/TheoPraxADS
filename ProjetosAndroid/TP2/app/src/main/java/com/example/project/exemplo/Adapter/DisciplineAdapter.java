@@ -35,11 +35,9 @@ public class DisciplineAdapter extends RecyclerView.Adapter<DisciplineViewHolder
     @Override
     public void onBindViewHolder(DisciplineViewHolder holder, int position) {
         String name = disciplineJsonList.get(position).getNome();
-        String codeDiscipline = disciplineJsonList.get(position).getCodigo();
         int duration = disciplineJsonList.get(position).getCH();
 
         holder.Name.setText(name == null ? "???" : name);
-        holder.CodeDiscipline.setText(codeDiscipline == null ? "???" : codeDiscipline);
         holder.Duration.setText(Integer.toString(duration));
 
         final DisciplineJson disciplineJson = disciplineJsonList.get(position);

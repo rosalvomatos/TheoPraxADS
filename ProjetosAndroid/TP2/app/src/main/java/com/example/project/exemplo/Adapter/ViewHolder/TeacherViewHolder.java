@@ -11,8 +11,6 @@ public class TeacherViewHolder extends RecyclerView.ViewHolder {
 
     public Button Discipline;
     public TextView Name;
-    public TextView CodeTeacher;
-    public TextView Id;
     public TextView Hiring;
 
 
@@ -21,6 +19,5 @@ public class TeacherViewHolder extends RecyclerView.ViewHolder {
         Discipline = (Button) itemView.findViewById(R.id.btnShowDiscipline);
         Name = (TextView) itemView.findViewById(R.id.textViewNameTeacher);
         Hiring = (TextView) itemView.findViewById(R.id.textViewHiring);
-        CodeTeacher = (TextView) itemView.findViewById(R.id.textViewCodeTeacher);
     }
 }
