@@ -56,6 +56,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
             holder.AuthorizationAct.setVisibility(View.GONE);
             holder.LinearMECEvaluation.setVisibility(View.GONE);
             holder.LinearMonthlyPayment.setVisibility(View.GONE);
+            holder.LinearModality.setVisibility(View.GONE);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.CoursePedagogicalPlan.getLayoutParams();
             params.setMargins(0, params.topMargin, params.rightMargin, params.bottomMargin);
             holder.CoursePedagogicalPlan.setLayoutParams(params);

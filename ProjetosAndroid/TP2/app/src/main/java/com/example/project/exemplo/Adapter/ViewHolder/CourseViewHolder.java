@@ -26,6 +26,8 @@ public class CourseViewHolder extends RecyclerView.ViewHolder {
     public Button Discipline;
     public LinearLayout LinearMECEvaluation;
     public LinearLayout LinearMonthlyPayment;
+    public LinearLayout LinearModality;
+
     public CourseViewHolder(View itemView) {
         super(itemView);
         Name = (TextView) itemView.findViewById(R.id.textViewName);
@@ -43,5 +45,6 @@ public class CourseViewHolder extends RecyclerView.ViewHolder {
         Discipline = (Button) itemView.findViewById(R.id.btnShowDiscipline);
         LinearMECEvaluation = (LinearLayout) itemView.findViewById(R.id.linear_MECEvaluation);
         LinearMonthlyPayment = (LinearLayout) itemView.findViewById(R.id.linear_MonthlyPayment);
+        LinearModality = (LinearLayout) itemView.findViewById(R.id.linear_Modality);
     }
 }
