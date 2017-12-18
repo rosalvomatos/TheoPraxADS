@@ -23,7 +23,10 @@
         <div class="course-buttons">
             <div class="row">
                 <br />
-                <div class="col-md-12">
+                <div class="col-md-6">
+                        <a href="@Model.LinkCurriculo" target="_blank" class="btn blue btn-xs">Curriculo Lattes</a>
+                </div>
+                <div class="col-md-6">
                     @if (Model.ShowDisciplines)
                     {
                         <a href="@Url.Action("AllDisciplines","Teacher", new { code = Model.Codigo})" class="btn blue btn-xs">Disciplinas</a>
