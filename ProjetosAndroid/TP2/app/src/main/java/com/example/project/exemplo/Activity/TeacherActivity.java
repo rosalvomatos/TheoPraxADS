@@ -1,6 +1,7 @@
 package com.example.project.exemplo.Activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -50,6 +51,7 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
         refferId = intent.getExtras().getString("refferId");
 
         String titlePage = getResources().getString(R.string.teachers);
+
 
         teacherAdapter = new TeacherAdapter(teacherJsonList, R.layout.layout_teacher, this, iTeacherListener);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -131,6 +133,15 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
             intent.putExtra("refferId", teacherJson.getCodigo());
             intent.putExtra("typeSearch", typeSearch);
             startActivity(intent);
+        }
+
+        @Override
+        public void showLattes(TeacherJson teacherJson) {
+            String url = teacherJson.getLinkCurriculo();
+            if (!url.startsWith("http://") && !url.startsWith("https://"))
+                url = "http://" + url;
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(browserIntent);
         }
     };
 

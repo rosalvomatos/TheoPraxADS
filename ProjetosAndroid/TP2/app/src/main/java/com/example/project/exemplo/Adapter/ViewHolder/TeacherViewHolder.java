@@ -10,6 +10,7 @@ import com.example.project.exemplo.R;
 public class TeacherViewHolder extends RecyclerView.ViewHolder {
 
     public Button Discipline;
+    public Button Lattes;
     public TextView Name;
     public TextView Hiring;
 
@@ -17,6 +18,7 @@ public class TeacherViewHolder extends RecyclerView.ViewHolder {
     public TeacherViewHolder(View itemView) {
         super(itemView);
         Discipline = (Button) itemView.findViewById(R.id.btnShowDiscipline);
+        Lattes = (Button) itemView.findViewById(R.id.btnShowLattes);
         Name = (TextView) itemView.findViewById(R.id.textViewNameTeacher);
         Hiring = (TextView) itemView.findViewById(R.id.textViewHiring);
     }

@@ -50,6 +50,15 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherViewHolder> {
                 }
             }
         });
+
+        holder.Lattes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (teacherListener != null) {
+                    teacherListener.showLattes(teacherJson);
+                }
+            }
+        });
     }
 
     @Override

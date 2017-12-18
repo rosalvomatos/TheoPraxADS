@@ -6,6 +6,7 @@ public class TeacherJson implements Serializable {
     String Nome;
     String ModContrato;
     String Codigo;
+    String LinkCurriculo;
 
     public String getNome() {
         return Nome;
@@ -29,5 +30,13 @@ public class TeacherJson implements Serializable {
 
     public void setCodigo(String codigo) {
         Codigo = codigo;
+    }
+
+    public String getLinkCurriculo() {
+        return LinkCurriculo;
+    }
+
+    public void setLinkCurriculo(String linkCurriculo) {
+        LinkCurriculo = linkCurriculo;
     }
 }

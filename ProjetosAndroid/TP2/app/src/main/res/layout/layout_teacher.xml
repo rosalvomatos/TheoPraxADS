@@ -59,10 +59,21 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btnShowLattes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@color/md_indigo_700"
+                android:text="@string/lattes"
+                android:textColor="@color/md_white_1000"
+                android:textSize="8dp" />
+
+            <Button
                 android:id="@+id/btnShowDiscipline"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="190dp"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:background="@color/md_indigo_700"
                 android:text="@string/disciplines"
