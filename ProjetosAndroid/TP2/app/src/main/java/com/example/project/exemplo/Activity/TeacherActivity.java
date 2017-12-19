@@ -13,6 +13,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.project.exemplo.Activity.Task.TeacherTask;
 import com.example.project.exemplo.Adapter.TeacherAdapter;
@@ -138,10 +139,15 @@ public class TeacherActivity extends AppCompatActivity implements SearchView.OnQ
         @Override
         public void showLattes(TeacherJson teacherJson) {
             String url = teacherJson.getLinkCurriculo();
-            if (!url.startsWith("http://") && !url.startsWith("https://"))
-                url = "http://" + url;
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(browserIntent);
+            if (url != null && !url.isEmpty()) {
+                if (!url.startsWith("http://") && !url.startsWith("https://"))
+                    url = "http://" + url;
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_lattes), Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
     };
 

@@ -11,6 +11,7 @@
     <string name="student_manual">Manual do Aluno</string>
     <string name="disciplinary_rules">Regimento Disciplinar</string>
     <string name="disciplines">Disciplinas</string>
+    <string name="error_lattes">Currículo Lattes não encontrado</string>
     <string name="leaders">Dirigentes</string>
     <string name="teachers">Docentes</string>
     <string name="curriculum">Matriz Curricular</string>
