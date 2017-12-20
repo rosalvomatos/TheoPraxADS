@@ -2,7 +2,7 @@
 
 namespace PortalCG.Controllers
 {
-    //[Authorize(Users = "*")]
+    [Authorize(Users = "*")]
     public class HomeController : Controller
     {
         public ActionResult Index()

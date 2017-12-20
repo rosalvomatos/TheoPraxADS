@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace PortalCG.Controllers
 {
-    //[Authorize(Users = "*")]
+    [Authorize(Users = "*")]
     public class LeaderController : Controller
     {
         public async Task<ActionResult> AllLeaders()

@@ -7,9 +7,9 @@ using System.Web.Mvc;
 
 namespace PortalCG.Controllers
 {
+    [Authorize(Users = "*")]
     public class TeacherController : Controller
     {
-        //[Authorize(Users = "*")]
         public async Task<ActionResult> AllTeachers()
         {
             ViewBag.Url = Url.Action("AllTeachers");

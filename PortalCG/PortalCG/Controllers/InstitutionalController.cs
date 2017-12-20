@@ -2,15 +2,12 @@
 using PortalCG.Models;
 using PortalCG.Util;
 using PortalCG.Util.Enum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace PortalCG.Controllers
 {
-    //[Authorize(Users = "*")]
+    [Authorize(Users = "*")]
     public class InstitutionalController : Controller
     {
 

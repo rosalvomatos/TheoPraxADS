@@ -13,8 +13,7 @@ using System.Web.Mvc;
 
 namespace PortalCG.Controllers
 {
-
-    //[Authorize(Users = "*")]
+    [Authorize(Users = "*")]
     public class CourseController : Controller
     {
 
